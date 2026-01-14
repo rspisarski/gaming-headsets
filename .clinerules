@@ -1,0 +1,385 @@
+# Gaming Headset Comparison Website - Project Rules
+
+## Project Overview
+A feature-focused gaming headset comparison and filtering website with affiliate monetization. Users can filter headsets by objective specs, save favorites locally, and access individual product pages with affiliate links.
+
+## Tech Stack
+
+### Core Framework
+- **Astro** - Static site generator for content-heavy sites
+- Framework choice reasoning: Fast, SEO-friendly, excellent for static content with minimal interactivity
+
+### Styling
+- **Tailwind CSS** - Utility-first CSS framework
+- Consider: daisyUI or shadcn for pre-built components
+
+### Content Management
+- **Markdown files** for individual headset pages in `/src/content/headsets/`
+- Frontmatter (YAML) for all structured data (specs, prices, affiliate links)
+- Astro Content Collections for type-safe content queries
+
+### Image Hosting
+- **ImageKit** (primary recommendation)
+  - Free tier: 20GB storage, 20GB bandwidth, unlimited transformations
+  - Alternative: Manufacturer hotlinks for initial launch
+- **Never store images in Git repository**
+
+### Deployment
+- **Netlify** - Free static hosting with auto-deploy from Git
+- Zero backend costs, no database server needed
+
+## Project Structure
+
+```
+/
+├── src/
+│   ├── content/
+│   │   └── headsets/
+│   │       ├── steelseries-arctis-nova-7.md
+│   │       ├── hyperx-cloud-alpha.md
+│   │       └── ... (one file per headset)
+│   ├── pages/
+│   │   ├── index.astro (main listing page with filters)
+│   │   └── headsets/
+│   │       └── [slug].astro (dynamic headset pages)
+│   ├── components/
+│   │   ├── HeadsetCard.astro
+│   │   ├── FilterBar.astro
+│   │   └── FavoriteButton.astro
+│   └── layouts/
+│       └── Layout.astro
+├── public/
+│   └── (minimal static assets only, NO images)
+└── package.json
+```
+
+## Content Schema
+
+### Headset Markdown File Structure
+Each headset should be a single markdown file with this frontmatter:
+
+```yaml
+---
+# Basic Info
+id: "arctis-nova-7"
+name: "SteelSeries Arctis Nova 7"
+brand: "SteelSeries"
+price: 179.99
+image: "https://ik.imagekit.io/yourproject/headsets/arctis-nova-7.jpg"
+
+# Technical Specs (objective, filterable)
+wireless: true
+wired: true
+connectivity: ["2.4GHz", "Bluetooth", "3.5mm"]
+battery: 38 # hours, null if wired-only
+weight: 315 # grams
+driver_size: 40 # mm
+
+# Compatibility (array of platforms)
+compatibility: ["PC", "PS5", "PS4", "Switch", "Mobile"]
+xbox_compatible: false
+
+# Audio Specs
+surround_sound: "7.1"
+frequency_response: "20Hz - 20kHz"
+impedance: 32 # ohms
+
+# Microphone
+microphone_type: "retractable" # options: boom, retractable, inline, none
+microphone_detachable: true
+
+# Features (booleans)
+noise_cancellation: false
+rgb_lighting: true
+replaceable_earpads: true
+sidetone: true
+
+# Affiliate Links
+amazon: "https://amzn.to/xyz123"
+bestbuy: "https://bestbuy.com/affiliate/abc"
+newegg: "https://newegg.com/partner/def"
+manufacturer: "https://steelseries.com/gaming-headsets/arctis-nova-7"
+
+# SEO
+description: "Brief 1-2 sentence description for meta tags"
+---
+
+## Overview
+Brief description of the headset (2-3 sentences max for SEO).
+
+## Key Features
+- List major features
+- Keep concise
+- Focus on objective facts
+
+## Specifications
+(Optional detailed specs section if needed for SEO)
+```
+
+## Feature Requirements
+
+### Core Features (MVP)
+1. **Main Listing Page**
+   - Display all headsets in a grid/list
+   - Client-side filtering by:
+     - Price range (slider)
+     - Brand (checkboxes)
+     - Wireless/Wired (toggle)
+     - Platform compatibility (checkboxes)
+     - Battery life (min threshold)
+     - Weight (max threshold)
+   - Sorting options: Price (low/high), Battery life, Weight, Name
+
+2. **Individual Headset Pages**
+   - Clean layout with specs displayed clearly
+   - Multiple affiliate link buttons (Amazon, Best Buy, etc.)
+   - Price comparison widget showing all retailer options
+   - Related/similar headsets section
+
+3. **Favorites System**
+   - Save/unsave headsets to favorites
+   - Store in `localStorage` (no backend needed)
+   - "Export Favorites" button → downloads JSON file
+   - "Import Favorites" button → uploads JSON file to restore
+   - Visual indicator on favorited headsets
+
+4. **Export/Import Functionality**
+   ```javascript
+   // Export format
+   {
+     "favorites": [12, 45, 89, 103],
+     "exportDate": "2026-01-12T10:30:00Z",
+     "version": "1.0"
+   }
+   ```
+
+### Nice-to-Have Features (Future)
+- Share favorites via URL (base64 encoded IDs in query params)
+- Compare 2-3 headsets side-by-side
+- "Best for..." filtered views (FPS gaming, streaming, music, budget)
+- Dark mode toggle
+
+## Design Principles
+
+### Filtering & Display
+- **Focus on objective specs only** - no subjective reviews or ratings
+- Minimize listicles - use prose and paragraphs for content
+- Clear, scannable spec tables
+- Visual indicators for key features (icons)
+- Mobile-responsive filtering (drawer/modal on mobile)
+
+### Content Tone
+- Professional but approachable
+- Fact-based, not opinion-based
+- No hyperbolic marketing language
+- Acknowledge when specs matter vs when they don't
+
+### Performance
+- All filtering happens client-side (fast, no server round-trips)
+- Lazy load headset images
+- Optimize images through ImageKit URL parameters
+- Target Lighthouse score: 95+ on all metrics
+
+## Data Management
+
+### Adding New Headsets
+1. Create new markdown file in `/src/content/headsets/`
+2. Use AI to extract specs from manufacturer page (with manual verification)
+3. Upload product image to ImageKit
+4. Verify all affiliate links work
+5. Commit and push (Netlify auto-deploys)
+
+### Data Quality Rules
+- **Always verify AI-extracted data** against official sources
+- Cross-reference battery life claims with user reports (often inflated)
+- Note when "7.1 surround" is virtual vs actual discrete drivers
+- Check compatibility nuances (e.g., wireless on PC but wired-only on Xbox)
+- Update prices monthly (can be scripted later)
+
+### Data Sources Priority
+1. Official manufacturer specifications
+2. Official retailer listings (Amazon, Best Buy)
+3. User reports on Reddit/forums (for real-world data like battery)
+4. Tech review sites (for measurements, not opinions)
+
+## Monetization Strategy
+
+### Affiliate Programs
+- **Amazon Associates** - 1-4% commission (priority: volume)
+- **Best Buy Affiliate Program** - 1-2%
+- **Newegg** - 2-5%
+- **Direct brand programs** - Check Razer, Corsair, SteelSeries, etc.
+
+### Link Presentation
+- Multiple retailer buttons on each product page
+- Price comparison showing current prices across retailers
+- Clearly labeled "Buy on [Retailer]" buttons
+- Disclaimer: "As an Amazon Associate, we earn from qualifying purchases"
+
+### Realistic Expectations
+- **First 3 months**: Expect $0-100 total
+- **Months 3-6**: $50-300/month
+- **Months 6-12**: $300-1,000/month (if done well)
+- **Year 2+**: $2,000-5,000/month potential
+- SEO takes 6-12 months to gain traction
+- Don't quit the day job - this is a side project with long-term potential
+
+## SEO Best Practices
+
+### On-Page SEO
+- Unique title and meta description for each headset page
+- Use headset name + key features in H1
+- Include specs in structured format (tables or definition lists)
+- Alt text for all images: "[Brand] [Model] gaming headset"
+- Internal linking between similar/competing headsets
+
+### Content Strategy
+- Focus on comparison keywords: "best wireless gaming headset under $100"
+- Create category pages: "Best Headsets for PS5", "Best Budget Gaming Headsets"
+- Write informational content: "Gaming Headset Buying Guide"
+- Update content regularly (at least quarterly)
+
+### Technical SEO
+- Fast page loads (Astro is great for this)
+- Mobile responsive design
+- Clean URL structure: `/headsets/brand-model-name`
+- XML sitemap (Astro generates automatically)
+- Robots.txt properly configured
+
+## Development Workflow
+
+### Initial Setup (40-60 hours)
+1. Set up Astro project with Tailwind (2-3 hours)
+2. Design and build UI components (8-10 hours)
+3. Create 20-30 initial headset markdown files (15-20 hours)
+4. Build filtering/sorting functionality (8-12 hours)
+5. Implement favorites with export/import (3-5 hours)
+6. Set up ImageKit and optimize images (3-5 hours)
+7. Test, polish, deploy to Netlify (3-5 hours)
+
+### Ongoing Maintenance
+- Add 5-10 new headsets monthly (2-4 hours)
+- Update prices and availability (1 hour/month)
+- Monitor affiliate links for breakage (30 min/month)
+- Analyze traffic and optimize top pages (2 hours/month)
+- Create new content (guides, comparisons) as time allows
+
+## Code Style & Conventions
+
+### JavaScript/TypeScript
+- Use TypeScript where beneficial (Content Collections)
+- Prefer functional components
+- Keep client-side JS minimal
+- Use descriptive variable names: `filteredHeadsets`, `priceRange`, `selectedBrands`
+
+### Astro Specific
+- Use `.astro` components for static content
+- Keep interactive elements isolated to small components
+- Leverage Content Collections for type safety
+- Use Astro's built-in image optimization
+
+### CSS/Tailwind
+- Use Tailwind utilities primarily
+- Extract common patterns into components, not custom CSS
+- Keep responsive design mobile-first
+- Avoid over-styling - clean and simple wins
+
+### File Naming
+- Kebab-case for files: `headset-card.astro`, `filter-bar.astro`
+- PascalCase for components in imports: `<HeadsetCard />`
+- Lowercase with hyphens for routes: `/headsets/steelseries-arctis-nova-7`
+
+## Testing Strategy
+
+### Pre-Launch Testing
+- Test all filters with various combinations
+- Verify favorites export/import works across browsers
+- Check affiliate links redirect correctly
+- Test on multiple devices (mobile, tablet, desktop)
+- Verify all images load and are optimized
+- Check page speed (Lighthouse audit)
+
+### Post-Launch Monitoring
+- Monitor affiliate link click-through rates
+- Track which filters are most used (analytics)
+- Check for 404s regularly
+- Monitor page load times
+- Review search console for SEO issues
+
+## Constraints & Limitations
+
+### What NOT to Include
+- User reviews or ratings (subjective, moderation nightmare)
+- Comment sections (spam, moderation)
+- User accounts (adds complexity, costs)
+- Real-time price tracking (requires backend/scraping)
+- "Best" rankings or scores (subjective, like Versus.com complaints)
+
+### Design Constraints
+- **No bullet points in prose** - write in paragraphs naturally
+- **Avoid listicles** - don't structure content as "Top 10 Best..."
+- **Minimal headers** - use sparingly, keep conversational
+- No excessive bold/emphasis in content
+
+### Technical Constraints
+- Keep site fully static (no server needed)
+- No database (all data in markdown files)
+- Client-side filtering only (no API calls)
+- Images must be external (ImageKit, not in repo)
+
+## Success Metrics
+
+### Traffic Goals
+- Month 3: 500 monthly visitors
+- Month 6: 2,000 monthly visitors
+- Month 12: 10,000 monthly visitors
+- Year 2: 50,000+ monthly visitors
+
+### Revenue Goals (Realistic)
+- Month 3: $0-50
+- Month 6: $100-300
+- Month 12: $500-1,000
+- Year 2: $2,000-5,000/month
+
+### Content Goals
+- Launch: 30 headsets minimum
+- Month 3: 50 headsets
+- Month 6: 75 headsets
+- Year 1: 100-150 headsets
+
+## Key Differentiators
+
+### vs Versus.com
+- More focused niche (only gaming headsets)
+- No subjective scoring system
+- Cleaner, simpler UI
+- Better data accuracy (manually verified)
+- Feature-based filtering (not algorithm-based rankings)
+
+### vs RTINGS.com
+- Faster, simpler experience
+- No paywalled content
+- Focus on filtering by objective needs
+- Less technical depth, more practical filtering
+
+### Your Value Proposition
+"Find the perfect gaming headset by filtering objective specs - not subjective reviews. Compare features that actually matter to you."
+
+## Notes & Reminders
+
+- This is a **side project** - work sustainably, don't burn out
+- **SEO is slow** - expect 6-12 months before meaningful traffic
+- **Quality over quantity** - 50 accurate headsets > 200 sloppy ones
+- **Start small** - launch with MVP, iterate based on user behavior
+- **Trust the process** - affiliate income compounds as content library grows
+- **Skills matter for free tier** - using free services on Cloudinary means ALWAYS using ImageKit for better value
+- When in doubt, **keep it simple** - complexity kills side projects
+
+## Questions to Ask Before Building Features
+1. Does this help users filter by objective specs?
+2. Can this be done client-side without a backend?
+3. Will this still work in 5 years without maintenance?
+4. Does this add value or just complexity?
+5. Would I use this feature myself?
+
+If you answer "no" to any of these, reconsider the feature.

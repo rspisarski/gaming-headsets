@@ -1,0 +1,39 @@
+---
+interface Props {
+  src: string;
+  alt: string;
+  width?: number;
+  height?: number;
+  quality?: number;
+  format?: 'auto' | 'webp' | 'jpg' | 'png';
+  loading?: 'lazy' | 'eager';
+}
+
+const { 
+  src, 
+  alt, 
+  width = 400, 
+  height = 400, 
+  quality = 80, 
+  format = 'auto',
+  loading = 'lazy'
+} = Astro.props;
+
+// Check if it's an ImageKit URL
+const isImageKit = src.includes('imagekit.io');
+
+// Generate optimized ImageKit URL
+const optimizedSrc = isImageKit 
+  ? `${src}?tr=w-${width},h-${height},q-${quality},f-${format}`
+  : src;
+---
+
+<img 
+  src={optimizedSrc}
+  alt={alt}
+  width={width}
+  height={height}
+  loading={loading}
+  class="w-full h-full object-cover"
+  decoding="async"
+/>
