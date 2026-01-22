@@ -1,68 +1,89 @@
 ---
 interface Props {
   headset: {
-    id: string;
+    slug: string;
     name: string;
     brand: string;
     price: number;
     image: string;
-    wireless: boolean;
-    battery: number | null;
-    weight: number;
-    compatibility: string[];
-    microphone_type: string;
-    rgb_lighting: string;
-    noise_cancellation: string;
-  };
+    wireless?: boolean;
+    battery?: number | null;
+    weight?: number;
+    // ... possibly other fields, usually typescript allows extra fields if not strict
+  } & Record<string, any>; // Allow other loose props since we spread ...headset.data
 }
 
 const { headset } = Astro.props;
 ---
 
-<div class="group bg-dark-card rounded-xl border border-dark-border shadow-sm hover:shadow-xl hover:border-mauve-500/30 transition-all duration-300 overflow-hidden flex flex-col h-full relative">
+<div
+  class="group bg-card-bg relative z-0 hover:z-10 rounded-xl shadow-sm hover:shadow-[0_0_80px_rgba(139,213,27,0.4)] transition-all duration-300 overflow-hidden flex flex-col h-full"
+>
   <!-- Image - Aspect Ratio 4:3 as requested -->
-  <div class="relative w-full aspect-[4/3] bg-dark-surface overflow-hidden group-hover:scale-[1.02] transition-transform duration-500">
-    <img 
-      src={headset.image} 
+  <div
+    class="relative w-full aspect-[4/3] bg-gray-950 overflow-hidden group-hover:scale-[1.02] transition-transform duration-500"
+  >
+    <img
+      src={headset.image}
       alt={`${headset.brand} ${headset.name} gaming headset`}
       class="w-full h-full object-cover"
       loading="lazy"
     />
     <!-- Price Badge floating on image -->
-    <div class="absolute top-3 right-3 bg-dark-bg/90 backdrop-blur-sm border border-dark-border px-3 py-1 rounded-full shadow-lg">
-      <span class="text-emerald-400 font-bold">${headset.price}</span>
+    <div
+      class="absolute top-3 right-3 bg-black/90 backdrop-blur-sm px-3 py-1 rounded-full shadow-lg"
+    >
+      <span class="text-primary font-bold">${headset.price}</span>
     </div>
   </div>
-  
+
   <div class="p-5 flex flex-col flex-1">
     <!-- Header -->
     <div class="mb-4">
       <div class="flex justify-between items-start mb-1">
-        <span class="text-xs font-bold tracking-wider text-mauve-400 uppercase">{headset.brand}</span>
+        <span class="text-xs font-bold tracking-wider text-primary uppercase"
+          >{headset.brand}</span
+        >
       </div>
-      <h3 class="text-xl font-bold text-dark-text-primary leading-tight group-hover:text-mauve-300 transition-colors">{headset.name}</h3>
+      <h3
+        class="text-xl font-bold text-text leading-tight group-hover:text-primary transition-colors"
+      >
+        {headset.name}
+      </h3>
     </div>
 
     <!-- Default Features (Static) - Hidden as per user request (only show features on filter) -->
     <div class="flex-1">
       <!-- Features hidden by default -->
     </div>
-    
+
     <!-- Actions -->
-    <div class="mt-auto pt-4 border-t border-dark-border/50 flex items-center justify-between gap-3">
-      <a 
-        href={`/headsets/${headset.id}`}
-        class="flex-1 text-center px-4 py-2 bg-mauve-600 hover:bg-mauve-500 text-white text-sm font-semibold rounded-lg transition-colors shadow-lg shadow-mauve-900/20"
+    <div
+      class="mt-auto pt-4 border-t border-gray-700/50 flex items-center justify-between gap-3"
+    >
+      <a
+        href={`/headsets/${headset.slug}`}
+        class="flex-1 text-center px-4 py-2 bg-primary hover:bg-primary/80 text-white text-sm font-semibold rounded-lg transition-colors"
       >
         View Details
       </a>
-      <button 
-        class="favorite-button p-2 text-dark-text-muted hover:text-red-400 hover:bg-dark-surface rounded-lg transition-all border border-transparent hover:border-dark-border"
-        data-headset-id={headset.id}
+      <button
+        class="favorite-button p-2 text-text/60 hover:text-red-400 hover:bg-gray-800 rounded-lg transition-all"
+        data-headset-id={headset.slug}
         aria-label="Add to favorites"
       >
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+        <svg
+          class="w-6 h-6"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+          ></path>
         </svg>
       </button>
     </div>

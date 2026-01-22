@@ -1,73 +1,27 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700&family=Poppins:wght@400;500;600;700;800&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
     :root {
-        --mauve-50: #f0e5ff;
-        --mauve-100: #e1ccff;
-        --mauve-200: #c399ff;
-        --mauve-300: #a666ff;
-        --mauve-400: #8833ff;
-        --mauve-500: #6a00ff;
-        --mauve-600: #5500cc;
-        --mauve-700: #400099;
-        --mauve-800: #2a0066;
-        --mauve-900: #150033;
-        --mauve-950: #0f0024;
-        --soft-periwinkle-50: #efebf9;
-        --soft-periwinkle-100: #ded8f3;
-        --soft-periwinkle-200: #beb1e7;
-        --soft-periwinkle-300: #9d8adb;
-        --soft-periwinkle-400: #7c63cf;
-        --soft-periwinkle-500: #5b3cc3;
-        --soft-periwinkle-600: #49309c;
-        --soft-periwinkle-700: #372475;
-        --soft-periwinkle-800: #25184e;
-        --soft-periwinkle-900: #120c27;
-        --soft-periwinkle-950: #0d081b;
-        --dusty-grape-50: #efeff6;
-        --dusty-grape-100: #dedfed;
-        --dusty-grape-200: #bebfda;
-        --dusty-grape-300: #9d9fc8;
-        --dusty-grape-400: #7c7eb6;
-        --dusty-grape-500: #5c5ea3;
-        --dusty-grape-600: #494b83;
-        --dusty-grape-700: #373962;
-        --dusty-grape-800: #252641;
-        --dusty-grape-900: #121321;
-        --dusty-grape-950: #0d0d17;
-        --space-indigo-50: #efeff6;
-        --space-indigo-100: #dfdeed;
-        --space-indigo-200: #c0beda;
-        --space-indigo-300: #a09dc8;
-        --space-indigo-400: #807cb6;
-        --space-indigo-500: #615ca3;
-        --space-indigo-600: #4d4983;
-        --space-indigo-700: #3a3762;
-        --space-indigo-800: #272541;
-        --space-indigo-900: #131221;
-        --space-indigo-950: #0e0d17;
-        --frozen-lake-50: #e5f9ff;
-        --frozen-lake-100: #ccf2ff;
-        --frozen-lake-200: #99e6ff;
-        --frozen-lake-300: #66d9ff;
-        --frozen-lake-400: #33ccff;
-        --frozen-lake-500: #00bfff;
-        --frozen-lake-600: #0099cc;
-        --frozen-lake-700: #007399;
-        --frozen-lake-800: #004d66;
-        --frozen-lake-900: #002633;
-        --frozen-lake-950: #001b24;
+        --color-primary: #8BD51B;
+        --color-secondary: #2E5EAA;
+        --color-background: #000000;
+        --color-card-bg: #08090A;
+        --color-text: #FFFFFF;
+    }
 
+    body {
+        font-family: 'Poppins', sans-serif;
+        background-color: var(--color-background);
+        color: var(--color-text);
+    }
 
-        /* Dark Theme Colors */
-        --dark-bg: #2C2A4A;
-        --dark-surface: #1E1C3A;
-        --dark-card: #252342;
-        --dark-border: #3A3858;
-        --dark-text-primary: #F0F0F5;
-        --dark-text-secondary: #B8B5D6;
-        --dark-text-muted: #8B88AA;
+    *,
+    *::before,
+    *::after {
+        border-radius: 0.5rem;
     }
 }

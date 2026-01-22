@@ -335,27 +335,92 @@ function calculateMatch(headset, selectedFeatures) {
 function featureMatches(selected, headset) {
   const { feature, value } = selected;
 
+  // Handle new categorized features (arrays)
   switch (feature) {
+    // 1. Connectivity & Wireless
+    case 'connection_types':
+      return headset.connection_types === value;
+    case 'charging_type':
+      return headset.charging_type === value;
+    case 'wireless_range':
+      return headset.wireless_range === value;
+    case 'wireless_features':
+      return headset.wireless_features && headset.wireless_features.includes(value);
+    
+    // 2. Platform Compatibility
+    case 'platforms':
+      return headset.platform_compatibility && headset.platform_compatibility.includes(value);
+    case 'xbox_compatibility':
+      return headset.xbox_compatibility === value;
+    
+    // 3. Audio Specifications
+    case 'driver_types':
+      return headset.driver_type === value;
+    case 'surround_sound':
+      return headset.surround_sound === value;
+    case 'headphone_types':
+      return headset.headphone_type === value;
+    
+    // 4. Microphone Features
+    case 'microphone_types':
+      return headset.microphone_type === value;
+    case 'pickup_patterns':
+      return headset.pickup_pattern === value;
+    case 'microphone_features':
+      return headset.microphone_features && headset.microphone_features.includes(value);
+    
+    // 5. Comfort & Build
+    case 'ear_cup_designs':
+      return headset.ear_cup_design === value;
+    case 'cushion_materials':
+      return headset.cushion_material === value;
+    case 'build_materials':
+      return headset.build_materials === value;
+    case 'comfort_features':
+      return headset.comfort_features && headset.comfort_features.includes(value);
+    
+    // 6. Advanced Features
+    case 'active_features':
+      return headset.active_features && headset.active_features.includes(value);
+    case 'rgb_lighting':
+      return headset.rgb_lighting === value;
+    case 'special_features':
+      return headset.special_features && headset.special_features.includes(value);
+    
+    // 7. Software & Customization
+    case 'software_features':
+      return headset.software_features && headset.software_features.includes(value);
+    case 'software_apps':
+      return headset.software_app === value;
+    
+    
+    
+    // 11. Price Categories
+    case 'price_categories':
+      return priceCategoryMatches(value, headset.price);
+    
+    // 12. Brand
+    case 'brand':
+      return value === headset.brand;
+    
+    // Legacy support for old features
     case 'compatibility':
-      return headset.compatibility.includes(value);
+      return headset.compatibility && headset.compatibility.includes(value);
     case 'cord_type':
       return cordTypeMatches(value, headset);
     case 'microphone_type':
       return value === headset.microphone_type;
     case 'noise_cancellation':
       return noiseCancellationMatches(value, headset);
-    case 'rgb_lighting':
-      return rgbLightingMatches(value, headset);
+    case 'replaceable_earpads':
+      return value === 'true' ? headset.replaceable_earpads : true;
+    case 'price_tier':
+      return priceTierMatches(value, headset.price);
     case 'software_support':
       return softwareSupportMatches(value, headset);
     case 'software_app':
       return value === headset.software_app;
-    case 'replaceable_earpads':
-      return value === 'true' ? headset.replaceable_earpads : true;
-    case 'brand':
-      return value === headset.brand;
-    case 'price_tier':
-      return priceTierMatches(value, headset.price);
+    
     default:
       return false;
   }
@@ -402,7 +467,25 @@ function softwareSupportMatches(selected, headset) {
   }
 }
 
+function priceCategoryMatches(category, price) {
+  switch (category) {
+    case 'Budget':
+      return price <= 50;
+    case 'Value':
+      return price > 50 && price <= 100;
+    case 'Mid-range':
+      return price > 100 && price <= 200;
+    case 'Premium':
+      return price > 200 && price <= 350;
+    case 'Flagship':
+      return price > 350;
+    default:
+      return false;
+  }
+}
+
 function priceTierMatches(tier, price) {
+  // Legacy support for old price tiers
   switch (tier) {
     case 'affordable':
       return price <= 75;

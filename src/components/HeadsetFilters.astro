@@ -1,0 +1,672 @@
+---
+interface HeadsetData {
+  slug: string;
+  name: string;
+  brand: string;
+  price: number;
+  image: string;
+  connection_types: string[];
+  platforms: string[];
+  microphone_type: string;
+  surround_sound: string;
+  active_features: string[];
+  rgb_lighting: string;
+}
+
+interface Props {
+  headsets: HeadsetData[];
+}
+
+const { headsets } = Astro.props;
+
+const uniqueBrands = [...new Set(headsets.map(h => h.brand))].sort();
+
+const priceCategories = [
+  { value: 'Budget', label: 'Budget ($0-74)' },
+  { value: 'Value', label: 'Value ($75-149)' },
+  { value: 'Mid-range', label: 'Mid-range ($150-249)' },
+  { value: 'Premium', label: 'Premium ($250-399)' },
+  { value: 'Flagship', label: 'Flagship ($400+)' }
+];
+
+const platforms = ['PC', 'PlayStation 5', 'PlayStation 4', 'Xbox Series X|S', 'Xbox One', 'Nintendo Switch', 'Mobile'];
+
+const microphoneTypes = ['Boom Mic', 'Retractable Mic', 'Detachable Mic', 'Inline Mic', 'Dual Microphone Array', 'No Microphone'];
+
+const surroundSounds = ['Stereo', 'Virtual 5.1', 'Virtual 7.1', 'True 7.1', 'Dolby Atmos', 'DTS:X 2.0', 'Windows Sonic', 'THX Spatial Audio', 'Tempest 3D Audio', 'Proprietary Spatial'];
+
+const rgbOptions = ['Customizable RGB', 'Reactive Lighting', 'No Lighting'];
+---
+
+<div class="flex flex-col lg:flex-row gap-8">
+  <aside class="w-full lg:w-72 flex-shrink-0">
+    <div class="bg-card-bg p-6 sticky top-24">
+      <div class="flex justify-between items-center mb-6">
+        <h2 class="text-xl font-semibold text-text">Filters</h2>
+        <button id="clear-all-filters" class="text-sm text-primary hover:text-primary/80 transition-colors">
+          Clear All
+        </button>
+      </div>
+
+      <div class="mb-6">
+        <h3 class="font-medium text-text mb-3">Price Category</h3>
+        <div class="space-y-2" id="price-filters">
+          {priceCategories.map(cat => (
+            <label class="flex items-center gap-2 cursor-pointer group">
+              <input type="checkbox" value={cat.value} class="price-filter w-4 h-4 rounded bg-black text-primary focus:ring-primary cursor-pointer" data-category="price">
+              <span class="text-text/80 group-hover:text-text text-sm">{cat.label}</span>
+            </label>
+          ))}
+        </div>
+      </div>
+
+      <div class="mb-6">
+        <h3 class="font-medium text-text mb-3">Brand</h3>
+        <div id="brand-filters" class="space-y-2 max-h-40 overflow-y-auto">
+          {uniqueBrands.map(brand => (
+            <label class="flex items-center gap-2 cursor-pointer group">
+              <input type="checkbox" value={brand} class="brand-filter w-4 h-4 rounded bg-black text-primary focus:ring-primary cursor-pointer" data-category="brand">
+              <span class="text-text/80 group-hover:text-text text-sm">{brand}</span>
+            </label>
+          ))}
+        </div>
+      </div>
+
+      <div class="mb-6">
+        <h3 class="font-medium text-text mb-3">Connectivity</h3>
+        <div class="space-y-2">
+          <label class="flex items-center gap-2 cursor-pointer group">
+            <input type="checkbox" id="filter-wireless" class="w-4 h-4 rounded bg-black text-primary focus:ring-primary cursor-pointer">
+            <span class="text-text/80 group-hover:text-text text-sm">Wireless</span>
+          </label>
+          <label class="flex items-center gap-2 cursor-pointer group">
+            <input type="checkbox" id="filter-wired" class="w-4 h-4 rounded bg-black text-primary focus:ring-primary cursor-pointer">
+            <span class="text-text/80 group-hover:text-text text-sm">Wired</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="mb-6">
+        <h3 class="font-medium text-text mb-3">Platform</h3>
+        <div id="platform-filters" class="space-y-2 max-h-40 overflow-y-auto">
+          {platforms.map(platform => (
+            <label class="flex items-center gap-2 cursor-pointer group">
+              <input type="checkbox" value={platform} class="platform-filter w-4 h-4 rounded bg-black text-primary focus:ring-primary cursor-pointer" data-category="platform">
+              <span class="text-text/80 group-hover:text-text text-sm">{platform}</span>
+            </label>
+          ))}
+        </div>
+      </div>
+
+      <details class="mb-6">
+        <summary class="cursor-pointer text-sm font-medium text-primary hover:text-primary/80 flex items-center">
+          <svg class="w-4 h-4 mr-2 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+          </svg>
+          Advanced Filters
+        </summary>
+        <div class="mt-4 space-y-4 pl-6 border-l-2 border-gray-700">
+          <div>
+            <h4 class="text-sm font-medium text-text mb-2">Microphone Type</h4>
+            <div class="space-y-1">
+              {microphoneTypes.map(micType => (
+                <label class="flex items-center gap-2 cursor-pointer group">
+                  <input type="checkbox" value={micType} class="mic-filter w-4 h-4 rounded bg-black text-primary focus:ring-primary cursor-pointer" data-category="mic">
+                  <span class="text-text/80 group-hover:text-text text-xs">{micType}</span>
+                </label>
+              ))}
+            </div>
+          </div>
+
+          <div>
+            <h4 class="text-sm font-medium text-text mb-2">Surround Sound</h4>
+            <div class="space-y-1">
+              {surroundSounds.map(sound => (
+                <label class="flex items-center gap-2 cursor-pointer group">
+                  <input type="checkbox" value={sound} class="surround-filter w-4 h-4 rounded bg-black text-primary focus:ring-primary cursor-pointer" data-category="surround">
+                  <span class="text-text/80 group-hover:text-text text-xs">{sound}</span>
+                </label>
+              ))}
+            </div>
+          </div>
+
+          <div>
+            <h4 class="text-sm font-medium text-text mb-2">Noise Cancellation</h4>
+            <div class="space-y-1">
+              {['Active', 'None'].map(nc => (
+                <label class="flex items-center gap-2 cursor-pointer group">
+                  <input type="radio" name="noise-cancellation" value={nc} class="nc-filter w-4 h-4 rounded bg-black text-primary focus:ring-primary cursor-pointer" data-category="nc">
+                  <span class="text-text/80 group-hover:text-text text-xs">{nc}</span>
+                </label>
+              ))}
+            </div>
+          </div>
+
+          <div>
+            <h4 class="text-sm font-medium text-text mb-2">RGB Lighting</h4>
+            <div class="space-y-1">
+              {rgbOptions.map(rgb => (
+                <label class="flex items-center gap-2 cursor-pointer group">
+                  <input type="checkbox" value={rgb} class="rgb-filter w-4 h-4 rounded bg-black text-primary focus:ring-primary cursor-pointer" data-category="rgb">
+                  <span class="text-text/80 group-hover:text-text text-xs">{rgb}</span>
+                </label>
+              ))}
+            </div>
+          </div>
+        </div>
+      </details>
+    </div>
+  </aside>
+
+  <div class="flex-1">
+    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
+      <div>
+        <h2 class="text-xl font-semibold text-text">All Headsets</h2>
+        <p class="text-text/60 text-sm"><span id="results-count">0</span> headsets found</p>
+      </div>
+    </div>
+
+    <div id="headsets-grid" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 relative">
+    </div>
+
+    <div id="no-results" class="hidden text-center py-12 bg-black border border-primary/20">
+      <p class="text-text/60">No headsets found matching your criteria.</p>
+    </div>
+
+    <div id="pagination" class="mt-8 flex justify-center items-center gap-2">
+    </div>
+  </div>
+
+  <style is:global>
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .fade-in {
+      animation: fadeInUp 0.3s ease-out;
+    }
+
+    .fade-in > div:nth-child(1),
+    .fade-in > div:nth-child(2),
+    .fade-in > div:nth-child(3) {
+      animation-delay: 0.05s;
+    }
+
+    .fade-in > div:nth-child(4),
+    .fade-in > div:nth-child(5),
+    .fade-in > div:nth-child(6) {
+      animation-delay: 0.1s;
+    }
+
+    .fade-in > div:nth-child(7),
+    .fade-in > div:nth-child(8),
+    .fade-in > div:nth-child(9) {
+      animation-delay: 0.15s;
+    }
+
+    .fade-in > div:nth-child(10),
+    .fade-in > div:nth-child(11),
+    .fade-in > div:nth-child(12) {
+      animation-delay: 0.2s;
+    }
+  </style>
+
+  <script define:vars={{ headsets }}>
+    let allHeadsets = headsets;
+    let filteredHeadsets = [...allHeadsets];
+    let currentPage = 1;
+    const itemsPerPage = 12;
+
+    const selectedFilters = {
+      priceCategories: new Set(),
+      brands: new Set(),
+      platforms: new Set(),
+      microphoneTypes: new Set(),
+      surroundSounds: new Set(),
+      noiseCancellation: null,
+      rgbLighting: new Set(),
+      wireless: false,
+      wired: false
+    };
+
+    function getPriceCategory(price) {
+      if (price < 75) return 'Budget';
+      if (price < 150) return 'Value';
+      if (price < 250) return 'Mid-range';
+      if (price < 400) return 'Premium';
+      return 'Flagship';
+    }
+
+    function isWireless(connectionTypes) {
+      if (!connectionTypes || !Array.isArray(connectionTypes)) return false;
+      return connectionTypes.some(type => 
+        type === '2.4GHz Wireless' || type === 'Bluetooth'
+      );
+    }
+
+    function isWired(connectionTypes) {
+      if (!connectionTypes || !Array.isArray(connectionTypes)) return false;
+      return connectionTypes.some(type => 
+        type === '3.5mm' || type === 'USB-A' || type === 'USB-C'
+      );
+    }
+
+    function applyFilters() {
+      filteredHeadsets = allHeadsets.filter(headset => {
+        if (selectedFilters.priceCategories.size > 0) {
+          const category = getPriceCategory(headset.price);
+          if (!selectedFilters.priceCategories.has(category)) return false;
+        }
+
+        if (selectedFilters.brands.size > 0 && !selectedFilters.brands.has(headset.brand)) return false;
+
+        if (selectedFilters.wireless && !isWireless(headset.connection_types)) return false;
+        if (selectedFilters.wired && !isWired(headset.connection_types)) return false;
+
+        if (selectedFilters.platforms.size > 0) {
+          const platforms = headset.platforms || [];
+          const hasMatch = selectedFilters.platforms.some(platform => platforms.includes(platform));
+          if (!hasMatch) return false;
+        }
+
+        if (selectedFilters.microphoneTypes.size > 0 && !selectedFilters.microphoneTypes.has(headset.microphone_type)) return false;
+
+        if (selectedFilters.surroundSounds.size > 0 && !selectedFilters.surroundSounds.has(headset.surround_sound)) return false;
+
+        if (selectedFilters.noiseCancellation) {
+          const hasANC = headset.active_features && headset.active_features.includes('Active Noise Cancellation');
+          if (selectedFilters.noiseCancellation === 'Active' && !hasANC) return false;
+          if (selectedFilters.noiseCancellation === 'None' && hasANC) return false;
+        }
+
+        if (selectedFilters.rgbLighting.size > 0 && !selectedFilters.rgbLighting.has(headset.rgb_lighting)) return false;
+
+        return true;
+      });
+
+      currentPage = 1;
+      updateURL();
+      displayResults();
+    }
+
+    function createHeadsetCard(headset) {
+      const card = document.createElement('div');
+      card.className = 'group bg-card-bg relative z-0 hover:z-10 rounded-xl shadow-sm hover:shadow-[0_0_80px_rgba(139,213,27,0.4)] transition-all duration-300 overflow-hidden flex flex-col h-full';
+
+      card.innerHTML = `
+        <div class="relative w-full aspect-[4/3] bg-gray-950 overflow-hidden group-hover:scale-[1.02] transition-transform duration-500">
+          <img 
+            src="${headset.image}" 
+            alt="${headset.brand} ${headset.name} gaming headset"
+            class="w-full h-full object-cover"
+            loading="lazy"
+          />
+          <div class="absolute top-3 right-3 bg-black/90 backdrop-blur-sm px-3 py-1 rounded-full shadow-lg">
+            <span class="text-primary font-bold">$${headset.price}</span>
+          </div>
+        </div>
+        
+        <div class="p-5 flex flex-col flex-1">
+          <div class="mb-4">
+            <div class="flex justify-between items-start mb-1">
+              <span class="text-xs font-bold tracking-wider text-primary uppercase">${headset.brand}</span>
+            </div>
+            <h3 class="text-xl font-bold text-text leading-tight group-hover:text-primary transition-colors">${headset.name}</h3>
+          </div>
+
+          <div class="flex-1"></div>
+          
+          <div class="mt-auto pt-4 border-t border-gray-700/50 flex items-center gap-3">
+            <a
+              href="/headsets/${headset.slug}"
+              class="flex-1 text-center px-4 py-2 bg-primary hover:bg-primary/80 text-white text-sm font-semibold rounded-lg transition-colors"
+            >
+              View Details
+            </a>
+          </div>
+        </div>
+      `;
+
+      return card;
+    }
+
+    function displayResults() {
+      const grid = document.getElementById('headsets-grid');
+      const resultsCount = document.getElementById('results-count');
+      const noResults = document.getElementById('no-results');
+      const pagination = document.getElementById('pagination');
+
+      if (!grid) return;
+
+      const startIndex = (currentPage - 1) * itemsPerPage;
+      const endIndex = startIndex + itemsPerPage;
+      const paginatedHeadsets = filteredHeadsets.slice(startIndex, endIndex);
+
+      grid.innerHTML = '';
+      grid.classList.remove('fade-in');
+
+      paginatedHeadsets.forEach(headset => {
+        const card = createHeadsetCard(headset);
+        grid.appendChild(card);
+      });
+
+      requestAnimationFrame(() => {
+        grid.classList.add('fade-in');
+      });
+
+      if (resultsCount) {
+        resultsCount.textContent = filteredHeadsets.length;
+      }
+
+      if (noResults) {
+        if (filteredHeadsets.length === 0) {
+          noResults.classList.remove('hidden');
+        } else {
+          noResults.classList.add('hidden');
+        }
+      }
+
+      updatePagination();
+    }
+
+    function updatePagination() {
+      const paginationContainer = document.getElementById('pagination');
+      if (!paginationContainer) return;
+
+      const totalPages = Math.ceil(filteredHeadsets.length / itemsPerPage);
+
+      if (totalPages <= 1) {
+        paginationContainer.innerHTML = '';
+        return;
+      }
+
+      let paginationHTML = '';
+
+      paginationHTML += `
+        <button 
+          onclick="goToPage(${currentPage - 1})"
+          ${currentPage === 1 ? 'disabled' : ''}
+          class="px-3 py-2 bg-card-bg border border-gray-700 rounded-lg text-text hover:bg-gray-800 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+        >
+          Previous
+        </button>
+      `;
+
+      for (let i = 1; i <= totalPages; i++) {
+        if (i === 1 || i === totalPages || (i >= currentPage - 1 && i <= currentPage + 1)) {
+          paginationHTML += `
+            <button 
+              onclick="goToPage(${i})"
+              class="px-3 py-2 ${i === currentPage ? 'bg-primary text-white' : 'bg-card-bg text-text hover:bg-gray-800'} border border-gray-700 rounded-lg transition-colors"
+            >
+              ${i}
+            </button>
+          `;
+        } else if (i === currentPage - 2 || i === currentPage + 2) {
+          paginationHTML += `<span class="px-2 text-text/60">...</span>`;
+        }
+      }
+
+      paginationHTML += `
+        <button 
+          onclick="goToPage(${currentPage + 1})"
+          ${currentPage === totalPages ? 'disabled' : ''}
+          class="px-3 py-2 bg-card-bg border border-gray-700 rounded-lg text-text hover:bg-gray-800 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+        >
+          Next
+        </button>
+      `;
+
+      paginationContainer.innerHTML = paginationHTML;
+    }
+
+    function goToPage(page) {
+      currentPage = page;
+      displayResults();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function clearAllFilters() {
+      selectedFilters.priceCategories.clear();
+      selectedFilters.brands.clear();
+      selectedFilters.platforms.clear();
+      selectedFilters.microphoneTypes.clear();
+      selectedFilters.surroundSounds.clear();
+      selectedFilters.noiseCancellation = null;
+      selectedFilters.rgbLighting.clear();
+      selectedFilters.wireless = false;
+      selectedFilters.wired = false;
+
+      document.querySelectorAll('.price-filter, .brand-filter, .platform-filter, .mic-filter, .surround-filter, .rgb-filter').forEach(cb => {
+        cb.checked = false;
+      });
+      document.getElementById('filter-wireless').checked = false;
+      document.getElementById('filter-wired').checked = false;
+      document.querySelectorAll('.nc-filter').forEach(rb => rb.checked = false);
+
+      applyFilters();
+    }
+
+    function updateURL() {
+      const params = new URLSearchParams();
+
+      if (selectedFilters.priceCategories.size > 0) {
+        params.set('price', [...selectedFilters.priceCategories].join(','));
+      }
+      if (selectedFilters.brands.size > 0) {
+        params.set('brand', [...selectedFilters.brands].join(','));
+      }
+      if (selectedFilters.platforms.size > 0) {
+        params.set('platform', [...selectedFilters.platforms].join(','));
+      }
+      if (selectedFilters.microphoneTypes.size > 0) {
+        params.set('mic', [...selectedFilters.microphoneTypes].join(','));
+      }
+      if (selectedFilters.surroundSounds.size > 0) {
+        params.set('surround', [...selectedFilters.surroundSounds].join(','));
+      }
+      if (selectedFilters.noiseCancellation) {
+        params.set('nc', selectedFilters.noiseCancellation);
+      }
+      if (selectedFilters.rgbLighting.size > 0) {
+        params.set('rgb', [...selectedFilters.rgbLighting].join(','));
+      }
+      if (selectedFilters.wireless) {
+        params.set('wireless', 'true');
+      }
+      if (selectedFilters.wired) {
+        params.set('wired', 'true');
+      }
+
+      if (currentPage > 1) {
+        params.set('page', currentPage.toString());
+      }
+
+      const newURL = params.toString() ? `?${params.toString()}` : window.location.pathname;
+      window.history.replaceState({}, '', newURL);
+    }
+
+    function loadFiltersFromURL() {
+      const params = new URLSearchParams(window.location.search);
+
+      if (params.has('price')) {
+        params.get('price').split(',').forEach(v => {
+          const checkbox = document.querySelector(`.price-filter[value="${v}"]`);
+          if (checkbox) {
+            checkbox.checked = true;
+            selectedFilters.priceCategories.add(v);
+          }
+        });
+      }
+
+      if (params.has('brand')) {
+        params.get('brand').split(',').forEach(v => {
+          const checkbox = document.querySelector(`.brand-filter[value="${v}"]`);
+          if (checkbox) {
+            checkbox.checked = true;
+            selectedFilters.brands.add(v);
+          }
+        });
+      }
+
+      if (params.has('platform')) {
+        params.get('platform').split(',').forEach(v => {
+          const checkbox = document.querySelector(`.platform-filter[value="${v}"]`);
+          if (checkbox) {
+            checkbox.checked = true;
+            selectedFilters.platforms.add(v);
+          }
+        });
+      }
+
+      if (params.has('mic')) {
+        params.get('mic').split(',').forEach(v => {
+          const checkbox = document.querySelector(`.mic-filter[value="${v}"]`);
+          if (checkbox) {
+            checkbox.checked = true;
+            selectedFilters.microphoneTypes.add(v);
+          }
+        });
+      }
+
+      if (params.has('surround')) {
+        params.get('surround').split(',').forEach(v => {
+          const checkbox = document.querySelector(`.surround-filter[value="${v}"]`);
+          if (checkbox) {
+            checkbox.checked = true;
+            selectedFilters.surroundSounds.add(v);
+          }
+        });
+      }
+
+      if (params.has('nc')) {
+        const radio = document.querySelector(`.nc-filter[value="${params.get('nc')}"]`);
+        if (radio) {
+          radio.checked = true;
+          selectedFilters.noiseCancellation = params.get('nc');
+        }
+      }
+
+      if (params.has('rgb')) {
+        params.get('rgb').split(',').forEach(v => {
+          const checkbox = document.querySelector(`.rgb-filter[value="${v}"]`);
+          if (checkbox) {
+            checkbox.checked = true;
+            selectedFilters.rgbLighting.add(v);
+          }
+        });
+      }
+
+      if (params.get('wireless') === 'true') {
+        document.getElementById('filter-wireless').checked = true;
+        selectedFilters.wireless = true;
+      }
+
+      if (params.get('wired') === 'true') {
+        document.getElementById('filter-wired').checked = true;
+        selectedFilters.wired = true;
+      }
+
+      if (params.has('page')) {
+        currentPage = parseInt(params.get('page')) || 1;
+      }
+    }
+
+    document.addEventListener('astro:page-load', function() {
+      loadFiltersFromURL();
+      applyFilters();
+
+      document.querySelectorAll('.price-filter').forEach(cb => {
+        cb.addEventListener('change', function() {
+          if (this.checked) {
+            selectedFilters.priceCategories.add(this.value);
+          } else {
+            selectedFilters.priceCategories.delete(this.value);
+          }
+          applyFilters();
+        });
+      });
+
+      document.querySelectorAll('.brand-filter').forEach(cb => {
+        cb.addEventListener('change', function() {
+          if (this.checked) {
+            selectedFilters.brands.add(this.value);
+          } else {
+            selectedFilters.brands.delete(this.value);
+          }
+          applyFilters();
+        });
+      });
+
+      document.querySelectorAll('.platform-filter').forEach(cb => {
+        cb.addEventListener('change', function() {
+          if (this.checked) {
+            selectedFilters.platforms.add(this.value);
+          } else {
+            selectedFilters.platforms.delete(this.value);
+          }
+          applyFilters();
+        });
+      });
+
+      document.querySelectorAll('.mic-filter').forEach(cb => {
+        cb.addEventListener('change', function() {
+          if (this.checked) {
+            selectedFilters.microphoneTypes.add(this.value);
+          } else {
+            selectedFilters.microphoneTypes.delete(this.value);
+          }
+          applyFilters();
+        });
+      });
+
+      document.querySelectorAll('.surround-filter').forEach(cb => {
+        cb.addEventListener('change', function() {
+          if (this.checked) {
+            selectedFilters.surroundSounds.add(this.value);
+          } else {
+            selectedFilters.surroundSounds.delete(this.value);
+          }
+          applyFilters();
+        });
+      });
+
+      document.querySelectorAll('.nc-filter').forEach(rb => {
+        rb.addEventListener('change', function() {
+          selectedFilters.noiseCancellation = this.checked ? this.value : null;
+          applyFilters();
+        });
+      });
+
+      document.querySelectorAll('.rgb-filter').forEach(cb => {
+        cb.addEventListener('change', function() {
+          if (this.checked) {
+            selectedFilters.rgbLighting.add(this.value);
+          } else {
+            selectedFilters.rgbLighting.delete(this.value);
+          }
+          applyFilters();
+        });
+      });
+
+      document.getElementById('filter-wireless').addEventListener('change', function() {
+        selectedFilters.wireless = this.checked;
+        applyFilters();
+      });
+
+      document.getElementById('filter-wired').addEventListener('change', function() {
+        selectedFilters.wired = this.checked;
+        applyFilters();
+      });
+
+      document.getElementById('clear-all-filters').addEventListener('click', clearAllFilters);
+    });
+  </script>
+</div>
