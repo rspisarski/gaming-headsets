@@ -18,10 +18,4 @@
         background-color: var(--color-background);
         color: var(--color-text);
     }
-
-    *,
-    *::before,
-    *::after {
-        border-radius: 0.5rem;
-    }
 }
