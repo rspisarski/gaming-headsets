@@ -1,0 +1,77 @@
+---
+interface Props {
+    label: string;
+    value: string;
+    groupClass?: string; /* Class for the input element (e.g. price-filter) */
+    dataCategory?: string;
+    id?: string;
+    dataIndex?: number;
+    hidden?: boolean;
+    compact?: boolean; /* for py-0.5 vs py-1 */
+    containerClass?: string; /* Class for the container label (e.g. brand-item) */
+    size?: "sm" | "xs";
+}
+
+const {
+    label,
+    value,
+    groupClass = "",
+    dataCategory,
+    id,
+    dataIndex,
+    hidden = false,
+    compact = false,
+    containerClass = "",
+    size = "sm",
+} = Astro.props;
+---
+
+<label
+    class:list={[
+        "flex items-center gap-3 cursor-pointer group",
+        compact ? "py-0.5" : "py-1",
+        hidden ? "hidden" : "",
+        containerClass,
+    ]}
+    data-index={dataIndex}
+>
+    <div class="relative flex items-center">
+        <input
+            type="checkbox"
+            value={value}
+            class:list={["peer sr-only", groupClass]}
+            data-category={dataCategory}
+            id={id}
+        />
+        <div
+            class:list={[
+                "rounded border border-gray-600 bg-black/50 transition-all duration-200 peer-focus:ring-2 peer-focus:ring-primary/50 peer-checked:bg-primary peer-checked:border-primary peer-checked:shadow-[0_0_10px_rgba(139,213,27,0.3)] flex items-center justify-center group-hover:border-primary/70",
+                size === "sm" ? "w-5 h-5" : "w-4 h-4",
+            ]}
+        >
+            <svg
+                class:list={[
+                    "text-black opacity-0 peer-checked:opacity-100 transition-opacity duration-200",
+                    size === "sm" ? "w-3.5 h-3.5" : "w-3 h-3",
+                ]}
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                stroke-width="3"
+            >
+                <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M5 13l4 4L19 7"></path>
+            </svg>
+        </div>
+    </div>
+    <span
+        class:list={[
+            "text-text/70 group-hover:text-text transition-colors select-none",
+            size === "sm" ? "text-sm" : "text-xs",
+        ]}
+    >
+        {label}
+    </span>
+</label>

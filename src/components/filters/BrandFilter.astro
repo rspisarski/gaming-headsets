@@ -1,0 +1,59 @@
+---
+import FilterCheckbox from "./FilterCheckbox.astro";
+
+interface Props {
+    brands: string[];
+}
+
+const { brands } = Astro.props;
+---
+
+<div class="mb-6">
+    <h3 class="font-medium text-text mb-3">Brand</h3>
+    <div id="brand-filters" class="space-y-2">
+        {
+            brands
+                .slice(0, 5)
+                .map((brand, index) => (
+                    <FilterCheckbox
+                        label={brand}
+                        value={brand}
+                        groupClass="brand-filter"
+                        dataCategory="brand"
+                        containerClass="brand-item"
+                        dataIndex={index}
+                        compact={true}
+                    />
+                ))
+        }
+
+        {/* Hidden items for "show more" functionality */}
+        {
+            brands
+                .slice(5)
+                .map((brand, index) => (
+                    <FilterCheckbox
+                        label={brand}
+                        value={brand}
+                        groupClass="brand-filter"
+                        dataCategory="brand"
+                        containerClass="brand-item"
+                        dataIndex={index + 5}
+                        hidden={true}
+                        compact={true}
+                    />
+                ))
+        }
+    </div>
+
+    {
+        brands.length > 5 && (
+            <button
+                id="brand-show-more"
+                class="text-primary text-sm font-medium hover:text-primary/80 transition-colors mt-2"
+            >
+                Show More
+            </button>
+        )
+    }
+</div>

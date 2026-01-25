@@ -1,0 +1,27 @@
+---
+import FilterCheckbox from "./FilterCheckbox.astro";
+
+const priceCategories = [
+    { value: "Budget", label: "Budget" },
+    { value: "Value", label: "Value" },
+    { value: "Mid-range", label: "Mid-range" },
+    { value: "Premium", label: "Premium" },
+    { value: "Flagship", label: "Flagship" },
+];
+---
+
+<div class="mb-6">
+    <h3 class="font-medium text-text mb-3">Price Category</h3>
+    <div class="space-y-2" id="price-filters">
+        {
+            priceCategories.map((cat) => (
+                <FilterCheckbox
+                    label={cat.label}
+                    value={cat.value}
+                    groupClass="price-filter"
+                    dataCategory="price"
+                />
+            ))
+        }
+    </div>
+</div>

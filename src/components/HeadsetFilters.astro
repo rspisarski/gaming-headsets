@@ -19,10 +19,16 @@ interface Props {
 
 const { headsets } = Astro.props;
 
+import PriceFilter from "./filters/PriceFilter.astro";
+import BrandFilter from "./filters/BrandFilter.astro";
+import ConnectivityFilter from "./filters/ConnectivityFilter.astro";
+import PlatformFilter from "./filters/PlatformFilter.astro";
+import AdvancedFilters from "./filters/AdvancedFilters.astro";
+
 const uniqueBrands = [...new Set(headsets.map((h) => h.brand))]
-  .map(brand => ({
+  .map((brand) => ({
     name: brand,
-    count: headsets.filter(h => h.brand === brand).length
+    count: headsets.filter((h) => h.brand === brand).length,
   }))
   .sort((a, b) => {
     if (b.count !== a.count) {
@@ -30,555 +36,141 @@ const uniqueBrands = [...new Set(headsets.map((h) => h.brand))]
     }
     return a.name.localeCompare(b.name); // Then alphabetically
   })
-  .map(item => item.name);
-
-const priceCategories = [
-  { value: "Budget", label: "Budget" },
-  { value: "Value", label: "Value" },
-  { value: "Mid-range", label: "Mid-range" },
-  { value: "Premium", label: "Premium" },
-  { value: "Flagship", label: "Flagship" },
-];
-
-const platforms = [
-  "PC",
-  "PlayStation 5",
-  "PlayStation 4",
-  "Xbox Series X|S",
-  "Xbox One",
-  "Nintendo Switch",
-  "Mobile",
-];
-
-const microphoneTypes = [
-  "Boom Mic",
-  "Retractable Mic",
-  "Detachable Mic",
-  "Inline Mic",
-  "Dual Microphone Array",
-  "No Microphone",
-];
-
-const surroundSounds = [
-  "Stereo",
-  "Virtual 5.1",
-  "Virtual 7.1",
-  "True 7.1",
-  "Dolby Atmos",
-  "DTS:X 2.0",
-  "Windows Sonic",
-  "THX Spatial Audio",
-  "Tempest 3D Audio",
-  "Proprietary Spatial",
-];
-
-const rgbOptions = ["Customizable RGB", "Reactive Lighting", "No Lighting"];
+  .map((item) => item.name);
 ---
 
 <div class="flex flex-col lg:flex-row gap-8">
-  <aside class="w-full lg:w-72 flex-shrink-0">
-    <div class="bg-card-bg p-6 sticky top-24">
+  <aside
+    id="filters-sidebar"
+    class="fixed inset-0 z-50 bg-black/95 backdrop-blur-sm transition-transform duration-300 translate-x-full lg:translate-x-0 lg:static lg:bg-transparent lg:w-72 lg:block lg:flex-shrink-0"
+  >
+    <div
+      class="h-full overflow-y-auto lg:h-auto lg:overflow-visible bg-card-bg lg:bg-card-bg p-6 lg:sticky lg:top-24"
+    >
       <div class="flex justify-between items-center mb-6">
         <h2 class="text-xl font-semibold text-text">Filters</h2>
+        <div class="flex items-center gap-4">
+          <button
+            id="clear-all-filters"
+            class="text-sm text-primary hover:text-primary/80 transition-colors"
+          >
+            Clear All
+          </button>
+          <button
+            id="close-filters-btn"
+            class="lg:hidden text-text/60 hover:text-text transition-colors"
+            aria-label="Close filters"
+          >
+            <svg
+              class="w-6 h-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <PriceFilter />
+      <BrandFilter brands={uniqueBrands} />
+      <ConnectivityFilter />
+      <PlatformFilter />
+      <AdvancedFilters />
+
+      <!-- Mobile Apply Button (Optional, but good UX) -->
+      <div class="mt-8 pt-6 border-t border-gray-800 lg:hidden">
         <button
-          id="clear-all-filters"
-          class="text-sm text-primary hover:text-primary/80 transition-colors"
+          id="mobile-apply-filters"
+          class="w-full bg-primary text-white font-bold py-3 rounded-lg hover:bg-primary/90 transition-colors"
         >
-          Clear All
+          View Results
         </button>
       </div>
-
-      <div class="mb-6">
-        <h3 class="font-medium text-text mb-3">Price Category</h3>
-        <div class="space-y-2" id="price-filters">
-          {
-            priceCategories.map((cat) => (
-              <label class="flex items-center gap-3 cursor-pointer group py-1">
-                <div class="relative flex items-center">
-                  <input
-                    type="checkbox"
-                    value={cat.value}
-                    class="price-filter peer sr-only"
-                    data-category="price"
-                  />
-                  <div class="w-5 h-5 rounded border border-gray-600 bg-black/50 transition-all duration-200 peer-focus:ring-2 peer-focus:ring-primary/50 peer-checked:bg-primary peer-checked:border-primary peer-checked:shadow-[0_0_10px_rgba(139,213,27,0.3)] flex items-center justify-center group-hover:border-primary/70">
-                    <svg
-                      class="w-3.5 h-3.5 text-black opacity-0 peer-checked:opacity-100 transition-opacity duration-200"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                      stroke-width="3"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        d="M5 13l4 4L19 7"
-                      />
-                    </svg>
-                  </div>
-                </div>
-                <span class="text-text/70 group-hover:text-text transition-colors text-sm select-none">
-                  {cat.label}
-                </span>
-              </label>
-            ))
-          }
-        </div>
-      </div>
-
-      <div class="mb-6">
-        <h3 class="font-medium text-text mb-3">Brand</h3>
-        <div
-          id="brand-filters"
-          class="space-y-2"
-        >
-          {
-            uniqueBrands.slice(0, 5).map((brand, index) => (
-              <label class="flex items-center gap-3 cursor-pointer group py-0.5 brand-item" data-index={index}>
-                <div class="relative flex items-center">
-                  <input
-                    type="checkbox"
-                    value={brand}
-                    class="brand-filter peer sr-only"
-                    data-category="brand"
-                  />
-                  <div class="w-5 h-5 rounded border border-gray-600 bg-black/50 transition-all duration-200 peer-focus:ring-2 peer-focus:ring-primary/50 peer-checked:bg-primary peer-checked:border-primary peer-checked:shadow-[0_0_10px_rgba(139,213,27,0.3)] flex items-center justify-center group-hover:border-primary/70">
-                    <svg
-                      class="w-3.5 h-3.5 text-black opacity-0 peer-checked:opacity-100 transition-opacity duration-200"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                      stroke-width="3"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        d="M5 13l4 4L19 7"
-                      />
-                    </svg>
-                  </div>
-                </div>
-                <span class="text-text/70 group-hover:text-text transition-colors text-sm select-none">
-                  {brand}
-                </span>
-              </label>
-            ))
-          }
-          
-          {/* Hidden items for "show more" functionality */}
-          {
-            uniqueBrands.slice(5).map((brand, index) => (
-              <label class="flex items-center gap-3 cursor-pointer group py-0.5 brand-item hidden" data-index={index + 5}>
-                <div class="relative flex items-center">
-                  <input
-                    type="checkbox"
-                    value={brand}
-                    class="brand-filter peer sr-only"
-                    data-category="brand"
-                  />
-                  <div class="w-5 h-5 rounded border border-gray-600 bg-black/50 transition-all duration-200 peer-focus:ring-2 peer-focus:ring-primary/50 peer-checked:bg-primary peer-checked:border-primary peer-checked:shadow-[0_0_10px_rgba(139,213,27,0.3)] flex items-center justify-center group-hover:border-primary/70">
-                    <svg
-                      class="w-3.5 h-3.5 text-black opacity-0 peer-checked:opacity-100 transition-opacity duration-200"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                      stroke-width="3"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        d="M5 13l4 4L19 7"
-                      />
-                    </svg>
-                  </div>
-                </div>
-                <span class="text-text/70 group-hover:text-text transition-colors text-sm select-none">
-                  {brand}
-                </span>
-              </label>
-            ))
-          }
-        </div>
-        
-        {uniqueBrands.length > 5 && (
-          <button
-            id="brand-show-more"
-            class="text-primary text-sm font-medium hover:text-primary/80 transition-colors mt-2"
-          >
-            Show More
-          </button>
-        )}
-      </div>
-
-      <div class="mb-6">
-        <h3 class="font-medium text-text mb-3">Connectivity</h3>
-        <div class="space-y-2">
-          <label class="flex items-center gap-3 cursor-pointer group py-1">
-            <div class="relative flex items-center">
-              <input
-                type="checkbox"
-                id="filter-wireless"
-                class="peer sr-only"
-              />
-              <div
-                class="w-5 h-5 rounded border border-gray-600 bg-black/50 transition-all duration-200 peer-focus:ring-2 peer-focus:ring-primary/50 peer-checked:bg-primary peer-checked:border-primary peer-checked:shadow-[0_0_10px_rgba(139,213,27,0.3)] flex items-center justify-center group-hover:border-primary/70"
-              >
-                <svg
-                  class="w-3.5 h-3.5 text-black opacity-0 peer-checked:opacity-100 transition-opacity duration-200"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  stroke-width="3"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    d="M5 13l4 4L19 7"></path>
-                </svg>
-              </div>
-            </div>
-            <span
-              class="text-text/70 group-hover:text-text transition-colors text-sm select-none"
-              >Wireless</span
-            >
-          </label>
-          <label class="flex items-center gap-3 cursor-pointer group py-1">
-            <div class="relative flex items-center">
-              <input type="checkbox" id="filter-wired" class="peer sr-only" />
-              <div
-                class="w-5 h-5 rounded border border-gray-600 bg-black/50 transition-all duration-200 peer-focus:ring-2 peer-focus:ring-primary/50 peer-checked:bg-primary peer-checked:border-primary peer-checked:shadow-[0_0_10px_rgba(139,213,27,0.3)] flex items-center justify-center group-hover:border-primary/70"
-              >
-                <svg
-                  class="w-3.5 h-3.5 text-black opacity-0 peer-checked:opacity-100 transition-opacity duration-200"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  stroke-width="3"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    d="M5 13l4 4L19 7"></path>
-                </svg>
-              </div>
-            </div>
-            <span
-              class="text-text/70 group-hover:text-text transition-colors text-sm select-none"
-              >Wired</span
-            >
-          </label>
-        </div>
-      </div>
-
-      <div class="mb-6">
-        <div class="flex items-center justify-between mb-3">
-          <h3 class="font-medium text-text">Platform</h3>
-          <label
-            class="flex items-center gap-2 cursor-pointer group"
-            title="Headset must support ALL selected platforms"
-          >
-            <span
-              class="text-[10px] uppercase font-bold tracking-wider text-text/50 group-hover:text-primary transition-colors"
-              >Match All</span
-            >
-            <div class="relative">
-              <input
-                type="checkbox"
-                id="platform-logic-toggle"
-                class="peer sr-only"
-              />
-              <div
-                class="w-8 h-4 bg-gray-700 rounded-full peer-checked:bg-primary/50 peer-focus:ring-2 peer-focus:ring-primary/50 transition-colors"
-              >
-              </div>
-              <div
-                class="absolute left-0.5 top-0.5 bg-gray-400 w-3 h-3 rounded-full peer-checked:translate-x-4 peer-checked:bg-primary transition-all duration-200"
-              >
-              </div>
-            </div>
-          </label>
-        </div>
-        <div
-          id="platform-filters"
-          class="space-y-2"
-        >
-          {
-            platforms.slice(0, 5).map((platform, index) => (
-              <label class="flex items-center gap-3 cursor-pointer group py-0.5 platform-item" data-index={index}>
-                <div class="relative flex items-center">
-                  <input
-                    type="checkbox"
-                    value={platform}
-                    class="platform-filter peer sr-only"
-                    data-category="platform"
-                  />
-                  <div class="w-5 h-5 rounded border border-gray-600 bg-black/50 transition-all duration-200 peer-focus:ring-2 peer-focus:ring-primary/50 peer-checked:bg-primary peer-checked:border-primary peer-checked:shadow-[0_0_10px_rgba(139,213,27,0.3)] flex items-center justify-center group-hover:border-primary/70">
-                    <svg
-                      class="w-3.5 h-3.5 text-black opacity-0 peer-checked:opacity-100 transition-opacity duration-200"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                      stroke-width="3"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        d="M5 13l4 4L19 7"
-                      />
-                    </svg>
-                  </div>
-                </div>
-                <span class="text-text/70 group-hover:text-text transition-colors text-sm select-none">
-                  {platform}
-                </span>
-              </label>
-            ))
-          }
-          
-          {/* Hidden items for "show more" functionality */}
-          {
-            platforms.slice(5).map((platform, index) => (
-              <label class="flex items-center gap-3 cursor-pointer group py-0.5 platform-item hidden" data-index={index + 5}>
-                <div class="relative flex items-center">
-                  <input
-                    type="checkbox"
-                    value={platform}
-                    class="platform-filter peer sr-only"
-                    data-category="platform"
-                  />
-                  <div class="w-5 h-5 rounded border border-gray-600 bg-black/50 transition-all duration-200 peer-focus:ring-2 peer-focus:ring-primary/50 peer-checked:bg-primary peer-checked:border-primary peer-checked:shadow-[0_0_10px_rgba(139,213,27,0.3)] flex items-center justify-center group-hover:border-primary/70">
-                    <svg
-                      class="w-3.5 h-3.5 text-black opacity-0 peer-checked:opacity-100 transition-opacity duration-200"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                      stroke-width="3"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        d="M5 13l4 4L19 7"
-                      />
-                    </svg>
-                  </div>
-                </div>
-                <span class="text-text/70 group-hover:text-text transition-colors text-sm select-none">
-                  {platform}
-                </span>
-              </label>
-            ))
-          }
-        </div>
-        
-        {platforms.length > 5 && (
-          <button
-            id="platform-show-more"
-            class="text-primary text-sm font-medium hover:text-primary/80 transition-colors mt-2"
-          >
-            Show More
-          </button>
-        )}
-      </div>
-
-      <details class="mb-6">
-        <summary
-          class="cursor-pointer text-sm font-medium text-primary hover:text-primary/80 flex items-center"
-        >
-          <svg
-            class="w-4 h-4 mr-2 transition-transform"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M9 5l7 7-7 7"></path>
-          </svg>
-          Advanced Filters
-        </summary>
-        <div class="mt-4 space-y-4 pl-6 border-l-2 border-gray-700">
-          <div>
-            <h4 class="text-sm font-medium text-text mb-2">Microphone Type</h4>
-            <div class="space-y-1">
-              {
-                microphoneTypes.map((micType) => (
-                  <label class="flex items-center gap-3 cursor-pointer group py-1">
-                    <div class="relative flex items-center">
-                      <input
-                        type="checkbox"
-                        value={micType}
-                        class="mic-filter peer sr-only"
-                        data-category="mic"
-                      />
-                      <div class="w-4 h-4 rounded border border-gray-600 bg-black/50 transition-all duration-200 peer-focus:ring-2 peer-focus:ring-primary/50 peer-checked:bg-primary peer-checked:border-primary peer-checked:shadow-[0_0_8px_rgba(139,213,27,0.3)] flex items-center justify-center group-hover:border-primary/70">
-                        <svg
-                          class="w-3 h-3 text-black opacity-0 peer-checked:opacity-100 transition-opacity duration-200"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          stroke="currentColor"
-                          stroke-width="3"
-                        >
-                          <path
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            d="M5 13l4 4L19 7"
-                          />
-                        </svg>
-                      </div>
-                    </div>
-                    <span class="text-text/70 group-hover:text-text text-xs select-none transition-colors">
-                      {micType}
-                    </span>
-                  </label>
-                ))
-              }
-            </div>
-          </div>
-
-          <div>
-            <h4 class="text-sm font-medium text-text mb-2">Surround Sound</h4>
-            <div class="space-y-1">
-              {
-                surroundSounds.map((sound) => (
-                  <label class="flex items-center gap-3 cursor-pointer group py-1">
-                    <div class="relative flex items-center">
-                      <input
-                        type="checkbox"
-                        value={sound}
-                        class="surround-filter peer sr-only"
-                        data-category="surround"
-                      />
-                      <div class="w-4 h-4 rounded border border-gray-600 bg-black/50 transition-all duration-200 peer-focus:ring-2 peer-focus:ring-primary/50 peer-checked:bg-primary peer-checked:border-primary peer-checked:shadow-[0_0_8px_rgba(139,213,27,0.3)] flex items-center justify-center group-hover:border-primary/70">
-                        <svg
-                          class="w-3 h-3 text-black opacity-0 peer-checked:opacity-100 transition-opacity duration-200"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          stroke="currentColor"
-                          stroke-width="3"
-                        >
-                          <path
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            d="M5 13l4 4L19 7"
-                          />
-                        </svg>
-                      </div>
-                    </div>
-                    <span class="text-text/70 group-hover:text-text text-xs select-none transition-colors">
-                      {sound}
-                    </span>
-                  </label>
-                ))
-              }
-            </div>
-          </div>
-
-          <div>
-            <h4 class="text-sm font-medium text-text mb-2">
-              Noise Cancellation
-            </h4>
-            <div class="space-y-1">
-              {
-                ["Active", "None"].map((nc) => (
-                  <label class="flex items-center gap-3 cursor-pointer group py-1">
-                    <div class="relative flex items-center">
-                      <input
-                        type="radio"
-                        name="noise-cancellation"
-                        value={nc}
-                        class="nc-filter peer sr-only"
-                        data-category="nc"
-                      />
-                      <div class="w-4 h-4 rounded-full border border-gray-600 bg-black/50 transition-all duration-200 peer-focus:ring-2 peer-focus:ring-primary/50 peer-checked:border-primary peer-checked:shadow-[0_0_8px_rgba(139,213,27,0.3)] flex items-center justify-center group-hover:border-primary/70">
-                        <div class="w-2 h-2 rounded-full bg-primary opacity-0 peer-checked:opacity-100 transition-opacity duration-200" />
-                      </div>
-                    </div>
-                    <span class="text-text/70 group-hover:text-text text-xs select-none transition-colors">
-                      {nc}
-                    </span>
-                  </label>
-                ))
-              }
-            </div>
-          </div>
-
-          <div>
-            <h4 class="text-sm font-medium text-text mb-2">RGB Lighting</h4>
-            <div class="space-y-1">
-              {
-                rgbOptions.map((rgb) => (
-                  <label class="flex items-center gap-3 cursor-pointer group py-1">
-                    <div class="relative flex items-center">
-                      <input
-                        type="checkbox"
-                        value={rgb}
-                        class="rgb-filter peer sr-only"
-                        data-category="rgb"
-                      />
-                      <div class="w-4 h-4 rounded border border-gray-600 bg-black/50 transition-all duration-200 peer-focus:ring-2 peer-focus:ring-primary/50 peer-checked:bg-primary peer-checked:border-primary peer-checked:shadow-[0_0_8px_rgba(139,213,27,0.3)] flex items-center justify-center group-hover:border-primary/70">
-                        <svg
-                          class="w-3 h-3 text-black opacity-0 peer-checked:opacity-100 transition-opacity duration-200"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          stroke="currentColor"
-                          stroke-width="3"
-                        >
-                          <path
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            d="M5 13l4 4L19 7"
-                          />
-                        </svg>
-                      </div>
-                    </div>
-                    <span class="text-text/70 group-hover:text-text text-xs select-none transition-colors">
-                      {rgb}
-                    </span>
-                  </label>
-                ))
-              }
-            </div>
-          </div>
-        </div>
-      </details>
     </div>
   </aside>
 
   <div class="flex-1">
     <div
-      class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6"
+      class="sticky top-16 z-30 bg-background/95 backdrop-blur-md -mx-4 px-4 py-3 mb-6 border-b border-white/10 lg:static lg:bg-transparent lg:border-none lg:p-0 lg:m-0 lg:mb-6 transition-all"
     >
-      <div>
-        <h2 class="text-xl font-semibold text-text">All Headsets</h2>
-        <p class="text-text/60 text-sm">
-          <span id="results-count">0</span> headsets found
-        </p>
-      </div>
-      
-      <!-- View Toggle Buttons -->
-      <div class="flex items-center gap-1 bg-gray-800 rounded-lg p-1">
-        <button
-          id="grid-view-btn"
-          class="view-toggle-btn px-3 py-2 rounded-md text-sm font-medium transition-colors bg-primary text-white"
-          data-view="grid"
-          aria-label="Grid view"
-        >
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path>
-          </svg>
-        </button>
-        <button
-          id="list-view-btn"
-          class="view-toggle-btn px-3 py-2 rounded-md text-sm font-medium transition-colors text-text/60 hover:text-text"
-          data-view="list"
-          aria-label="List view"
-        >
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-          </svg>
-        </button>
+      <div class="flex items-center justify-between gap-4">
+        <div>
+          <h2 class="text-lg font-bold text-text lg:text-xl">All Headsets</h2>
+          <p class="text-text/60 text-xs lg:text-sm">
+            <span id="results-count">0</span> headsets found
+          </p>
+        </div>
+
+        <div class="flex items-center gap-3">
+          <button
+            id="sticky-filter-toggle"
+            class="lg:hidden flex items-center gap-2 px-3 py-2 bg-card-bg border border-gray-700 rounded-lg text-sm font-medium text-text hover:bg-gray-800 transition-colors"
+          >
+            <svg
+              class="w-4 h-4"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"
+              ></path>
+            </svg>
+            <span class="hidden sm:inline">Filters</span>
+          </button>
+
+          <!-- View Toggle Buttons -->
+          <div class="flex items-center gap-1 bg-gray-800 rounded-lg p-1">
+            <button
+              id="grid-view-btn"
+              class="view-toggle-btn px-3 py-2 rounded-md text-sm font-medium transition-colors bg-primary text-white"
+              data-view="grid"
+              aria-label="Grid view"
+            >
+              <svg
+                class="w-4 h-4"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"
+                ></path>
+              </svg>
+            </button>
+            <button
+              id="list-view-btn"
+              class="view-toggle-btn px-3 py-2 rounded-md text-sm font-medium transition-colors text-text/60 hover:text-text"
+              data-view="list"
+              aria-label="List view"
+            >
+              <svg
+                class="w-4 h-4"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M4 6h16M4 12h16M4 18h16"></path>
+              </svg>
+            </button>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -587,12 +179,8 @@ const rgbOptions = ["Customizable RGB", "Reactive Lighting", "No Lighting"];
       class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 relative"
     >
     </div>
-    
-    <div
-      id="headsets-list"
-      class="hidden space-y-1"
-    >
-    </div>
+
+    <div id="headsets-list" class="hidden space-y-1"></div>
 
     <div
       id="no-results"
@@ -651,7 +239,7 @@ const rgbOptions = ["Customizable RGB", "Reactive Lighting", "No Lighting"];
     let filteredHeadsets = [...allHeadsets];
     let currentPage = 1;
     const itemsPerPage = 12;
-    let currentView = localStorage.getItem('headset-view') || 'grid';
+    let currentView = localStorage.getItem("headset-view") || "grid";
 
     const selectedFilters = {
       priceCategories: new Set(),
@@ -759,13 +347,15 @@ const rgbOptions = ["Customizable RGB", "Reactive Lighting", "No Lighting"];
       displayResults();
     }
 
-    function createHeadsetCard(headset, view = 'grid') {
+    function createHeadsetCard(headset, view = "grid") {
       const element = document.createElement("div");
-      
-      if (view === 'list') {
+
+      if (view === "list") {
         // List view: compact text-based layout
-        const connectivity = isWireless(headset.connection_types) ? 'Wireless' : 'Wired';
-        
+        const connectivity = isWireless(headset.connection_types)
+          ? "Wireless"
+          : "Wired";
+
         element.innerHTML = `
           <a href="/headsets/${headset.slug}" class="block px-4 py-2 group relative hover:shadow-[0_0_40px_rgba(139,213,27,0.3)] transition-all duration-300">
             <div class="flex items-center justify-between">
@@ -837,33 +427,33 @@ const rgbOptions = ["Customizable RGB", "Reactive Lighting", "No Lighting"];
       // Clear both containers
       grid.innerHTML = "";
       list.innerHTML = "";
-      
+
       // Remove animation classes
       grid.classList.remove("fade-in");
       list.classList.remove("fade-in");
 
       // Show/hide appropriate container
-      if (currentView === 'list') {
-        grid.classList.add('hidden');
-        list.classList.remove('hidden');
-        
+      if (currentView === "list") {
+        grid.classList.add("hidden");
+        list.classList.remove("hidden");
+
         paginatedHeadsets.forEach((headset) => {
-          const item = createHeadsetCard(headset, 'list');
+          const item = createHeadsetCard(headset, "list");
           list.appendChild(item);
         });
-        
+
         requestAnimationFrame(() => {
           list.classList.add("fade-in");
         });
       } else {
-        grid.classList.remove('hidden');
-        list.classList.add('hidden');
-        
+        grid.classList.remove("hidden");
+        list.classList.add("hidden");
+
         paginatedHeadsets.forEach((headset) => {
-          const card = createHeadsetCard(headset, 'grid');
+          const card = createHeadsetCard(headset, "grid");
           grid.appendChild(card);
         });
-        
+
         requestAnimationFrame(() => {
           grid.classList.add("fade-in");
         });
@@ -885,42 +475,42 @@ const rgbOptions = ["Customizable RGB", "Reactive Lighting", "No Lighting"];
     }
 
     function toggleBrandShowMore() {
-      const button = document.getElementById('brand-show-more');
-      const hiddenItems = document.querySelectorAll('.brand-item.hidden');
-      
+      const button = document.getElementById("brand-show-more");
+      const hiddenItems = document.querySelectorAll(".brand-item.hidden");
+
       if (hiddenItems.length > 0) {
         // Show more
-        hiddenItems.forEach(item => item.classList.remove('hidden'));
-        button.textContent = 'Show Less';
+        hiddenItems.forEach((item) => item.classList.remove("hidden"));
+        button.textContent = "Show Less";
       } else {
         // Show less
-        const allItems = document.querySelectorAll('.brand-item');
+        const allItems = document.querySelectorAll(".brand-item");
         allItems.forEach((item, index) => {
           if (index >= 5) {
-            item.classList.add('hidden');
+            item.classList.add("hidden");
           }
         });
-        button.textContent = 'Show More';
+        button.textContent = "Show More";
       }
     }
 
     function togglePlatformShowMore() {
-      const button = document.getElementById('platform-show-more');
-      const hiddenItems = document.querySelectorAll('.platform-item.hidden');
-      
+      const button = document.getElementById("platform-show-more");
+      const hiddenItems = document.querySelectorAll(".platform-item.hidden");
+
       if (hiddenItems.length > 0) {
         // Show more
-        hiddenItems.forEach(item => item.classList.remove('hidden'));
-        button.textContent = 'Show Less';
+        hiddenItems.forEach((item) => item.classList.remove("hidden"));
+        button.textContent = "Show Less";
       } else {
         // Show less
-        const allItems = document.querySelectorAll('.platform-item');
+        const allItems = document.querySelectorAll(".platform-item");
         allItems.forEach((item, index) => {
           if (index >= 5) {
-            item.classList.add('hidden');
+            item.classList.add("hidden");
           }
         });
-        button.textContent = 'Show More';
+        button.textContent = "Show More";
       }
     }
 
@@ -1049,8 +639,8 @@ const rgbOptions = ["Customizable RGB", "Reactive Lighting", "No Lighting"];
       if (currentPage > 1) {
         params.set("page", currentPage.toString());
       }
-      
-      if (currentView !== 'grid') {
+
+      if (currentView !== "grid") {
         params.set("view", currentView);
       }
 
@@ -1176,38 +766,38 @@ const rgbOptions = ["Customizable RGB", "Reactive Lighting", "No Lighting"];
       if (params.has("page")) {
         currentPage = parseInt(params.get("page")) || 1;
       }
-      
+
       if (params.has("view")) {
         currentView = params.get("view");
-        localStorage.setItem('headset-view', currentView);
+        localStorage.setItem("headset-view", currentView);
       }
     }
 
     function switchView(view) {
       currentView = view;
-      localStorage.setItem('headset-view', view);
-      
+      localStorage.setItem("headset-view", view);
+
       // Update button states
-      document.querySelectorAll('.view-toggle-btn').forEach(btn => {
+      document.querySelectorAll(".view-toggle-btn").forEach((btn) => {
         if (btn.dataset.view === view) {
-          btn.classList.add('bg-primary', 'text-white');
-          btn.classList.remove('text-text/60', 'hover:text-text');
+          btn.classList.add("bg-primary", "text-white");
+          btn.classList.remove("text-text/60", "hover:text-text");
         } else {
-          btn.classList.remove('bg-primary', 'text-white');
-          btn.classList.add('text-text/60', 'hover:text-text');
+          btn.classList.remove("bg-primary", "text-white");
+          btn.classList.add("text-text/60", "hover:text-text");
         }
       });
-      
+
       updateURL();
       displayResults();
     }
 
     document.addEventListener("astro:page-load", function () {
       loadFiltersFromURL();
-      
+
       // Set initial view button states
       switchView(currentView);
-      
+
       applyFilters();
 
       document.querySelectorAll(".price-filter").forEach((cb) => {
@@ -1307,21 +897,54 @@ const rgbOptions = ["Customizable RGB", "Reactive Lighting", "No Lighting"];
       document
         .getElementById("clear-all-filters")
         .addEventListener("click", clearAllFilters);
-      
+
       // View toggle event listeners
-      document.getElementById('grid-view-btn').addEventListener('click', () => switchView('grid'));
-      document.getElementById('list-view-btn').addEventListener('click', () => switchView('list'));
-      
+      document
+        .getElementById("grid-view-btn")
+        .addEventListener("click", () => switchView("grid"));
+      document
+        .getElementById("list-view-btn")
+        .addEventListener("click", () => switchView("list"));
+
       // Show more/less event listeners
-      const brandShowMoreBtn = document.getElementById('brand-show-more');
+      const brandShowMoreBtn = document.getElementById("brand-show-more");
       if (brandShowMoreBtn) {
-        brandShowMoreBtn.addEventListener('click', toggleBrandShowMore);
+        brandShowMoreBtn.addEventListener("click", toggleBrandShowMore);
       }
-      
-      const platformShowMoreBtn = document.getElementById('platform-show-more');
+
+      const platformShowMoreBtn = document.getElementById("platform-show-more");
       if (platformShowMoreBtn) {
-        platformShowMoreBtn.addEventListener('click', togglePlatformShowMore);
+        platformShowMoreBtn.addEventListener("click", togglePlatformShowMore);
       }
+
+      // Mobile Filters Logic
+      const mobileSidebar = document.getElementById("filters-sidebar");
+      const mobileToggleBtn = document.getElementById("sticky-filter-toggle");
+      const mobileCloseBtn = document.getElementById("close-filters-btn");
+      const mobileApplyBtn = document.getElementById("mobile-apply-filters");
+
+      function openMobileFilters() {
+        if (mobileSidebar) {
+          mobileSidebar.classList.remove("translate-x-full");
+          mobileSidebar.classList.add("translate-x-0");
+          document.body.style.overflow = "hidden";
+        }
+      }
+
+      function closeMobileFilters() {
+        if (mobileSidebar) {
+          mobileSidebar.classList.add("translate-x-full");
+          mobileSidebar.classList.remove("translate-x-0");
+          document.body.style.overflow = "";
+        }
+      }
+
+      if (mobileToggleBtn)
+        mobileToggleBtn.addEventListener("click", openMobileFilters);
+      if (mobileCloseBtn)
+        mobileCloseBtn.addEventListener("click", closeMobileFilters);
+      if (mobileApplyBtn)
+        mobileApplyBtn.addEventListener("click", closeMobileFilters);
     });
   </script>
 </div>

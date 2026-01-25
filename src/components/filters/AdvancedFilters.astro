@@ -1,0 +1,114 @@
+---
+import FilterCheckbox from "./FilterCheckbox.astro";
+import FilterRadio from "./FilterRadio.astro";
+
+const microphoneTypes = [
+    "Boom Mic",
+    "Retractable Mic",
+    "Detachable Mic",
+    "Inline Mic",
+    "Dual Microphone Array",
+    "No Microphone",
+];
+
+const surroundSounds = [
+    "Stereo",
+    "Virtual 5.1",
+    "Virtual 7.1",
+    "True 7.1",
+    "Dolby Atmos",
+    "DTS:X 2.0",
+    "Windows Sonic",
+    "THX Spatial Audio",
+    "Tempest 3D Audio",
+    "Proprietary Spatial",
+];
+
+const rgbOptions = ["Customizable RGB", "Reactive Lighting", "No Lighting"];
+---
+
+<details class="mb-6">
+    <summary
+        class="cursor-pointer text-sm font-medium text-primary hover:text-primary/80 flex items-center"
+    >
+        <svg
+            class="w-4 h-4 mr-2 transition-transform"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+        >
+            <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M9 5l7 7-7 7"></path>
+        </svg>
+        Advanced Filters
+    </summary>
+    <div class="mt-4 space-y-4">
+        <div>
+            <h4 class="font-medium text-text mb-2">Microphone Type</h4>
+            <div class="space-y-1">
+                {
+                    microphoneTypes.map((micType) => (
+                        <FilterCheckbox
+                            label={micType}
+                            value={micType}
+                            groupClass="mic-filter"
+                            dataCategory="mic"
+                        />
+                    ))
+                }
+            </div>
+        </div>
+
+        <div>
+            <h4 class="font-medium text-text mb-2">Surround Sound</h4>
+            <div class="space-y-1">
+                {
+                    surroundSounds.map((sound) => (
+                        <FilterCheckbox
+                            label={sound}
+                            value={sound}
+                            groupClass="surround-filter"
+                            dataCategory="surround"
+                        />
+                    ))
+                }
+            </div>
+        </div>
+
+        <div>
+            <h4 class="font-medium text-text mb-2">Noise Cancellation</h4>
+            <div class="space-y-1">
+                {
+                    ["Active", "None"].map((nc) => (
+                        <FilterRadio
+                            label={nc}
+                            value={nc}
+                            name="noise-cancellation"
+                            groupClass="nc-filter"
+                            dataCategory="nc"
+                        />
+                    ))
+                }
+            </div>
+        </div>
+
+        <div>
+            <h4 class="font-medium text-text mb-2">RGB Lighting</h4>
+            <div class="space-y-1">
+                {
+                    rgbOptions.map((rgb) => (
+                        <FilterCheckbox
+                            label={rgb}
+                            value={rgb}
+                            groupClass="rgb-filter"
+                            dataCategory="rgb"
+                        />
+                    ))
+                }
+            </div>
+        </div>
+    </div>
+</details>

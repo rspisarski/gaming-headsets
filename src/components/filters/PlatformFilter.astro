@@ -1,0 +1,89 @@
+---
+import FilterCheckbox from "./FilterCheckbox.astro";
+
+const platforms = [
+    "PC",
+    "PlayStation 5",
+    "PlayStation 4",
+    "Xbox Series X|S",
+    "Xbox One",
+    "Nintendo Switch",
+    "Mobile",
+];
+---
+
+<div class="mb-6">
+    <div class="flex items-center justify-between mb-3">
+        <h3 class="font-medium text-text">Platform</h3>
+        <label
+            class="flex items-center gap-2 cursor-pointer group"
+            title="Headset must support ALL selected platforms"
+        >
+            <span
+                class="text-[10px] uppercase font-bold tracking-wider text-text/50 group-hover:text-primary transition-colors"
+                >Match All</span
+            >
+            <div class="relative">
+                <input
+                    type="checkbox"
+                    id="platform-logic-toggle"
+                    class="peer sr-only"
+                />
+                <div
+                    class="w-8 h-4 bg-gray-700 rounded-full peer-checked:bg-primary/50 peer-focus:ring-2 peer-focus:ring-primary/50 transition-colors"
+                >
+                </div>
+                <div
+                    class="absolute left-0.5 top-0.5 bg-gray-400 w-3 h-3 rounded-full peer-checked:translate-x-4 peer-checked:bg-primary transition-all duration-200"
+                >
+                </div>
+            </div>
+        </label>
+    </div>
+    <div id="platform-filters" class="space-y-2">
+        {
+            platforms
+                .slice(0, 5)
+                .map((platform, index) => (
+                    <FilterCheckbox
+                        label={platform}
+                        value={platform}
+                        groupClass="platform-filter"
+                        dataCategory="platform"
+                        containerClass="platform-item"
+                        dataIndex={index}
+                        compact={true}
+                    />
+                ))
+        }
+
+        {/* Hidden items for "show more" functionality */}
+        {
+            platforms
+                .slice(5)
+                .map((platform, index) => (
+                    <FilterCheckbox
+                        label={platform}
+                        value={platform}
+                        groupClass="platform-filter"
+                        dataCategory="platform"
+                        containerClass="platform-item"
+                        dataIndex={index + 5}
+                        hidden={true}
+                        compact={true}
+                    />
+                ))
+        }
+    </div>
+
+    {
+        platforms.length > 5 && (
+            <button
+                id="platform-show-more"
+                class="text-primary text-sm font-medium hover:text-primary/80 transition-colors mt-2"
+            >
+                Show More
+            </button>
+        )
+    }
+</div>
