@@ -168,16 +168,6 @@ export const CERTIFICATION = [
   'Nintendo Licensed'
 ] as const;
 
-// 9. Accessories
-export const ACCESSORY = [
-  'Carrying Case',
-  'USB Dongle',
-  'USB Cable',
-  'Audio Cable',
-  'Console Adapters',
-  'Extra Ear Pads',
-  'Mic Windscreen'
-] as const;
 
 export const CABLE_FEATURE = [
   'Detachable Cable',
@@ -298,7 +288,7 @@ const headsetCollection = defineCollection({
     // ========================================================================
     // PACKAGING & ACCESSORIES
     // ========================================================================
-    included_accessories: z.array(z.enum(ACCESSORY)).default([]),
+    included_accessories: z.array(z.string()).default([]),
     cable_length: z.number().nullable().optional(), // feet (for wired)
     cable_features: z.array(z.enum(CABLE_FEATURE)).default([]),
 

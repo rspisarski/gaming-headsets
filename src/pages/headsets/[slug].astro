@@ -4,6 +4,7 @@ import { getCollection } from "astro:content";
 import { getPriceCategory } from "../../content/config";
 import Prose from "../../components/Prose.astro";
 import HeadsetCard from "../../components/HeadsetCard.astro";
+import settings from "../../data/settings.json";
 
 export async function getStaticPaths() {
   const headsets = await getCollection("headsets");
@@ -27,13 +28,18 @@ const relatedHeadsets = allHeadsets
 const amazonLinks = headset.data.amazon_product_id
   ? [
       {
-        url: `https://www.amazon.com/dp/${headset.data.amazon_product_id}`,
+        url: `https://www.amazon.com/dp/${headset.data.amazon_product_id}?tag=${settings.amazon_tracking_id}`,
         label: "Buy on Amazon",
       },
     ]
-  : [{ url: headset.data.amazon_us, label: "Buy on Amazon" }].filter(
-      (link) => link.url,
-    );
+  : [
+      {
+        url: headset.data.amazon_us
+          ? `${headset.data.amazon_us}${headset.data.amazon_us.includes("?") ? "&" : "?"}tag=${settings.amazon_tracking_id}`
+          : null,
+        label: "Buy on Amazon",
+      },
+    ].filter((link) => link.url);
 
 const specs = [
   { label: "Connection", value: headset.data.connection_types.join(", ") },
@@ -304,6 +310,7 @@ const specs = [
                   RGB: headset.data.rgb_lighting,
                   Warranty: `${headset.data.warranty_years} Year(s)`,
                   "Active Tech": headset.data.active_features.join(", "),
+                  "In the Box": headset.data.included_accessories.join(", "),
                 }).map(
                   ([label, value]) =>
                     value && (
