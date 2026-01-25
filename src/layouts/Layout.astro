@@ -5,6 +5,7 @@ import { getCollection } from "astro:content";
 import "../styles/global.css";
 import MobileMenu from "../components/MobileMenu.astro";
 import SearchModal from "../components/SearchModal.astro";
+import CookieConsent from "../components/CookieConsent.astro";
 
 // Load data for search functionality
 const headsets = await getCollection("headsets");
@@ -59,7 +60,7 @@ const searchData: any[] = [...headsetData, ...blogData];
 	</head>
 	<body class="bg-background text-text">
 		<nav
-			class="bg-black/10 backdrop-blur-md sticky top-0 z-[60] border-b border-primary/20"
+			class="bg-black/80 backdrop-blur-md sticky top-0 z-[60] border-b border-primary/20"
 		>
 			<div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
 				<div class="flex items-center justify-between h-16">
@@ -106,8 +107,28 @@ const searchData: any[] = [...headsetData, ...blogData];
 			</div>
 		</nav>
 		<slot />
+		<footer class="border-t border-white/5 py-8 mt-20">
+			<div
+				class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-text/30 text-sm tracking-wide"
+			>
+				<p>© 2026 All Rights Reserved. Goop Finder</p>
+				<div class="mt-2 flex justify-center gap-4">
+					<a
+						href="/privacy"
+						class="hover:text-text/50 transition-colors"
+						>Privacy Policy</a
+					>
+					<a
+						href="/terms"
+						class="hover:text-text/50 transition-colors"
+						>Terms of Service</a
+					>
+				</div>
+			</div>
+		</footer>
 		<MobileMenu />
 		<SearchModal searchData={searchData} />
+		<CookieConsent />
 		<style is:global>
 			@keyframes fade-in {
 				from {

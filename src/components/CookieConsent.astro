@@ -1,0 +1,80 @@
+---
+
+---
+
+<div
+    id="cookie-consent"
+    class="fixed bottom-6 left-6 right-6 md:left-auto md:max-w-md z-[100] translate-y-20 opacity-0 transition-all duration-500 pointer-events-none"
+>
+    <div
+        class="bg-card-bg/95 backdrop-blur-xl p-6 rounded-2xl shadow-2xl border border-white/5 flex flex-col gap-4"
+    >
+        <div class="flex items-start gap-4">
+            <div
+                class="w-10 h-10 bg-primary/20 rounded-xl flex items-center justify-center flex-shrink-0"
+            >
+                <svg
+                    class="w-6 h-6 text-primary"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                >
+                    <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                    ></path>
+                </svg>
+            </div>
+            <div>
+                <h3 class="text-text font-bold mb-1">Cookie Notice</h3>
+                <p class="text-text/60 text-sm leading-relaxed">
+                    We use cookies to improve your experience and analyze our
+                    traffic. By clicking "Accept", you agree to our use of
+                    cookies.
+                </p>
+            </div>
+        </div>
+        <button
+            id="accept-cookies"
+            class="w-full py-3 bg-primary text-white font-bold rounded-xl hover:bg-primary/80 transition-all active:scale-95 shadow-lg shadow-primary/20"
+        >
+            Accept
+        </button>
+    </div>
+</div>
+
+<script>
+    function initCookieConsent() {
+        const banner = document.getElementById("cookie-consent");
+        const acceptBtn = document.getElementById("accept-cookies");
+
+        if (!banner || !acceptBtn) return;
+
+        const hasAccepted = localStorage.getItem("cookie-consent-accepted");
+
+        if (!hasAccepted) {
+            // Show with delay
+            setTimeout(() => {
+                banner.classList.remove(
+                    "translate-y-20",
+                    "opacity-0",
+                    "pointer-events-none",
+                );
+            }, 1000);
+        }
+
+        acceptBtn.addEventListener("click", () => {
+            localStorage.setItem("cookie-consent-accepted", "true");
+            banner.classList.add(
+                "translate-y-20",
+                "opacity-0",
+                "pointer-events-none",
+            );
+        });
+    }
+
+    // Initialize on page load
+    document.addEventListener("astro:page-load", initCookieConsent);
+</script>
