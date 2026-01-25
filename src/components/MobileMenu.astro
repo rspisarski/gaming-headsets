@@ -45,13 +45,13 @@ const { isOpen = false } = Astro.props;
     >
       Blog
     </a>
-    <a
-      href="/find-headsets"
-      class="text-3xl text-white hover:text-primary transition-colors font-bold"
+    <button
+      id="mobile-search-button"
+      class="text-3xl text-white hover:text-primary transition-colors font-bold bg-transparent border-none cursor-pointer"
       data-mobile-link
     >
       Search
-    </a>
+    </button>
     <a
       href="/favorites"
       class="text-3xl text-white hover:text-primary transition-colors font-bold"
@@ -70,10 +70,18 @@ const { isOpen = false } = Astro.props;
       const closeMenuBtn = document.getElementById("close-menu");
       const mobileMenu = document.getElementById("mobile-menu");
       const mobileLinks = document.querySelectorAll("[data-mobile-link]");
+      const mobileSearchBtn = document.getElementById("mobile-search-button");
 
       function closeMenu() {
         mobileMenu?.classList.remove("open");
         document.body.style.overflow = "";
+      }
+
+      function openSearch() {
+        closeMenu();
+        setTimeout(() => {
+          document.getElementById("nav-search-button")?.click();
+        }, 300);
       }
 
       const onEscape = (e: KeyboardEvent) => {
@@ -86,6 +94,7 @@ const { isOpen = false } = Astro.props;
 
       closeMenuBtn?.addEventListener("click", closeMenu);
       mobileLinks.forEach((link) => link.addEventListener("click", closeMenu));
+      mobileSearchBtn?.addEventListener("click", openSearch);
 
       document.addEventListener("keydown", onEscape);
       mobileMenu?.addEventListener("click", onOutsideClick);
