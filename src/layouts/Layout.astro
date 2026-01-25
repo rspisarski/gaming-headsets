@@ -1,6 +1,6 @@
 ---
 import { ClientRouter } from "astro:transitions";
-import { Headphones, Menu, Search, BookHeart } from "@lucide/astro";
+import { Headphones, Menu, Search, BookHeart, X } from "@lucide/astro";
 import { getCollection } from "astro:content";
 import "../styles/global.css";
 import MobileMenu from "../components/MobileMenu.astro";
@@ -97,10 +97,11 @@ const searchData: any[] = [...headsetData, ...blogData];
 						</a>
 						<button
 							id="mobile-menu-toggle"
-							class="lg:hidden text-text/80 hover:text-text transition-colors"
-							aria-label="Open menu"
+							class="lg:hidden text-text/80 hover:text-text transition-all relative z-[70]"
+							aria-label="Toggle menu"
 						>
-							<Menu class="w-6 h-6" />
+							<Menu id="menu-icon" class="w-6 h-6 block" />
+							<X id="close-icon" class="w-6 h-6 hidden" />
 						</button>
 					</div>
 				</div>
@@ -180,17 +181,38 @@ const searchData: any[] = [...headsetData, ...blogData];
 				const mobileMenuToggle =
 					document.getElementById("mobile-menu-toggle");
 				const mobileMenu = document.getElementById("mobile-menu");
+				const menuIcon = document.getElementById("menu-icon");
+				const closeIcon = document.getElementById("close-icon");
 
-				function openMenu() {
-					mobileMenu?.classList.add("open");
-					document.body.style.overflow = "hidden";
-					mobileMenuToggle?.setAttribute("aria-expanded", "true");
+				function toggleMenu() {
+					const isOpen = mobileMenu?.classList.contains("open");
+					if (isOpen) {
+						mobileMenu?.classList.remove("open");
+						document.body.style.overflow = "";
+						menuIcon?.classList.remove("hidden");
+						closeIcon?.classList.add("hidden");
+						mobileMenuToggle?.setAttribute(
+							"aria-expanded",
+							"false",
+						);
+					} else {
+						mobileMenu?.classList.add("open");
+						document.body.style.overflow = "hidden";
+						menuIcon?.classList.add("hidden");
+						closeIcon?.classList.remove("hidden");
+						mobileMenuToggle?.setAttribute("aria-expanded", "true");
+					}
 				}
 
-				// Remove old listener if exists (although difficult with anonymous function,
-				// the DOM being replaced cleans up old listeners on the elements themselves).
-				// Since the elements are new on each page transition, we essentially just attach.
-				mobileMenuToggle?.addEventListener("click", openMenu);
+				mobileMenuToggle?.addEventListener("click", toggleMenu);
+
+				// Global listener to sync icon state if menu is closed from elsewhere (e.g. mobile link click)
+				document.addEventListener("menu-closed", () => {
+					menuIcon?.classList.remove("hidden");
+					closeIcon?.classList.add("hidden");
+					mobileMenuToggle?.setAttribute("aria-expanded", "false");
+					document.body.style.overflow = "";
+				});
 			}
 
 			// Run on initial load and subsequent navigations

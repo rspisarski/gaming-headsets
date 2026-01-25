@@ -9,21 +9,7 @@ const { isOpen = false } = Astro.props;
 ---
 
 <div id="mobile-menu" class={`mobile-menu ${isOpen ? "open" : ""}`}>
-  <div
-    class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-end"
-  >
-    <button
-      id="close-menu"
-      aria-label="Close menu"
-      class="text-white hover:text-primary transition-colors"
-    >
-      <X class="w-6 h-6" />
-    </button>
-  </div>
-
-  <nav
-    class="flex flex-col items-center justify-center h-[calc(100%-4rem)] space-y-8"
-  >
+  <nav class="flex flex-col items-center justify-center h-full space-y-8">
     <a
       href="/"
       class="text-3xl text-white hover:text-primary transition-colors font-bold"
@@ -60,7 +46,6 @@ const { isOpen = false } = Astro.props;
     document.addEventListener("astro:page-load", () => {
       if (cleanup) cleanup();
 
-      const closeMenuBtn = document.getElementById("close-menu");
       const mobileMenu = document.getElementById("mobile-menu");
       const mobileLinks = document.querySelectorAll("[data-mobile-link]");
       const mobileSearchBtn = document.getElementById("mobile-search-button");
@@ -68,6 +53,8 @@ const { isOpen = false } = Astro.props;
       function closeMenu() {
         mobileMenu?.classList.remove("open");
         document.body.style.overflow = "";
+        // Dispatch custom event to notify Layout to sync icons
+        document.dispatchEvent(new CustomEvent("menu-closed"));
       }
 
       function openSearch() {
@@ -85,7 +72,6 @@ const { isOpen = false } = Astro.props;
         if (e.target === mobileMenu) closeMenu();
       };
 
-      closeMenuBtn?.addEventListener("click", closeMenu);
       mobileLinks.forEach((link) => link.addEventListener("click", closeMenu));
       mobileSearchBtn?.addEventListener("click", openSearch);
 
