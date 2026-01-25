@@ -6,7 +6,8 @@ name: "Virtuoso RGB Wireless XT"
 brand: "Corsair"
 model: "Virtuoso RGB Wireless XT"
 price: 269.99
-image: "https://assets.corsair.com/image/upload/c_pad,q_auto,h_1024,w_1024/products/Gaming-Headsets/CA-9011188-NA/Gallery/Virtuoso_XT_01.webp"
+image: "https://ik.imagekit.io/gh2026/Headsets/VIRTUOSO_XT_01.webp"
+image_thumbnail_contain: true
 release_date: "2021-09-01"
 discontinued: false
 published: 2021-09-01"
@@ -88,6 +89,7 @@ cable_features: ["Detachable Cable", "Braided Cable"]
 # AFFILIATE LINKS
 # ============================================================================
 manufacturer_url: "https://www.corsair.com/us/en/p/gaming-headsets/ca-9011188-na/virtuoso-rgb-wireless-xt-high-fidelity-gaming-headset-slate-ca-9011188-na"
+amazon_product_id: "B09BXZKNDB"
 
 # ============================================================================
 # SEO & METADATA

@@ -6,7 +6,7 @@ name: "BlackShark V2 Pro (2023)"
 brand: "Razer"
 model: "BlackShark V2 Pro (2023)"
 price: 199.99
-image: "https://assets.corsair.com/image/upload/c_pad,q_auto,h_1024,w_1024/products/Gaming-Headsets/CA-9011188-NA/Gallery/Virtuoso_XT_01.webp"
+image: "https://ik.imagekit.io/gh2026/Headsets/71oZWr6SjaL._AC_SL1500_.jpg"
 release_date: "2023-04-27"
 discontinued: false
 
@@ -88,6 +88,7 @@ cable_features: ["Braided Cable"]
 # ============================================================================
 manufacturer_url: "https://www.razer.com/gaming-headsets/razer-blackshark-v2-pro"
 amazon_us: "https://www.amazon.com/Razer-BlackShark-V2-Pro-Wireless/dp/B0C549963B"
+amazon_product_id: "B0C549963B"
 
 # ============================================================================
 # SEO & METADATA

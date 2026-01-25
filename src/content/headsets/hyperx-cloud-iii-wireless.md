@@ -6,7 +6,7 @@ name: "Cloud III Wireless"
 brand: "HyperX"
 model: "Cloud III Wireless"
 price: 169.99
-image: "https://assets.corsair.com/image/upload/c_pad,q_auto,h_1024,w_1024/products/Gaming-Headsets/CA-9011188-NA/Gallery/Virtuoso_XT_01.webp"
+image: "https://m.media-amazon.com/images/I/71gnnh5fvhL._AC_SL1500_.jpg"
 release_date: "2023-08-01"
 discontinued: false
 
@@ -88,6 +88,7 @@ cable_features: ["Detachable Cable"]
 # AFFILIATE LINKS
 # ============================================================================
 manufacturer_url: "https://hyperx.com/products/hyperx-cloud-iii-wireless-gaming-headset"
+amazon_product_id: "B0CBQYKFR2"
 
 # ============================================================================
 # SEO & METADATA

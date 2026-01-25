@@ -6,7 +6,7 @@ name: "Arctis Nova Pro Wireless"
 brand: "SteelSeries"
 model: "Arctis Nova Pro Wireless"
 price: 349.99
-image: "https://assets.corsair.com/image/upload/c_pad,q_auto,h_1024,w_1024/products/Gaming-Headsets/CA-9011188-NA/Gallery/Virtuoso_XT_01.webp"
+image: "https://ik.imagekit.io/gh2026/Headsets/649563_408963_02_front_comping.jpg"
 release_date: "2023-05-01"
 discontinued: false
 
@@ -87,6 +87,7 @@ cable_features: ["Detachable Cable"]
 # AFFILIATE LINKS
 # ============================================================================
 manufacturer_url: "https://steelseries.com/gaming-headsets/arctis-nova-pro-wireless"
+amazon_product_id: "B0CCXWH6WG"
 
 # ============================================================================
 # SEO & METADATA

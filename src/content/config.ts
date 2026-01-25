@@ -210,6 +210,7 @@ const headsetCollection = defineCollection({
     model: z.string().optional(), // e.g., "Arctis Nova 7"
     price: z.number(),
     image: z.string().url(),
+    image_thumbnail_contain: z.boolean().default(true),
     release_date: z.string().optional(), // ISO date string
     discontinued: z.boolean().default(false),
 
