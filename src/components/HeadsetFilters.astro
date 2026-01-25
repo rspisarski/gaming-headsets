@@ -376,11 +376,11 @@ const uniqueBrands = [...new Set(headsets.map((h) => h.brand))]
           "group bg-card-bg relative z-0 hover:z-10 rounded-xl shadow-sm hover:shadow-[0_0_80px_rgba(139,213,27,0.4)] transition-all duration-300 overflow-hidden flex flex-col h-full";
 
         element.innerHTML = `
-          <div class="relative w-full aspect-[4/3] bg-gray-950 overflow-hidden group-hover:scale-[1.02] transition-transform duration-500">
+          <div class="relative w-full aspect-[4/3] bg-white overflow-hidden group-hover:scale-[1.02] transition-transform duration-500 p-4">
             <img 
               src="${headset.image}" 
               alt="${headset.brand} ${headset.name} gaming headset"
-              class="w-full h-full object-cover"
+              class="w-full h-full object-contain"
               loading="lazy"
             />
             
@@ -403,6 +403,15 @@ const uniqueBrands = [...new Set(headsets.map((h) => h.brand))]
               >
                 View Details
               </a>
+              <button
+                class="favorite-toggle p-2 text-text/40 hover:text-red-400 hover:bg-white/5 rounded-lg transition-all"
+                data-slug="${headset.slug}"
+                aria-label="Toggle Favorite"
+              >
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                </svg>
+              </button>
             </div>
           </div>
         `;
@@ -472,7 +481,45 @@ const uniqueBrands = [...new Set(headsets.map((h) => h.brand))]
       }
 
       updatePagination();
+      updateFavoriteButtons();
     }
+
+    function updateFavoriteButtons() {
+      const favorites = JSON.parse(
+        localStorage.getItem("headsetFavorites") || "[]",
+      );
+      document.querySelectorAll(".favorite-toggle").forEach((btn) => {
+        const slug = btn.dataset.slug;
+        const icon = btn.querySelector("svg");
+        if (favorites.includes(slug)) {
+          btn.classList.add("text-red-400", "bg-red-400/10");
+          btn.classList.remove("text-text/40");
+          icon.setAttribute("fill", "currentColor");
+        } else {
+          btn.classList.remove("text-red-400", "bg-red-400/10");
+          btn.classList.add("text-text/40");
+          icon.setAttribute("fill", "none");
+        }
+      });
+    }
+
+    // Handle favorite toggles using event delegation
+    document.addEventListener("click", (e) => {
+      const btn = e.target.closest(".favorite-toggle");
+      if (btn) {
+        const slug = btn.dataset.slug;
+        let favorites = JSON.parse(
+          localStorage.getItem("headsetFavorites") || "[]",
+        );
+        if (favorites.includes(slug)) {
+          favorites = favorites.filter((s) => s !== slug);
+        } else {
+          favorites.push(slug);
+        }
+        localStorage.setItem("headsetFavorites", JSON.stringify(favorites));
+        updateFavoriteButtons();
+      }
+    });
 
     function toggleBrandShowMore() {
       const button = document.getElementById("brand-show-more");

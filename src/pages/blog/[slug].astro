@@ -29,7 +29,11 @@ const formatDate = () => {
 };
 ---
 
-<Layout>
+<Layout
+  title={`${post.data.title} - Goop Finder`}
+  description={post.data.excerpt}
+  image={post.data.image}
+>
   <article class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
     <div class="mb-12">
       <div class="aspect-[16/9] w-full mb-8 overflow-hidden">
@@ -51,7 +55,10 @@ const formatDate = () => {
         <span class="text-text/60">{formatDate()}</span>
       </div>
 
-      <h1 transition:name={`post-title-${post.slug}`} class="text-4xl md:text-5xl font-bold text-text mb-6">
+      <h1
+        transition:name={`post-title-${post.slug}`}
+        class="text-4xl md:text-5xl font-bold text-text mb-6"
+      >
         {post.data.title}
       </h1>
 

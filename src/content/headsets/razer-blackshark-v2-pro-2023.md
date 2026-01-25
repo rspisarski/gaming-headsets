@@ -87,6 +87,7 @@ cable_features: ["Braided Cable"]
 # AFFILIATE LINKS
 # ============================================================================
 manufacturer_url: "https://www.razer.com/gaming-headsets/razer-blackshark-v2-pro"
+amazon_us: "https://www.amazon.com/Razer-BlackShark-V2-Pro-Wireless/dp/B0C549963B"
 
 # ============================================================================
 # SEO & METADATA

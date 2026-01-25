@@ -21,15 +21,14 @@ const { headset } = Astro.props;
 >
   <!-- Image - Aspect Ratio 4:3 as requested -->
   <div
-    class="relative w-full aspect-[4/3] bg-gray-950 overflow-hidden group-hover:scale-[1.02] transition-transform duration-500"
+    class="relative w-full aspect-[4/3] bg-white overflow-hidden group-hover:scale-[1.02] transition-transform duration-500 p-4"
   >
     <img
       src={headset.image}
       alt={`${headset.brand} ${headset.name} gaming headset`}
-      class="w-full h-full object-cover"
+      class="w-full h-full object-contain"
       loading="lazy"
     />
-    
   </div>
 
   <div class="p-5 flex flex-col flex-1">

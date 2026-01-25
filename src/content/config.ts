@@ -253,6 +253,7 @@ const headsetCollection = defineCollection({
     mic_detachable: z.boolean().default(false),
     mic_frequency_response: z.string().optional(), // "100Hz - 10kHz"
     mic_features: z.array(z.enum(MIC_FEATURE)).default([]),
+    mic_monitoring: z.boolean().default(false),
 
     // ========================================================================
     // COMFORT & BUILD
@@ -306,6 +307,7 @@ const headsetCollection = defineCollection({
     amazon_us: z.string().url().optional(),
     amazon_ca: z.string().url().optional(),
     amazon_uk: z.string().url().optional(),
+    amazon_product_id: z.string().optional(),
     bestbuy: z.string().url().optional(),
     newegg: z.string().url().optional(),
     manufacturer_url: z.string().url(),

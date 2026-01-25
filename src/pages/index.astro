@@ -1,20 +1,20 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Hero from '../components/Hero.astro';
-import HeadsetFilters from '../components/HeadsetFilters.astro';
-import { getCollection } from 'astro:content';
+import Layout from "../layouts/Layout.astro";
+import Hero from "../components/Hero.astro";
+import HeadsetFilters from "../components/HeadsetFilters.astro";
+import { getCollection } from "astro:content";
 
-const headsets = await getCollection('headsets');
-const headsetData = headsets.map(headset => ({
+const headsets = await getCollection("headsets");
+const headsetData = headsets.map((headset) => ({
   ...headset.data,
   slug: headset.slug,
 }));
 ---
 
-<Layout>
+<Layout title="Goop Finder - Compare Gaming Headsets by Objective Specs">
   <div>
     <Hero />
-    
+
     <div class="min-h-screen bg-black">
       <main class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <HeadsetFilters headsets={headsetData} />

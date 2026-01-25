@@ -1,0 +1,166 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { getCollection } from "astro:content";
+
+const allHeadsets = await getCollection("headsets");
+const headsetData = allHeadsets.map((h) => ({
+    ...h.data,
+    slug: h.slug,
+}));
+---
+
+<Layout
+    title="Your Favorite Headsets - Goop Finder"
+    description="View and compare the gaming headsets you've saved to your favorites list."
+>
+    <main class="min-h-screen pt-24 pb-20 bg-background">
+        <div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="mb-12">
+                <h1 class="text-4xl sm:text-5xl font-black text-text mb-4">
+                    Your Favorites
+                </h1>
+                <p class="text-text/60 text-lg">
+                    Compare and view your saved gaming headsets.
+                </p>
+            </div>
+
+            <div
+                id="favorites-grid"
+                class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+            >
+                <!-- Will be populated by JS -->
+            </div>
+
+            <div
+                id="no-favorites"
+                class="hidden flex flex-col items-center justify-center py-20 text-center"
+            >
+                <div
+                    class="w-20 h-20 bg-card-bg rounded-3xl flex items-center justify-center mb-6"
+                >
+                    <svg
+                        class="w-10 h-10 text-text/20"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                    >
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+                        ></path>
+                    </svg>
+                </div>
+                <h2 class="text-2xl font-bold text-text mb-2">
+                    No favorites yet
+                </h2>
+                <p class="text-text/50 max-w-sm mb-10">
+                    Start browsing headsets and tap the heart icon to save your
+                    top picks here.
+                </p>
+                <a
+                    href="/"
+                    class="px-8 py-4 bg-primary text-white font-bold rounded-2xl hover:bg-primary/80 transition-all shadow-xl shadow-primary/20"
+                >
+                    Browse Headsets
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <script define:vars={{ headsetData }}>
+        function createFavoriteCard(headset) {
+            const div = document.createElement("div");
+            div.className =
+                "group bg-card-bg relative rounded-3xl overflow-hidden transition-all duration-500 hover:shadow-[0_0_80px_rgba(139,213,27,0.15)]";
+
+            div.innerHTML = `
+        <div class="relative aspect-[4/3] overflow-hidden bg-white p-4">
+          <img 
+            src="${headset.image}" 
+            alt="${headset.name}" 
+            class="w-full h-full object-contain transition-transform duration-700 group-hover:scale-110"
+          />
+          <div class="absolute bottom-4 left-6">
+             <span class="text-primary font-bold text-lg leading-none">$${headset.price}</span>
+          </div>
+        </div>
+        
+        <div class="p-8">
+          <div class="mb-6">
+            <p class="text-primary font-bold uppercase tracking-widest text-[10px] mb-2">${headset.brand}</p>
+            <h3 class="text-xl font-bold text-text leading-tight group-hover:text-primary transition-colors">${headset.name}</h3>
+          </div>
+          
+          <div class="flex items-center gap-3 pt-6 border-t border-white/5">
+            <a 
+              href="/headsets/${headset.slug}" 
+              class="flex-1 text-center py-4 bg-primary text-white font-black text-sm rounded-xl hover:bg-primary/80 transition-all"
+            >
+              View Details
+            </a>
+            <button 
+              class="remove-favorite p-4 bg-white/5 text-red-400 hover:bg-red-400/10 rounded-xl transition-all"
+              data-slug="${headset.slug}"
+              title="Remove from favorites"
+            >
+              <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"></path>
+              </svg>
+            </button>
+          </div>
+        </div>
+      `;
+
+            return div;
+        }
+
+        function renderFavorites() {
+            const grid = document.getElementById("favorites-grid");
+            const emptyState = document.getElementById("no-favorites");
+            const favorites = JSON.parse(
+                localStorage.getItem("headsetFavorites") || "[]",
+            );
+
+            const favoritedHeadsets = headsetData.filter((h) =>
+                favorites.includes(h.slug),
+            );
+
+            if (!grid || !emptyState) return;
+
+            grid.innerHTML = "";
+
+            if (favoritedHeadsets.length === 0) {
+                grid.classList.add("hidden");
+                emptyState.classList.remove("hidden");
+            } else {
+                grid.classList.remove("hidden");
+                emptyState.classList.add("hidden");
+
+                favoritedHeadsets.forEach((headset) => {
+                    const card = createFavoriteCard(headset);
+                    grid.appendChild(card);
+                });
+
+                // Add listeners to remove buttons
+                document.querySelectorAll(".remove-favorite").forEach((btn) => {
+                    btn.addEventListener("click", (e) => {
+                        const slug = btn.dataset.slug;
+                        let currentFavs = JSON.parse(
+                            localStorage.getItem("headsetFavorites") || "[]",
+                        );
+                        currentFavs = currentFavs.filter((s) => s !== slug);
+                        localStorage.setItem(
+                            "headsetFavorites",
+                            JSON.stringify(currentFavs),
+                        );
+                        renderFavorites();
+                    });
+                });
+            }
+        }
+
+        document.addEventListener("astro:page-load", renderFavorites);
+    </script>
+</Layout>

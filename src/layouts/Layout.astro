@@ -7,35 +7,36 @@ import MobileMenu from "../components/MobileMenu.astro";
 import SearchModal from "../components/SearchModal.astro";
 
 // Load data for search functionality
-const headsets = await getCollection('headsets');
-const blogPosts = await getCollection('blog');
+const headsets = await getCollection("headsets");
+const blogPosts = await getCollection("blog");
+const logo = "https://ik.imagekit.io/gh2026/brand/goopfinder-logo-2.svg";
 
 // Prepare search data for headsets
-const headsetData = headsets.map(headset => ({
-  id: headset.slug,
-  type: 'headset',
-  name: headset.data.name,
-  brand: headset.data.brand,
-  description: headset.data.description,
-  platforms: headset.data.platforms,
-  special_features: headset.data.special_features,
-  connection_types: headset.data.connection_types,
-  price: headset.data.price,
-  image: headset.data.image,
-  slug: headset.slug,
+const headsetData = headsets.map((headset) => ({
+	id: headset.slug,
+	type: "headset",
+	name: headset.data.name,
+	brand: headset.data.brand,
+	description: headset.data.description,
+	platforms: headset.data.platforms,
+	special_features: headset.data.special_features,
+	connection_types: headset.data.connection_types,
+	price: headset.data.price,
+	image: headset.data.image,
+	slug: headset.slug,
 }));
 
 // Prepare search data for blog posts
-const blogData = blogPosts.map(post => ({
-  id: post.slug,
-  type: 'blog',
-  title: post.data.title,
-  excerpt: post.data.excerpt,
-  category: post.data.category,
-  tags: post.data.tags,
-  published: post.data.published,
-  image: post.data.image,
-  slug: post.slug,
+const blogData = blogPosts.map((post) => ({
+	id: post.slug,
+	type: "blog",
+	title: post.data.title,
+	excerpt: post.data.excerpt,
+	category: post.data.category,
+	tags: post.data.tags,
+	published: post.data.published,
+	image: post.data.image,
+	slug: post.slug,
 }));
 
 // Combine search data
@@ -58,26 +59,19 @@ const searchData: any[] = [...headsetData, ...blogData];
 	</head>
 	<body class="bg-background text-text">
 		<nav
-			class="bg-black/30 backdrop-blur-md sticky top-0 z-50 border-b border-primary/20"
+			class="bg-black/10 backdrop-blur-md sticky top-0 z-[60] border-b border-primary/20"
 		>
 			<div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
 				<div class="flex items-center justify-between h-16">
 					<div class="flex items-center gap-2">
-						<Headphones class="w-6 h-6 text-primary" />
 						<a
 							href="/"
 							class="text-xl font-bold text-primary hover:text-primary/80 transition-colors"
 						>
-							Gaming Headsets
+							<img src={logo} alt="Goop Finder" class="h-12" />
 						</a>
 					</div>
 					<div class="hidden lg:flex items-center space-x-6">
-						<a
-							href="/find-headsets"
-							class="text-text/80 hover:text-text transition-colors"
-						>
-							Find Your Headset
-						</a>
 						<a
 							href="/blog"
 							class="text-text/80 hover:text-text transition-colors"
@@ -93,12 +87,13 @@ const searchData: any[] = [...headsetData, ...blogData];
 						>
 							<Search class="w-6 h-6" />
 						</button>
-						<button
+						<a
+							href="/favorites"
 							class="hidden lg:block text-text/80 hover:text-text transition-colors"
 							aria-label="Favorites"
 						>
 							<BookHeart class="w-6 h-6" />
-						</button>
+						</a>
 						<button
 							id="mobile-menu-toggle"
 							class="lg:hidden text-text/80 hover:text-text transition-colors"
@@ -180,9 +175,9 @@ const searchData: any[] = [...headsetData, ...blogData];
 			// Run on initial load and subsequent navigations
 			document.addEventListener("astro:page-load", setupMenu);
 		</script>
-		<script define:vars={{searchData}}>
-			console.log('Setting window.searchData in define:vars');
-			window.searchData = {searchData};
+		<script define:vars={{ searchData }}>
+			console.log("Setting window.searchData in define:vars");
+			window.searchData = { searchData };
 		</script>
 		<script src="/scripts/search.js" is:inline></script>
 	</body>

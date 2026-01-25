@@ -6,7 +6,7 @@ name: "Maxwell"
 brand: "Audeze"
 model: "Maxwell"
 price: 299.00
-image: "https://assets.corsair.com/image/upload/c_pad,q_auto,h_1024,w_1024/products/Gaming-Headsets/CA-9011188-NA/Gallery/Virtuoso_XT_01.webp"
+image: "https://ik.imagekit.io/gh2026/Headsets/51iE7XD13NL._AC_SL1080_.jpg"
 release_date: "2023-01-01"
 discontinued: false
 
@@ -41,6 +41,7 @@ headphone_type: "Closed-back"
 # MICROPHONE
 # ============================================================================
 microphone_type: "Detachable Mic"
+mic_monitoring: true
 mic_detachable: true
 mic_frequency_response: "100Hz - 10kHz"
 mic_features: ["AI Noise Cancellation", "Noise Cancellation", "Beamforming"]
@@ -88,6 +89,7 @@ cable_features: ["Braided Cable"]
 # AFFILIATE LINKS
 # ============================================================================
 manufacturer_url: "https://www.audeze.com/products/maxwell-wireless-gaming-headset"
+amazon_product_id: "B0BP6BC17P"
 
 # ============================================================================
 # SEO & METADATA
