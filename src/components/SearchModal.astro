@@ -1,102 +1,177 @@
-<div id="search-modal" class="z-50 hidden">
+<div
+  id="search-modal"
+  class="fixed inset-0 z-[60] hidden"
+  role="dialog"
+  aria-modal="true"
+>
   <!-- Backdrop -->
-  <div id="search-backdrop" class="fixed inset-0 bg-black/60 backdrop-blur-sm lg:bg-black/60 lg:hover:bg-black/70 transition-colors"></div>
-  
+  <div
+    id="search-backdrop"
+    class="absolute inset-0 bg-black/60 backdrop-blur-sm lg:bg-black/60 lg:hover:bg-black/70 transition-colors"
+  >
+  </div>
+
   <!-- Desktop Modal (Centered) -->
-  <div class="hidden lg:flex fixed inset-0 overflow-y-auto">
-    <div class="flex min-h-full items-center justify-center p-4">
-      <div id="search-panel" class="relative w-full max-w-2xl bg-black/95 border border-primary/20 rounded-lg shadow-2xl">
-        
+  <div
+    id="search-desktop-wrapper"
+    class="hidden lg:flex absolute inset-0 overflow-y-auto"
+  >
+    <div class="flex min-h-full w-full items-center justify-center p-4">
+      <div
+        id="search-panel"
+        class="relative w-full max-w-2xl bg-black/95 border border-primary/20 rounded-lg shadow-2xl"
+      >
         <!-- Search Header -->
         <div class="flex items-center gap-3 p-6 border-b border-primary/20">
-          <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+          <svg
+            class="w-5 h-5 text-primary"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
           </svg>
-          <input 
+          <input
             id="search-input"
-            type="text" 
+            type="text"
             placeholder="Search headsets and blog posts..."
             class="flex-1 bg-transparent text-text placeholder-text/60 outline-none text-lg"
             autocomplete="off"
           />
-          <button 
+          <button
             id="search-close"
             class="text-text/60 hover:text-text transition-colors p-1"
             aria-label="Close search"
           >
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+            <svg
+              class="w-5 h-5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M6 18L18 6M6 6l12 12"></path>
             </svg>
           </button>
         </div>
-        
+
         <!-- Results Container -->
         <div id="search-results" class="max-h-96 overflow-y-auto hidden">
           <!-- Search results will be dynamically inserted here -->
         </div>
-        
+
         <!-- Initial State -->
         <div id="search-initial" class="p-8 text-center text-text/60">
-          <svg class="w-12 h-12 mx-auto mb-4 text-text/30" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+          <svg
+            class="w-12 h-12 mx-auto mb-4 text-text/30"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
           </svg>
           <p>Start typing to search headsets and blog posts</p>
-          <p class="text-sm mt-2">Use ↑↓ to navigate, Enter to select, Escape to close</p>
+          <p class="text-sm mt-2">
+            Use ↑↓ to navigate, Enter to select, Escape to close
+          </p>
         </div>
-        
+
         <!-- No Results State -->
         <div id="search-no-results" class="hidden p-8 text-center text-text/60">
           <p>No results found for your search</p>
           <p class="text-sm mt-2">Try different keywords or check spelling</p>
         </div>
-        
       </div>
     </div>
   </div>
-  
+
   <!-- Mobile Slide-Down Panel -->
-  <div id="mobile-search-panel" class="lg:hidden fixed inset-x-0 top-0 z-50 transform -translate-y-full transition-transform duration-300 ease-out h-screen">
+  <div
+    id="mobile-search-panel"
+    class="lg:hidden absolute inset-x-0 top-0 z-[70] transform -translate-y-full transition-transform duration-300 ease-out h-screen"
+  >
     <!-- Search Content -->
     <div class="bg-black/95 border-b border-primary/20 h-screen">
       <!-- Mobile Search Header -->
       <div class="flex items-center gap-3 p-4 border-b border-primary/20">
-        <svg class="w-5 h-5 text-primary flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+        <svg
+          class="w-5 h-5 text-primary flex-shrink-0"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
         </svg>
-        <input 
+        <input
           id="mobile-search-input"
-          type="text" 
+          type="text"
           placeholder="Search headsets..."
           class="flex-1 bg-gray-900 text-text placeholder-text/60 outline-none text-lg px-4 py-3 rounded-lg border border-primary/20 focus:border-primary focus:ring-1 focus:ring-primary"
           autocomplete="off"
           style="font-size: 16px"
         />
-        <button 
+        <button
           id="mobile-search-back"
           class="p-2 text-text/60 hover:text-text transition-colors"
           aria-label="Close search"
         >
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+          <svg
+            class="w-6 h-6"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M6 18L18 6M6 6l12 12"></path>
           </svg>
         </button>
       </div>
-      
+
       <!-- Mobile Results Container -->
       <div id="mobile-search-results" class="max-h-96 overflow-y-auto">
         <!-- Search results will be dynamically inserted here -->
       </div>
-      
+
       <!-- Mobile Initial State -->
       <div id="mobile-search-initial" class="p-6 text-center text-text/60">
-        <svg class="w-10 h-10 mx-auto mb-3 text-text/30" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+        <svg
+          class="w-10 h-10 mx-auto mb-3 text-text/30"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
         </svg>
         <p class="text-sm">Search for headsets and blog posts</p>
       </div>
-      
+
       <!-- Mobile No Results State -->
-      <div id="mobile-search-no-results" class="hidden p-6 text-center text-text/60">
+      <div
+        id="mobile-search-no-results"
+        class="hidden p-6 text-center text-text/60"
+      >
         <p class="text-sm">No results found</p>
       </div>
     </div>
@@ -107,41 +182,41 @@
   #search-modal {
     animation: fade-in 0.2s ease-out;
   }
-  
+
   #search-panel {
     animation: slide-down 0.3s ease-out;
   }
-  
+
   #mobile-search-panel {
     max-height: 85vh;
     min-height: 300px;
   }
-  
+
   #mobile-search-panel.open {
     transform: translateY(0);
   }
-  
+
   .search-result {
     transition: all 0.2s ease;
   }
-  
+
   .search-result:hover,
   .search-result.bg-primary\/20 {
     transform: translateX(4px);
   }
-  
+
   /* Mobile-specific optimizations */
   #mobile-search-input {
     -webkit-appearance: none;
     -webkit-border-radius: 0;
     border-radius: 8px;
   }
-  
+
   #mobile-search-results {
     -webkit-overflow-scrolling: touch;
     overscroll-behavior: contain;
   }
-  
+
   /* Prevent zoom on iOS */
   @supports (-webkit-touch-callout: none) {
     #mobile-search-input {

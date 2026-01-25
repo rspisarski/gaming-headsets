@@ -6,18 +6,18 @@ let searchModal = null;
 let isMobile = false;
 
 // Initialize search
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
   if (window.searchData) {
     searchIndex = window.searchData.searchData;
     console.log('Search initialized with', searchIndex.length, 'items');
   }
-  
+
   setupSearchModal();
   setupKeyboardShortcuts();
   setupMobileDetection();
-  
+
   // Re-initialize on page navigation - FIX FOR ASTRO VIEW TRANSITIONS
-  document.addEventListener('astro:page-load', function() {
+  document.addEventListener('astro:page-load', function () {
     if (window.searchData) {
       searchIndex = window.searchData.searchData;
       console.log('Search re-initialized with', searchIndex.length, 'items');
@@ -31,7 +31,7 @@ function setupMobileDetection() {
   const checkMobile = () => {
     isMobile = window.innerWidth < 1024;
   };
-  
+
   checkMobile();
   window.addEventListener('resize', checkMobile);
 }
@@ -39,18 +39,19 @@ function setupMobileDetection() {
 function setupSearchModal() {
   searchModal = document.getElementById('search-modal');
   if (!searchModal) return;
-  
+
   const searchInput = document.getElementById('search-input');
   const mobileSearchInput = document.getElementById('mobile-search-input');
   const searchClose = document.getElementById('search-close');
   const mobileSearchBack = document.getElementById('mobile-search-back');
   const searchBackdrop = document.getElementById('search-backdrop');
+  const searchDesktopWrapper = document.getElementById('search-desktop-wrapper');
   const mobileSearchPanel = document.getElementById('mobile-search-panel');
-  
+
   // Open search modal
   function openSearchModal() {
     searchModal.classList.remove('hidden');
-    
+
     if (isMobile) {
       // Mobile: open slide-down panel instantly
       mobileSearchPanel.classList.add('open');
@@ -61,10 +62,10 @@ function setupSearchModal() {
       searchInput.focus();
       showInitialState();
     }
-    
+
     document.body.style.overflow = 'hidden';
   }
-  
+
   // Close search modal
   function closeSearchModal() {
     if (isMobile) {
@@ -73,36 +74,40 @@ function setupSearchModal() {
     } else {
       searchModal.classList.add('hidden');
     }
-    
+
     document.body.style.overflow = '';
     selectedIndex = -1;
-    
+
     // Clear search
     if (searchInput) searchInput.value = '';
     if (mobileSearchInput) mobileSearchInput.value = '';
   }
-  
+
   // Event listeners - make sure elements exist before adding listeners
   const navSearchButton = document.getElementById('nav-search-button');
   if (navSearchButton) {
     navSearchButton.addEventListener('click', openSearchModal);
   }
-  
+
   if (searchClose) {
     searchClose.addEventListener('click', closeSearchModal);
   }
-  
+
   if (mobileSearchBack) {
     mobileSearchBack.addEventListener('click', closeSearchModal);
   }
-  
+
   if (searchBackdrop) {
     searchBackdrop.addEventListener('click', closeSearchModal);
   }
-  
+
+  if (searchDesktopWrapper) {
+    searchDesktopWrapper.addEventListener('click', closeSearchModal);
+  }
+
   // Search input handling - desktop
   if (searchInput) {
-    searchInput.addEventListener('input', function(e) {
+    searchInput.addEventListener('input', function (e) {
       const query = e.target.value.trim();
       if (query.length > 0) {
         performSearch(query);
@@ -111,10 +116,10 @@ function setupSearchModal() {
       }
     });
   }
-  
+
   // Search input handling - mobile
   if (mobileSearchInput) {
-    mobileSearchInput.addEventListener('input', function(e) {
+    mobileSearchInput.addEventListener('input', function (e) {
       const query = e.target.value.trim();
       if (query.length > 0) {
         performSearch(query);
@@ -122,45 +127,45 @@ function setupSearchModal() {
         showMobileInitialState();
       }
     });
-    
+
     // Mobile keyboard handling
-    mobileSearchInput.addEventListener('focus', function() {
+    mobileSearchInput.addEventListener('focus', function () {
       setTimeout(() => {
         mobileSearchInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
       }, 300);
     });
   }
-  
+
   // Prevent modal close when clicking inside panels
   const searchPanel = document.getElementById('search-panel');
   const mobilePanelContent = mobileSearchPanel?.querySelector('.bg-black\\/95');
-  
+
   if (searchPanel) {
-    searchPanel.addEventListener('click', function(e) {
+    searchPanel.addEventListener('click', function (e) {
       e.stopPropagation();
     });
   }
-  
+
   if (mobilePanelContent) {
-    mobilePanelContent.addEventListener('click', function(e) {
+    mobilePanelContent.addEventListener('click', function (e) {
       e.stopPropagation();
     });
   }
-  
+
   // Touch/swipe handling for mobile (now for top-positioned panel)
   if (mobileSearchPanel) {
     let touchStartY = 0;
     let touchEndY = 0;
-    
-    mobileSearchPanel.addEventListener('touchstart', function(e) {
+
+    mobileSearchPanel.addEventListener('touchstart', function (e) {
       touchStartY = e.changedTouches[0].screenY;
     }, { passive: true });
-    
-    mobileSearchPanel.addEventListener('touchend', function(e) {
+
+    mobileSearchPanel.addEventListener('touchend', function (e) {
       touchEndY = e.changedTouches[0].screenY;
       handleSwipe();
     }, { passive: true });
-    
+
     function handleSwipe() {
       const swipeDistance = touchEndY - touchStartY; // Reversed for top positioning
       if (Math.abs(swipeDistance) > 50) { // Minimum swipe distance
@@ -176,11 +181,11 @@ function setupSearchModal() {
 }
 
 function setupKeyboardShortcuts() {
-  document.addEventListener('keydown', function(e) {
+  document.addEventListener('keydown', function (e) {
     const searchInput = document.getElementById('search-input');
     const mobileSearchInput = document.getElementById('mobile-search-input');
     const activeInput = isMobile ? mobileSearchInput : searchInput;
-    
+
     // Cmd/Ctrl+K to open search
     if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
       e.preventDefault();
@@ -190,12 +195,12 @@ function setupKeyboardShortcuts() {
         closeSearchModal();
       }
     }
-    
+
     // Escape to close
     if (e.key === 'Escape' && !searchModal.classList.contains('hidden')) {
       closeSearchModal();
     }
-    
+
     // Arrow key navigation when search is active
     if (!searchModal.classList.contains('hidden') && currentResults.length > 0) {
       if (e.key === 'ArrowDown') {
@@ -217,7 +222,7 @@ function setupKeyboardShortcuts() {
 
 function performSearch(query) {
   const normalizedQuery = query.toLowerCase();
-  
+
   currentResults = searchIndex.filter(item => {
     // Search in different fields based on type
     if (item.type === 'headset') {
@@ -239,14 +244,14 @@ function performSearch(query) {
     }
     return false;
   });
-  
+
   // Rank results (exact name/title matches first)
   currentResults.sort((a, b) => {
     const aScore = calculateRelevanceScore(a, normalizedQuery);
     const bScore = calculateRelevanceScore(b, normalizedQuery);
     return bScore - aScore;
   });
-  
+
   if (isMobile) {
     displayMobileResults(currentResults);
   } else {
@@ -256,7 +261,7 @@ function performSearch(query) {
 
 function calculateRelevanceScore(item, query) {
   let score = 0;
-  
+
   if (item.type === 'headset') {
     if (item.name?.toLowerCase() === query) score += 100;
     if (item.name?.toLowerCase().startsWith(query)) score += 50;
@@ -270,7 +275,7 @@ function calculateRelevanceScore(item, query) {
     if (item.category?.toLowerCase() === query) score += 30;
     if (item.category?.toLowerCase().includes(query)) score += 15;
   }
-  
+
   return score;
 }
 
@@ -278,24 +283,24 @@ function displayResults(results) {
   const resultsContainer = document.getElementById('search-results');
   const initialState = document.getElementById('search-initial');
   const noResults = document.getElementById('search-no-results');
-  
+
   if (!resultsContainer || !initialState || !noResults) return;
-  
+
   // Hide initial and no results states
   initialState.classList.add('hidden');
   noResults.classList.add('hidden');
-  
+
   if (results.length === 0) {
     noResults.classList.remove('hidden');
     return;
   }
-  
+
   // Group results by type
   const headsetResults = results.filter(r => r.type === 'headset');
   const blogResults = results.filter(r => r.type === 'blog');
-  
+
   let html = '';
-  
+
   // Render headset results
   if (headsetResults.length > 0) {
     html += '<div class="search-section border-b border-primary/10">';
@@ -308,7 +313,7 @@ function displayResults(results) {
     });
     html += '</div>';
   }
-  
+
   // Render blog results
   if (blogResults.length > 0) {
     html += '<div class="search-section">';
@@ -321,7 +326,7 @@ function displayResults(results) {
     });
     html += '</div>';
   }
-  
+
   resultsContainer.innerHTML = html;
   resultsContainer.classList.remove('hidden');
 }
@@ -330,24 +335,24 @@ function displayMobileResults(results) {
   const resultsContainer = document.getElementById('mobile-search-results');
   const initialState = document.getElementById('mobile-search-initial');
   const noResults = document.getElementById('mobile-search-no-results');
-  
+
   if (!resultsContainer || !initialState || !noResults) return;
-  
+
   // Hide initial and no results states
   initialState.classList.add('hidden');
   noResults.classList.add('hidden');
-  
+
   if (results.length === 0) {
     noResults.classList.remove('hidden');
     return;
   }
-  
+
   // Group results by type
   const headsetResults = results.filter(r => r.type === 'headset');
   const blogResults = results.filter(r => r.type === 'blog');
-  
+
   let html = '';
-  
+
   // Render headset results
   if (headsetResults.length > 0) {
     html += '<div class="search-section">';
@@ -360,7 +365,7 @@ function displayMobileResults(results) {
     });
     html += '</div>';
   }
-  
+
   // Render blog results
   if (blogResults.length > 0) {
     html += '<div class="search-section">';
@@ -373,7 +378,7 @@ function displayMobileResults(results) {
     });
     html += '</div>';
   }
-  
+
   resultsContainer.innerHTML = html;
   resultsContainer.classList.remove('hidden');
 }
@@ -381,7 +386,7 @@ function displayMobileResults(results) {
 function createHeadsetResult(result, index) {
   const price = result.price ? `$${result.price}` : 'Price not available';
   const platforms = result.platforms?.slice(0, 3).join(', ') || '';
-  
+
   return `
     <a 
       href="/headsets/${result.slug}" 
@@ -407,7 +412,7 @@ function createHeadsetResult(result, index) {
 function createMobileHeadsetResult(result, index) {
   const price = result.price ? `$${result.price}` : '';
   const platforms = result.platforms?.slice(0, 2).join(', ') || '';
-  
+
   return `
     <a 
       href="/headsets/${result.slug}" 
@@ -430,7 +435,7 @@ function createMobileHeadsetResult(result, index) {
 
 function createBlogResult(result, index) {
   const date = result.published ? new Date(result.published).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) : '';
-  
+
   return `
     <a 
       href="/blog/${result.slug}" 
@@ -457,7 +462,7 @@ function createBlogResult(result, index) {
 
 function createMobileBlogResult(result, index) {
   const date = result.published ? new Date(result.published).toLocaleDateString('en-US', { month: 'short', day: 'numeric' }) : '';
-  
+
   return `
     <a 
       href="/blog/${result.slug}" 
@@ -486,11 +491,11 @@ function showInitialState() {
   const resultsContainer = document.getElementById('search-results');
   const initialState = document.getElementById('search-initial');
   const noResults = document.getElementById('search-no-results');
-  
+
   if (resultsContainer) resultsContainer.classList.add('hidden');
   if (noResults) noResults.classList.add('hidden');
   if (initialState) initialState.classList.remove('hidden');
-  
+
   currentResults = [];
   selectedIndex = -1;
 }
@@ -499,11 +504,11 @@ function showMobileInitialState() {
   const resultsContainer = document.getElementById('mobile-search-results');
   const initialState = document.getElementById('mobile-search-initial');
   const noResults = document.getElementById('mobile-search-no-results');
-  
+
   if (resultsContainer) resultsContainer.classList.add('hidden');
   if (noResults) noResults.classList.add('hidden');
   if (initialState) initialState.classList.remove('hidden');
-  
+
   currentResults = [];
   selectedIndex = -1;
 }
