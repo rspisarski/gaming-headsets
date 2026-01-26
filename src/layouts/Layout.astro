@@ -56,6 +56,20 @@ const searchData: any[] = [...headsetData, ...blogData];
 			name="description"
 			content="Compare gaming headsets by objective specs. Filter by wireless, battery life, compatibility, and more. Find the perfect gaming headset for your needs."
 		/>
+		<!-- Google tag (gtag.js) -->
+		<script
+			async
+			src="https://www.googletagmanager.com/gtag/js?id=G-RXP55R0F49"
+			is:inline></script>
+		<script is:inline>
+			window.dataLayer = window.dataLayer || [];
+			function gtag() {
+				dataLayer.push(arguments);
+			}
+			gtag("js", new Date());
+
+			gtag("config", "G-RXP55R0F49");
+		</script>
 		<ClientRouter />
 	</head>
 	<body class="bg-background text-text">
