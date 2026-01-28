@@ -278,10 +278,7 @@ const uniqueBrands = [...new Set(headsets.map((h) => h.brand))]
     }
 
     function isWired(connectionTypes) {
-      if (!connectionTypes || !Array.isArray(connectionTypes)) return false;
-      return connectionTypes.some(
-        (type) => type === "3.5mm" || type === "USB-A" || type === "USB-C",
-      );
+      return !isWireless(connectionTypes);
     }
 
     function applyFilters() {

@@ -90,14 +90,15 @@
           "type": "number"
         },
         {
-          "title": "Charging Type",
+          "title": "Charging Type (Wireless)",
           "name": "charging_type",
           "type": "choice",
           "choices": [
             "USB-C",
             "USB-A",
             "Micro-USB",
-            "Wireless Charging"
+            "Wireless Charging",
+            "Swappable Batteries"
           ]
         },
         {

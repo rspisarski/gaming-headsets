@@ -339,20 +339,20 @@ function featureMatches(selected, headset) {
   switch (feature) {
     // 1. Connectivity & Wireless
     case 'connection_types':
-      return headset.connection_types === value;
+      return headset.connection_types && headset.connection_types.includes(value);
     case 'charging_type':
       return headset.charging_type === value;
     case 'wireless_range':
       return headset.wireless_range === value;
     case 'wireless_features':
       return headset.wireless_features && headset.wireless_features.includes(value);
-    
+
     // 2. Platform Compatibility
     case 'platforms':
-      return headset.platform_compatibility && headset.platform_compatibility.includes(value);
-    case 'xbox_compatibility':
-      return headset.xbox_compatibility === value;
-    
+      return headset.platforms && headset.platforms.includes(value);
+    case 'xbox_wireless_native':
+      return headset.xbox_wireless_native === (value === 'true');
+
     // 3. Audio Specifications
     case 'driver_types':
       return headset.driver_type === value;
@@ -360,7 +360,7 @@ function featureMatches(selected, headset) {
       return headset.surround_sound === value;
     case 'headphone_types':
       return headset.headphone_type === value;
-    
+
     // 4. Microphone Features
     case 'microphone_types':
       return headset.microphone_type === value;
@@ -368,7 +368,7 @@ function featureMatches(selected, headset) {
       return headset.pickup_pattern === value;
     case 'microphone_features':
       return headset.microphone_features && headset.microphone_features.includes(value);
-    
+
     // 5. Comfort & Build
     case 'ear_cup_designs':
       return headset.ear_cup_design === value;
@@ -378,7 +378,7 @@ function featureMatches(selected, headset) {
       return headset.build_materials === value;
     case 'comfort_features':
       return headset.comfort_features && headset.comfort_features.includes(value);
-    
+
     // 6. Advanced Features
     case 'active_features':
       return headset.active_features && headset.active_features.includes(value);
@@ -386,23 +386,23 @@ function featureMatches(selected, headset) {
       return headset.rgb_lighting === value;
     case 'special_features':
       return headset.special_features && headset.special_features.includes(value);
-    
+
     // 7. Software & Customization
     case 'software_features':
       return headset.software_features && headset.software_features.includes(value);
     case 'software_apps':
       return headset.software_app === value;
-    
-    
-    
+
+
+
     // 11. Price Categories
     case 'price_categories':
       return priceCategoryMatches(value, headset.price);
-    
+
     // 12. Brand
     case 'brand':
       return value === headset.brand;
-    
+
     // Legacy support for old features
     case 'compatibility':
       return headset.compatibility && headset.compatibility.includes(value);
@@ -420,17 +420,30 @@ function featureMatches(selected, headset) {
       return softwareSupportMatches(value, headset);
     case 'software_app':
       return value === headset.software_app;
-    
+
     default:
       return false;
   }
 }
 
+function isWireless(headset) {
+  const connectionTypes = headset.connection_types || [];
+  return connectionTypes.some(type => type === '2.4GHz Wireless' || type === 'Bluetooth');
+}
+
+function isWired(headset) {
+  return !isWireless(headset);
+}
+
 function cordTypeMatches(selected, headset) {
   switch (selected) {
-    case 'wireless': return headset.wireless;
-    case 'wired': return headset.wired;
-    case 'dual': return headset.wireless && headset.wired;
+    case 'wireless': return isWireless(headset);
+    case 'wired': return isWired(headset);
+    case 'dual':
+      return isWireless(headset) &&
+        (headset.connection_types?.includes('3.5mm') ||
+          headset.connection_types?.includes('USB-A') ||
+          headset.connection_types?.includes('USB-C'));
     default: return false;
   }
 }

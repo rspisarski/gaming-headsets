@@ -3,7 +3,7 @@ name: Corsair Void v2 MAX Wireless
 brand: Corsair
 model: Void v2 MAX Wireless
 price: 149.99
-image: https://assets.corsair.com/image/upload/c_pad,q_85,h_1100,w_1100,f_auto/products/Gaming-Headsets/void-v2-max-wireless/CA-9011388-WW/CA-9011388-WW_01.webp
+image: https://pisces.bbystatic.com/image2/BestBuy_US/images/products/24b660bd-cea1-448f-9343-e5f3bfa9ece0.png;maxHeight=1080;maxWidth=900?format=webp
 image_thumbnail_contain: true
 release_date: 2025-09-30
 discontinued: false
@@ -82,6 +82,7 @@ best_for:
     - Long Battery Life
     - Audio Customization
 fmContentType: headsets
+amazon_product_id: B0FL2N7G8V
 ---
 
 ## Overview

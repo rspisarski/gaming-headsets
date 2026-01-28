@@ -15,7 +15,11 @@ discontinued: false
 # ============================================================================
 # CONNECTIVITY & WIRELESS
 # ============================================================================
-connection_types: ["2.4GHz Wireless", "Bluetooth", "3.5mm", "USB-C"]
+connection_types:
+    - 2.4GHz Wireless
+    - Bluetooth
+    - 3.5mm
+    - USB-C
 battery_life: 15
 charging_type: "USB-C"
 wireless_range: 30
@@ -24,7 +28,11 @@ wireless_latency: 20
 # ============================================================================
 # PLATFORM COMPATIBILITY
 # ============================================================================
-platforms: ["PC", "PlayStation 5", "PlayStation 4", "Mobile"]
+platforms:
+    - PC
+    - PlayStation 5
+    - PlayStation 4
+    - Mobile
 xbox_wireless_native: false
 
 # ============================================================================
@@ -44,36 +52,52 @@ headphone_type: "Closed-back"
 microphone_type: "Detachable Mic"
 mic_detachable: true
 mic_frequency_response: "100Hz - 10kHz"
-mic_features: ["Broadcast Quality", "Noise Cancellation"]
+mic_features:
+    - Broadcast Quality
+    - Noise Cancellation
 
 # ============================================================================
 # COMFORT & BUILD
 # ============================================================================
 ear_cup_design: "Over-ear"
-cushion_materials: ["Memory Foam"]
+cushion_materials:
+    - Memory Foam
 build_material: "Aluminum"
 weight: 382
-comfort_features: ["Adjustable Headband", "Rotating Ear Cups"]
+comfort_features:
+    - Adjustable Headband
+    - Rotating Ear Cups
 
 # ============================================================================
 # CONTROLS & FEATURES
 # ============================================================================
-onboard_controls: ["Volume Wheel", "Mute Button", "Power Button"]
+onboard_controls:
+    - Volume Wheel
+    - Mute Button
+    - Power Button
 active_features: []
 rgb_lighting: "Customizable RGB"
-special_features: ["Multi-point Connection", "Low Latency Mode"]
+special_features:
+    - Multi-point Connection
+    - Low Latency Mode
 
 # ============================================================================
 # SOFTWARE & CUSTOMIZATION
 # ============================================================================
 has_software: true
 software_name: "Corsair iCUE"
-software_features: ["Custom EQ", "EQ Presets", "Button Remapping", "Firmware Updates"]
+software_features:
+    - Custom EQ
+    - EQ Presets
+    - Button Remapping
+    - Firmware Updates
 
 # ============================================================================
 # CERTIFICATIONS & WARRANTY
 # ============================================================================
-certifications: ["Hi-Res Audio", "Discord Certified"]
+certifications:
+    - Hi-Res Audio
+    - Discord Certified
 warranty_years: 2
 water_resistant: false
 ip_rating: null
@@ -81,9 +105,15 @@ ip_rating: null
 # ============================================================================
 # PACKAGING & ACCESSORIES
 # ============================================================================
-included_accessories: ["Carrying Case", "USB Dongle", "USB Cable", "Audio Cable"]
+included_accessories:
+    - Carrying Case
+    - USB Dongle
+    - USB Cable
+    - Audio Cable
 cable_length: 6
-cable_features: ["Detachable Cable", "Braided Cable"]
+cable_features:
+    - Detachable Cable
+    - Braided Cable
 
 # ============================================================================
 # AFFILIATE LINKS
@@ -97,7 +127,10 @@ amazon_product_id: "B09BXZKNDB"
 description: "The CORSAIR VIRTUOSO RGB Wireless XT delivers a high-fidelity audio experience with simultaneous dual-wireless connectivity, Hi-Res audio certification, and all-day comfort in an aluminum frame."
 slug: "corsair-virtuoso-rgb-wireless-xt"
 featured: false
-best_for: ["Audiophile Gaming", "Streaming", "Multi-platform Gaming"]
+best_for:
+    - Audiophile Gaming
+    - Streaming
+    - Multi-platform Gaming
 ---
 
 ## Overview

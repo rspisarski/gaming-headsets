@@ -14,7 +14,11 @@ discontinued: false
 # ============================================================================
 # CONNECTIVITY & WIRELESS
 # ============================================================================
-connection_types: ["2.4GHz Wireless", "Bluetooth", "3.5mm", "USB-C"]
+connection_types:
+    - 2.4GHz Wireless
+    - Bluetooth
+    - 3.5mm
+    - USB-C
 battery_life: 54
 charging_type: "USB-C"
 wireless_range: 30
@@ -23,7 +27,14 @@ wireless_latency: 18
 # ============================================================================
 # PLATFORM COMPATIBILITY
 # ============================================================================
-platforms: ["PC", "PlayStation 5", "PlayStation 4", "Nintendo Switch", "Mobile", "Steam Deck", "VR Headsets"]
+platforms:
+    - PC
+    - PlayStation 5
+    - PlayStation 4
+    - Nintendo Switch
+    - Mobile
+    - Steam Deck
+    - VR Headsets
 xbox_wireless_native: false
 
 # ============================================================================
@@ -43,32 +54,54 @@ headphone_type: "Closed-back"
 microphone_type: "Retractable Mic"
 mic_detachable: false
 mic_frequency_response: "100Hz - 7kHz"
-mic_features: ["Noise Cancellation", "AI Noise Cancellation", "Sidetone", "LED Mute Indicator"]
+mic_features:
+    - Noise Cancellation
+    - AI Noise Cancellation
+    - Sidetone
+    - LED Mute Indicator
 mic_monitoring: true
 
 # ============================================================================
 # COMFORT & BUILD
 # ============================================================================
 ear_cup_design: "Over-ear"
-cushion_materials: ["Memory Foam", "Breathable Fabric"]
+cushion_materials:
+    - Memory Foam
+    - Breathable Fabric
 build_material: "Steel"
 weight: 326
-comfort_features: ["Ski-goggle Suspension", "Adjustable Headband", "Glasses-friendly", "Rotating Ear Cups"]
+comfort_features:
+    - Ski-goggle Suspension
+    - Adjustable Headband
+    - Glasses-friendly
+    - Rotating Ear Cups
 
 # ============================================================================
 # CONTROLS & FEATURES
 # ============================================================================
-onboard_controls: ["Volume Wheel", "Mute Button", "Power Button", "Bluetooth Button", "ChatMix Wheel"]
+onboard_controls:
+    - Volume Wheel
+    - Mute Button
+    - Power Button
+    - Bluetooth Button
+    - ChatMix Wheel
 active_features: []
 rgb_lighting: "No Lighting"
-special_features: ["Multi-point Connection", "Quick Charge", "Game/Chat Mix"]
+special_features:
+    - Multi-point Connection
+    - Quick Charge
+    - Game/Chat Mix
 
 # ============================================================================
 # SOFTWARE & CUSTOMIZATION
 # ============================================================================
 has_software: true
 software_name: "SteelSeries GG"
-software_features: ["Custom EQ", "EQ Presets", "Mic Enhancement", "Firmware Updates"]
+software_features:
+    - Custom EQ
+    - EQ Presets
+    - Mic Enhancement
+    - Firmware Updates
 
 # ============================================================================
 # CERTIFICATIONS & WARRANTY
@@ -81,9 +114,13 @@ ip_rating: null
 # ============================================================================
 # PACKAGING & ACCESSORIES
 # ============================================================================
-included_accessories: ["USB Dongle", "USB Cable", "Audio Cable"]
+included_accessories:
+    - USB Dongle
+    - USB Cable
+    - Audio Cable
 cable_length: 5
-cable_features: ["Detachable Cable"]
+cable_features:
+    - Detachable Cable
 
 # ============================================================================
 # AFFILIATE LINKS
@@ -97,7 +134,10 @@ amazon_product_id: "B0FRNR8Y11"
 description: "The SteelSeries Arctis Nova 7 Wireless Gen 2 delivers exceptional value with 54-hour battery life, simultaneous 2.4GHz and Bluetooth, premium steel construction, and deep software integration via SteelSeries GG and Arctis App."
 slug: "steelseries-arctis-nova-7-gen2"
 featured: false
-best_for: ["PC Gaming", "Multi-platform", "Long Gaming Sessions"]
+best_for:
+    - PC Gaming
+    - Multi-platform
+    - Long Gaming Sessions
 ---
 
 ## Overview

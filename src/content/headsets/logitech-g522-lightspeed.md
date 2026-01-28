@@ -13,7 +13,10 @@ discontinued: false
 # ============================================================================
 # CONNECTIVITY & WIRELESS
 # ============================================================================
-connection_types: ["2.4GHz Wireless", "Bluetooth", "USB-C"]
+connection_types:
+    - 2.4GHz Wireless
+    - Bluetooth
+    - USB-C
 battery_life: 90
 charging_type: "USB-C"
 wireless_range: 30
@@ -22,7 +25,12 @@ wireless_latency: null
 # ============================================================================
 # PLATFORM COMPATIBILITY
 # ============================================================================
-platforms: ["PC", "PlayStation 5", "PlayStation 4", "Nintendo Switch", "Mobile"]
+platforms:
+    - PC
+    - PlayStation 5
+    - PlayStation 4
+    - Nintendo Switch
+    - Mobile
 xbox_wireless_native: false
 
 # ============================================================================
@@ -39,31 +47,50 @@ headphone_type: "Closed-back"
 # ============================================================================
 microphone_type: "Detachable Mic"
 mic_detachable: true
-mic_features: ["Noise Cancellation", "AI Noise Cancellation", "Mute Button"]
+mic_features:
+    - Noise Cancellation
+    - AI Noise Cancellation
+    - Mute Button
 
 # ============================================================================
 # COMFORT & BUILD
 # ============================================================================
 ear_cup_design: "Over-ear"
-cushion_materials: ["Memory Foam", "Breathable Fabric"]
+cushion_materials:
+    - Memory Foam
+    - Breathable Fabric
 build_material: "Plastic"
 weight: 290
-comfort_features: ["Adjustable Headband", "Replaceable Ear Pads", "Glasses-friendly", "Lightweight"]
+comfort_features:
+    - Adjustable Headband
+    - Replaceable Ear Pads
+    - Glasses-friendly
+    - Lightweight
 
 # ============================================================================
 # CONTROLS & FEATURES
 # ============================================================================
-onboard_controls: ["Volume Wheel", "Mute Button", "Power Button", "Bluetooth Button"]
+onboard_controls:
+    - Volume Wheel
+    - Mute Button
+    - Power Button
+    - Bluetooth Button
 active_features: []
 rgb_lighting: "Customizable RGB"
-special_features: ["Quick Charge"]
+special_features:
+    - Quick Charge
 
 # ============================================================================
 # SOFTWARE & CUSTOMIZATION
 # ============================================================================
 has_software: true
 software_name: "Logitech G HUB"
-software_features: ["Custom EQ", "EQ Presets", "Mic Enhancement", "Button Remapping", "Firmware Updates"]
+software_features:
+    - Custom EQ
+    - EQ Presets
+    - Mic Enhancement
+    - Button Remapping
+    - Firmware Updates
 
 # ============================================================================
 # CERTIFICATIONS & WARRANTY
@@ -76,9 +103,12 @@ ip_rating: null
 # ============================================================================
 # PACKAGING & ACCESSORIES
 # ============================================================================
-included_accessories: ["USB Dongle", "USB Cable"]
+included_accessories:
+    - USB Dongle
+    - USB Cable
 cable_length: 6
-cable_features: ["Detachable Cable"]
+cable_features:
+    - Detachable Cable
 
 # ============================================================================
 # AFFILIATE LINKS
@@ -92,7 +122,10 @@ amazon_product_id: "B0FFM5SP6M"
 description: "The Logitech G522 LIGHTSPEED is a premium wireless gaming headset featuring PRO-G drivers, 48kHz/24-bit audio, BLUE VO!CE microphone technology, and up to 90 hours of battery life with customizable LIGHTSYNC RGB lighting."
 slug: "logitech-g522-lightspeed"
 featured: true
-best_for: ["PC Gaming", "Streaming", "Multi-platform"]
+best_for:
+    - PC Gaming
+    - Streaming
+    - Multi-platform
 ---
 
 ## Overview

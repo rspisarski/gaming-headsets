@@ -3,7 +3,7 @@ name: Corsair Void v2 MAX Wireless for Xbox
 brand: Corsair
 model: Void v2 MAX Wireless for Xbox
 price: 149.99
-image: https://assets.corsair.com/image/upload/c_pad,q_85,h_1100,w_1100,f_auto/products/Gaming-Headsets/void-v2-max-wireless-for-xbox/CA-9011381-WW/CA-9011381-WW_01.webp
+image: https://ik.imagekit.io/gh2026/Headsets/71eUQqSi0YL._SL1500_.jpg
 image_thumbnail_contain: true
 release_date: 2025-09-30
 discontinued: false
@@ -87,6 +87,7 @@ best_for:
     - Multi-Platform Gaming
     - Console Gaming
 fmContentType: headsets
+amazon_product_id: B0FP2KDJJ7
 ---
 
 ## Overview

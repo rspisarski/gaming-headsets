@@ -17,7 +17,8 @@ export const CHARGING_TYPE = [
   'USB-C',
   'USB-A',
   'Micro-USB',
-  'Wireless Charging'
+  'Wireless Charging',
+  'Swappable Batteries',
 ] as const;
 
 // 2. Platform Compatibility
@@ -352,7 +353,7 @@ export function getPriceCategory(price: number): typeof PRICE_CATEGORY[number] {
 }
 
 /**
- * Check if headset has wireless connectivity
+ * Check if headset has wireless capabilities (2.4GHz or Bluetooth)
  */
 export function isWireless(connectionTypes: string[]): boolean {
   return connectionTypes.some(type =>
@@ -361,12 +362,10 @@ export function isWireless(connectionTypes: string[]): boolean {
 }
 
 /**
- * Check if headset has wired connectivity
+ * Check if headset is strictly wired (no wireless capabilities)
  */
 export function isWired(connectionTypes: string[]): boolean {
-  return connectionTypes.some(type =>
-    type === '3.5mm' || type === 'USB-A' || type === 'USB-C'
-  );
+  return !isWireless(connectionTypes);
 }
 
 /**

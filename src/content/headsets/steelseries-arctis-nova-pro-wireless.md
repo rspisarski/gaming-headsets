@@ -13,7 +13,11 @@ discontinued: false
 # ============================================================================
 # CONNECTIVITY & WIRELESS
 # ============================================================================
-connection_types: ["2.4GHz Wireless", "Bluetooth", "3.5mm", "USB-C"]
+connection_types:
+    - 2.4GHz Wireless
+    - Bluetooth
+    - 3.5mm
+    - USB-C
 battery_life: 44
 charging_type: "USB-C"
 wireless_range: 40
@@ -22,7 +26,12 @@ wireless_latency: 15
 # ============================================================================
 # PLATFORM COMPATIBILITY
 # ============================================================================
-platforms: ["PC", "PlayStation 5", "PlayStation 4", "Nintendo Switch", "Mobile"]
+platforms:
+    - PC
+    - PlayStation 5
+    - PlayStation 4
+    - Nintendo Switch
+    - Mobile
 xbox_wireless_native: false
 
 # ============================================================================
@@ -42,36 +51,57 @@ headphone_type: "Closed-back"
 microphone_type: "Retractable Mic"
 mic_detachable: false
 mic_frequency_response: "100Hz - 6.5kHz"
-mic_features: ["Noise Cancellation", "AI Noise Cancellation", "Sidetone"]
+mic_features:
+    - Noise Cancellation
+    - AI Noise Cancellation
+    - Sidetone
 
 # ============================================================================
 # COMFORT & BUILD
 # ============================================================================
 ear_cup_design: "Over-ear"
-cushion_materials: ["Leatherette"]
+cushion_materials:
+    - Leatherette
 build_material: "Steel"
 weight: 338
-comfort_features: ["Ski-goggle Suspension", "Adjustable Headband", "Glasses-friendly"]
+comfort_features:
+    - Ski-goggle Suspension
+    - Adjustable Headband
+    - Glasses-friendly
 
 # ============================================================================
 # CONTROLS & FEATURES
 # ============================================================================
-onboard_controls: ["Volume Wheel", "Mute Button", "Power Button", "Bluetooth Button"]
-active_features: ["Active Noise Cancellation", "Transparency Mode"]
+onboard_controls:
+    - Volume Wheel
+    - Mute Button
+    - Power Button
+    - Bluetooth Button
+active_features:
+    - Active Noise Cancellation
+    - Transparency Mode
 rgb_lighting: "No Lighting"
-special_features: ["Swappable Batteries", "Multi-point Connection", "Game/Chat Mix"]
+special_features:
+    - Swappable Batteries
+    - Multi-point Connection
+    - Game/Chat Mix
 
 # ============================================================================
 # SOFTWARE & CUSTOMIZATION
 # ============================================================================
 has_software: true
 software_name: "SteelSeries GG"
-software_features: ["Custom EQ", "EQ Presets", "Mic Enhancement", "Firmware Updates"]
+software_features:
+    - Custom EQ
+    - EQ Presets
+    - Mic Enhancement
+    - Firmware Updates
 
 # ============================================================================
 # CERTIFICATIONS & WARRANTY
 # ============================================================================
-certifications: ["Hi-Res Audio"]
+certifications:
+    - Hi-Res Audio
 warranty_years: 1
 water_resistant: false
 ip_rating: null
@@ -79,9 +109,15 @@ ip_rating: null
 # ============================================================================
 # PACKAGING & ACCESSORIES
 # ============================================================================
-included_accessories: ["USB Dongle", "USB Cable", "Audio Cable", "Carrying Case", "Mic Windscreen"]
+included_accessories:
+    - USB Dongle
+    - USB Cable
+    - Audio Cable
+    - Carrying Case
+    - Mic Windscreen
 cable_length: 5
-cable_features: ["Detachable Cable"]
+cable_features:
+    - Detachable Cable
 
 # ============================================================================
 # AFFILIATE LINKS
@@ -95,7 +131,9 @@ amazon_product_id: "B0CCXWH6WG"
 description: "The SteelSeries Arctis Nova Pro Wireless features Active Noise Cancellation, a unique dual-battery system, and simultaneous 2.4GHz and Bluetooth connectivity for the ultimate gaming experience."
 slug: "steelseries-arctis-nova-pro-wireless"
 featured: true
-best_for: ["Premium Gaming", "Multi-platform"]
+best_for:
+    - Premium Gaming
+    - Multi-platform
 ---
 
 ## Overview

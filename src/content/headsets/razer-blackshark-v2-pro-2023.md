@@ -13,7 +13,9 @@ discontinued: false
 # ============================================================================
 # CONNECTIVITY & WIRELESS
 # ============================================================================
-connection_types: ["2.4GHz Wireless", "Bluetooth"]
+connection_types:
+    - 2.4GHz Wireless
+    - Bluetooth
 battery_life: 70
 charging_type: "USB-C"
 wireless_range: 30
@@ -22,7 +24,12 @@ wireless_latency: 12
 # ============================================================================
 # PLATFORM COMPATIBILITY
 # ============================================================================
-platforms: ["PC", "PlayStation 5", "PlayStation 4", "Nintendo Switch", "Mobile"]
+platforms:
+    - PC
+    - PlayStation 5
+    - PlayStation 4
+    - Nintendo Switch
+    - Mobile
 xbox_wireless_native: false
 
 # ============================================================================
@@ -42,36 +49,52 @@ headphone_type: "Closed-back"
 microphone_type: "Detachable Mic"
 mic_detachable: true
 mic_frequency_response: "100Hz - 10kHz"
-mic_features: ["Broadcast Quality", "Noise Cancellation", "Pop Filter"]
+mic_features:
+    - Broadcast Quality
+    - Noise Cancellation
+    - Pop Filter
 
 # ============================================================================
 # COMFORT & BUILD
 # ============================================================================
 ear_cup_design: "Over-ear"
-cushion_materials: ["Memory Foam", "Breathable Fabric"]
+cushion_materials:
+    - Memory Foam
+    - Breathable Fabric
 build_material: "Plastic"
 weight: 320
-comfort_features: ["Adjustable Headband", "Glasses-friendly", "Lightweight"]
+comfort_features:
+    - Adjustable Headband
+    - Glasses-friendly
+    - Lightweight
 
 # ============================================================================
 # CONTROLS & FEATURES
 # ============================================================================
-onboard_controls: ["Volume Knob", "Mute Button", "Power Button"]
+onboard_controls:
+    - Volume Knob
+    - Mute Button
+    - Power Button
 active_features: []
 rgb_lighting: "No Lighting"
-special_features: ["Quick Charge"]
+special_features:
+    - Quick Charge
 
 # ============================================================================
 # SOFTWARE & CUSTOMIZATION
 # ============================================================================
 has_software: true
 software_name: "Razer Synapse 3"
-software_features: ["Custom EQ", "EQ Presets", "Mic Enhancement"]
+software_features:
+    - Custom EQ
+    - EQ Presets
+    - Mic Enhancement
 
 # ============================================================================
 # CERTIFICATIONS & WARRANTY
 # ============================================================================
-certifications: ["Discord Certified"]
+certifications:
+    - Discord Certified
 warranty_years: 2
 water_resistant: false
 ip_rating: null
@@ -79,9 +102,13 @@ ip_rating: null
 # ============================================================================
 # PACKAGING & ACCESSORIES
 # ============================================================================
-included_accessories: ["USB Dongle", "USB Cable", "Mic Windscreen"]
+included_accessories:
+    - USB Dongle
+    - USB Cable
+    - Mic Windscreen
 cable_length: null
-cable_features: ["Braided Cable"]
+cable_features:
+    - Braided Cable
 
 # ============================================================================
 # AFFILIATE LINKS
@@ -96,7 +123,9 @@ amazon_product_id: "B0C549963B"
 description: "Updated for 2023, the Razer BlackShark V2 Pro features a crystal-clear wideband mic, 70-hour battery life, and ultra-low latency wireless for esports pros."
 slug: "razer-blackshark-v2-pro-2023"
 featured: false
-best_for: ["Esports", "Competitive FPS"]
+best_for:
+    - Esports
+    - Competitive FPS
 ---
 
 ## Overview

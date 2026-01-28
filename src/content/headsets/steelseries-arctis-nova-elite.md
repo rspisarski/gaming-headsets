@@ -14,7 +14,11 @@ discontinued: false
 # ============================================================================
 # CONNECTIVITY & WIRELESS
 # ============================================================================
-connection_types: ["2.4GHz Wireless", "Bluetooth", "3.5mm", "USB-C"]
+connection_types:
+    - 2.4GHz Wireless
+    - Bluetooth
+    - 3.5mm
+    - USB-C
 battery_life: 30
 charging_type: "USB-C"
 wireless_range: 40
@@ -23,7 +27,14 @@ wireless_latency: 12
 # ============================================================================
 # PLATFORM COMPATIBILITY
 # ============================================================================
-platforms: ["PC", "PlayStation 5", "PlayStation 4", "Xbox Series X|S", "Xbox One", "Nintendo Switch", "Mobile"]
+platforms:
+    - PC
+    - PlayStation 5
+    - PlayStation 4
+    - Xbox Series X|S
+    - Xbox One
+    - Nintendo Switch
+    - Mobile
 xbox_wireless_native: false
 
 # ============================================================================
@@ -43,37 +54,65 @@ headphone_type: "Closed-back"
 microphone_type: "Retractable Mic"
 mic_detachable: false
 mic_frequency_response: "100Hz - 14kHz"
-mic_features: ["Noise Cancellation", "AI Noise Cancellation", "Sidetone", "LED Mute Indicator", "Beamforming"]
+mic_features:
+    - Noise Cancellation
+    - AI Noise Cancellation
+    - Sidetone
+    - LED Mute Indicator
+    - Beamforming
 mic_monitoring: true
 
 # ============================================================================
 # COMFORT & BUILD
 # ============================================================================
 ear_cup_design: "Over-ear"
-cushion_materials: ["Leatherette", "Memory Foam"]
+cushion_materials:
+    - Leatherette
+    - Memory Foam
 build_material: "Aluminum"
 weight: 380
-comfort_features: ["Ski-goggle Suspension", "Adjustable Headband", "Glasses-friendly", "Rotating Ear Cups", "Replaceable Ear Pads"]
+comfort_features:
+    - Ski-goggle Suspension
+    - Adjustable Headband
+    - Glasses-friendly
+    - Rotating Ear Cups
+    - Replaceable Ear Pads
 
 # ============================================================================
 # CONTROLS & FEATURES
 # ============================================================================
-onboard_controls: ["Volume Wheel", "Mute Button", "Power Button", "Bluetooth Button", "ANC Button"]
-active_features: ["Active Noise Cancellation", "Transparency Mode"]
+onboard_controls:
+    - Volume Wheel
+    - Mute Button
+    - Power Button
+    - Bluetooth Button
+    - ANC Button
+active_features:
+    - Active Noise Cancellation
+    - Transparency Mode
 rgb_lighting: "No Lighting"
-special_features: ["Swappable Batteries", "Multi-point Connection", "Game/Chat Mix", "Quick Charge"]
+special_features:
+    - Swappable Batteries
+    - Multi-point Connection
+    - Game/Chat Mix
+    - Quick Charge
 
 # ============================================================================
 # SOFTWARE & CUSTOMIZATION
 # ============================================================================
 has_software: true
 software_name: "SteelSeries GG"
-software_features: ["Custom EQ", "EQ Presets", "Mic Enhancement", "Firmware Updates"]
+software_features:
+    - Custom EQ
+    - EQ Presets
+    - Mic Enhancement
+    - Firmware Updates
 
 # ============================================================================
 # CERTIFICATIONS & WARRANTY
 # ============================================================================
-certifications: ["Hi-Res Audio"]
+certifications:
+    - Hi-Res Audio
 warranty_years: 1
 water_resistant: false
 ip_rating: null
@@ -81,9 +120,15 @@ ip_rating: null
 # ============================================================================
 # PACKAGING & ACCESSORIES
 # ============================================================================
-included_accessories: ["USB Dongle", "USB Cable", "Audio Cable", "Carrying Case", "Mic Windscreen"]
+included_accessories:
+    - USB Dongle
+    - USB Cable
+    - Audio Cable
+    - Carrying Case
+    - Mic Windscreen
 cable_length: 3
-cable_features: ["Detachable Cable"]
+cable_features:
+    - Detachable Cable
 
 # ============================================================================
 # AFFILIATE LINKS
@@ -97,7 +142,10 @@ amazon_product_id: "B0FQXPXRJQ"
 description: "The SteelSeries Arctis Nova Elite is the world's first Hi-Res Wireless Certified gaming headset with 96kHz/24-bit audio, carbon fiber drivers, industry-leading ANC, and OmniPlay technology for mixing up to 4 audio sources simultaneously."
 slug: "steelseries-arctis-nova-elite"
 featured: true
-best_for: ["Premium Gaming", "Multi-platform", "Audiophile Gaming"]
+best_for:
+    - Premium Gaming
+    - Multi-platform
+    - Audiophile Gaming
 ---
 
 ## Overview

@@ -13,7 +13,9 @@ discontinued: false
 # ============================================================================
 # CONNECTIVITY & WIRELESS
 # ============================================================================
-connection_types: ["2.4GHz Wireless", "Bluetooth"]
+connection_types:
+    - 2.4GHz Wireless
+    - Bluetooth
 battery_life: 20
 charging_type: "USB-C"
 wireless_range: 33
@@ -22,7 +24,12 @@ wireless_latency: null
 # ============================================================================
 # PLATFORM COMPATIBILITY
 # ============================================================================
-platforms: ["PC", "PlayStation 5", "PlayStation 4", "Nintendo Switch", "Mobile"]
+platforms:
+    - PC
+    - PlayStation 5
+    - PlayStation 4
+    - Nintendo Switch
+    - Mobile
 xbox_wireless_native: false
 
 # ============================================================================
@@ -45,15 +52,22 @@ mic_features: []
 # COMFORT & BUILD
 # ============================================================================
 ear_cup_design: "Over-ear"
-cushion_materials: ["Memory Foam", "Breathable Fabric"]
+cushion_materials:
+    - Memory Foam
+    - Breathable Fabric
 build_material: "Plastic"
 weight: 210
-comfort_features: ["Adjustable Headband", "Lightweight"]
+comfort_features:
+    - Adjustable Headband
+    - Lightweight
 
 # ============================================================================
 # CONTROLS & FEATURES
 # ============================================================================
-onboard_controls: ["Volume Wheel", "Power Button", "Bluetooth Button"]
+onboard_controls:
+    - Volume Wheel
+    - Power Button
+    - Bluetooth Button
 active_features: []
 rgb_lighting: "No Lighting"
 special_features: []
@@ -75,7 +89,9 @@ ip_rating: null
 # ============================================================================
 # PACKAGING & ACCESSORIES
 # ============================================================================
-included_accessories: ["USB Dongle", "USB Cable"]
+included_accessories:
+    - USB Dongle
+    - USB Cable
 cable_features: []
 
 # ============================================================================
@@ -90,7 +106,10 @@ amazon_product_id: "B0FFM18D66"
 description: "The Logitech G321 LIGHTSPEED is an ultra-lightweight wireless gaming headset weighing just 210g, featuring 16kHz flip-to-mute mic, dual wireless connectivity, and 20+ hours of battery life at an accessible $59.99 price point."
 slug: "logitech-g321-lightspeed"
 featured: false
-best_for: ["Budget Gaming", "Casual Gaming", "All-day Comfort"]
+best_for:
+    - Budget Gaming
+    - Casual Gaming
+    - All-day Comfort
 ---
 
 ## Overview

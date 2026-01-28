@@ -14,7 +14,10 @@ amazon_product_id: "B0F956KS26"
 # ============================================================================
 # CONNECTIVITY & WIRELESS
 # ============================================================================
-connection_types: ["2.4GHz Wireless", "Bluetooth", "USB-C"]
+connection_types:
+    - 2.4GHz Wireless
+    - Bluetooth
+    - USB-C
 battery_life: 40
 charging_type: "USB-C"
 wireless_range: 30
@@ -23,7 +26,12 @@ wireless_latency: 20
 # ============================================================================
 # PLATFORM COMPATIBILITY
 # ============================================================================
-platforms: ["PC", "PlayStation 5", "PlayStation 4", "Nintendo Switch", "Mobile"]
+platforms:
+    - PC
+    - PlayStation 5
+    - PlayStation 4
+    - Nintendo Switch
+    - Mobile
 xbox_wireless_native: false
 
 # ============================================================================
@@ -43,32 +51,47 @@ headphone_type: "Closed-back"
 microphone_type: "Detachable Mic"
 mic_detachable: true
 mic_frequency_response: "100Hz - 10kHz"
-mic_features: ["Noise Cancellation", "Sidetone"]
+mic_features:
+    - Noise Cancellation
+    - Sidetone
 mic_monitoring: true
 
 # ============================================================================
 # COMFORT & BUILD
 # ============================================================================
 ear_cup_design: "Over-ear"
-cushion_materials: ["Memory Foam", "Breathable Fabric"]
+cushion_materials:
+    - Memory Foam
+    - Breathable Fabric
 build_material: "Plastic"
 weight: 260
-comfort_features: ["Ski-goggle Suspension", "Adjustable Headband", "Lightweight"]
+comfort_features:
+    - Ski-goggle Suspension
+    - Adjustable Headband
+    - Lightweight
 
 # ============================================================================
 # CONTROLS & FEATURES
 # ============================================================================
-onboard_controls: ["Volume Wheel", "Power Button", "Mute Button"]
+onboard_controls:
+    - Volume Wheel
+    - Power Button
+    - Mute Button
 active_features: []
 rgb_lighting: "No Lighting"
-special_features: ["Quick Charge", "Low Latency Mode"]
+special_features:
+    - Quick Charge
+    - Low Latency Mode
 
 # ============================================================================
 # SOFTWARE & CUSTOMIZATION
 # ============================================================================
 has_software: true
 software_name: "Arctis Companion App"
-software_features: ["Custom EQ", "EQ Presets", "Firmware Updates"]
+software_features:
+    - Custom EQ
+    - EQ Presets
+    - Firmware Updates
 
 # ============================================================================
 # CERTIFICATIONS & WARRANTY
@@ -81,9 +104,13 @@ ip_rating: null
 # ============================================================================
 # PACKAGING & ACCESSORIES
 # ============================================================================
-included_accessories: ["USB Dongle", "USB Cable", "Detachable Mic"]
+included_accessories:
+    - USB Dongle
+    - USB Cable
+    - Detachable Mic
 cable_length: 5
-cable_features: ["Detachable Cable"]
+cable_features:
+    - Detachable Cable
 
 # ============================================================================
 # AFFILIATE LINKS
@@ -96,7 +123,10 @@ manufacturer_url: "https://steelseries.com/gaming-headsets/arctis-nova-3"
 description: "The SteelSeries Arctis Nova 3P Wireless delivers exceptional value with 40mm neodymium drivers, 200+ game-specific audio presets via the Arctis App, 40-hour battery life, and ultra-lightweight comfort at just 260g."
 slug: "steelseries-arctis-nova-3p-wireless"
 featured: false
-best_for: ["Budget Gaming", "Console Gaming", "Multi-platform"]
+best_for:
+    - Budget Gaming
+    - Console Gaming
+    - Multi-platform
 ---
 
 ## Overview

@@ -3,7 +3,7 @@ name: Corsair Void Wireless V2
 brand: Corsair
 model: Void Wireless V2
 price: 129.99
-image: https://assets.corsair.com/image/upload/c_pad,q_85,h_1100,w_1100,f_auto/products/Gaming-Headsets/void-wireless-v2/CA-9011379-WW/CA-9011379-WW_01.webp
+image: https://ik.imagekit.io/gh2026/Headsets/711BURBD-uL._SL1500_.jpg
 image_thumbnail_contain: true
 release_date: 2025-04-01
 discontinued: false

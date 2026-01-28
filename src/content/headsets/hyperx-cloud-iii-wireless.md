@@ -13,7 +13,8 @@ discontinued: false
 # ============================================================================
 # CONNECTIVITY & WIRELESS
 # ============================================================================
-connection_types: ["2.4GHz Wireless"]
+connection_types:
+    - 2.4GHz Wireless
 battery_life: 120
 charging_type: "USB-C"
 wireless_range: 20
@@ -22,7 +23,11 @@ wireless_latency: 20
 # ============================================================================
 # PLATFORM COMPATIBILITY
 # ============================================================================
-platforms: ["PC", "PlayStation 5", "PlayStation 4", "Nintendo Switch"]
+platforms:
+    - PC
+    - PlayStation 5
+    - PlayStation 4
+    - Nintendo Switch
 xbox_wireless_native: false
 
 # ============================================================================
@@ -42,22 +47,31 @@ headphone_type: "Closed-back"
 microphone_type: "Detachable Mic"
 mic_detachable: true
 mic_frequency_response: "100Hz - 10kHz"
-mic_features: ["Noise Cancellation", "LED Mute Indicator"]
+mic_features:
+    - Noise Cancellation
+    - LED Mute Indicator
 
 # ============================================================================
 # COMFORT & BUILD
 # ============================================================================
 ear_cup_design: "Over-ear"
-cushion_materials: ["Leatherette", "Memory Foam"]
+cushion_materials:
+    - Leatherette
+    - Memory Foam
 build_material: "Aluminum"
 weight: 342
-comfort_features: ["Adjustable Headband", "Durable Frame"]
+comfort_features:
+    - Adjustable Headband
+    - Durable Frame
 # ... (skipping unchanged lines or handling via MultiReplace if disjoint)
 
 # ============================================================================
 # CONTROLS & FEATURES
 # ============================================================================
-onboard_controls: ["Volume Wheel", "Mute Button", "Power Button"]
+onboard_controls:
+    - Volume Wheel
+    - Mute Button
+    - Power Button
 active_features: []
 rgb_lighting: "No Lighting"
 special_features: []
@@ -67,12 +81,16 @@ special_features: []
 # ============================================================================
 has_software: true
 software_name: "HyperX NGENUITY"
-software_features: ["Custom EQ", "Button Remapping"]
+software_features:
+    - Custom EQ
+    - Button Remapping
 
 # ============================================================================
 # CERTIFICATIONS & WARRANTY
 # ============================================================================
-certifications: ["Discord Certified", "TeamSpeak Certified"]
+certifications:
+    - Discord Certified
+    - TeamSpeak Certified
 warranty_years: 2
 water_resistant: false
 ip_rating: null
@@ -80,9 +98,14 @@ ip_rating: null
 # ============================================================================
 # PACKAGING & ACCESSORIES
 # ============================================================================
-included_accessories: ["USB Dongle", "USB Cable", "Mic Windscreen", "Console Adapters"]
+included_accessories:
+    - USB Dongle
+    - USB Cable
+    - Mic Windscreen
+    - Console Adapters
 cable_length: null
-cable_features: ["Detachable Cable"]
+cable_features:
+    - Detachable Cable
 
 # ============================================================================
 # AFFILIATE LINKS
@@ -96,7 +119,10 @@ amazon_product_id: "B0CBQYKFR2"
 description: "The HyperX Cloud III Wireless offers a staggering 120 hours of battery life and legendary comfort with reimagined 53mm angled drivers."
 slug: "hyperx-cloud-iii-wireless"
 featured: false
-best_for: ["Long Sessions", "Comfort", "Battery Life"]
+best_for:
+    - Long Sessions
+    - Comfort
+    - Battery Life
 ---
 
 ## Overview
