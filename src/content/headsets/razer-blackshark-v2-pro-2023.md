@@ -119,8 +119,10 @@ amazon_product_id: "B0C549963B"
 
 # ============================================================================
 # SEO & METADATA
+seo_title: "Razer BlackShark V2 Pro (2023) - Specs & Comparison"
+seo_description: "Updated for 2023, the Razer BlackShark V2 Pro features a crystal-clear wideband mic, 70-hour battery life, and ultra-low latency wireless for esports pros."
 # ============================================================================
-description: "Updated for 2023, the Razer BlackShark V2 Pro features a crystal-clear wideband mic, 70-hour battery life, and ultra-low latency wireless for esports pros."
+product_description: "Updated for 2023, the Razer BlackShark V2 Pro features a crystal-clear wideband mic, 70-hour battery life, and ultra-low latency wireless for esports pros."
 slug: "razer-blackshark-v2-pro-2023"
 featured: false
 best_for:

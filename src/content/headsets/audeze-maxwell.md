@@ -126,8 +126,10 @@ amazon_product_id: "B0BP6BC17P"
 
 # ============================================================================
 # SEO & METADATA
+seo_title: "Audeze Maxwell - Specs & Comparison"
+seo_description: "The Audeze Maxwell sets a new standard for wireless gaming audio with massive 90mm planar magnetic drivers and 80+ hours of battery life."
 # ============================================================================
-description: "The Audeze Maxwell sets a new standard for wireless gaming audio with massive 90mm planar magnetic drivers and 80+ hours of battery life."
+product_description: "The Audeze Maxwell sets a new standard for wireless gaming audio with massive 90mm planar magnetic drivers and 80+ hours of battery life."
 slug: "audeze-maxwell"
 featured: true
 best_for:

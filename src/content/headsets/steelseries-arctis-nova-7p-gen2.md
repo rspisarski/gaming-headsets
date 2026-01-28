@@ -130,8 +130,10 @@ amazon_product_id: "B0FRNHBVFY"
 
 # ============================================================================
 # SEO & METADATA
+seo_title: "SteelSeries Arctis Nova 7P Wireless Gen 2 - Specs & Comparison"
+seo_description: "The SteelSeries Arctis Nova 7P Wireless Gen 2 delivers 54-hour battery life, simultaneous 2.4GHz and Bluetooth connectivity, and 200+ game-specific audio presets via the Arctis App for PlayStation, PC, and multi-platform gaming."
 # ============================================================================
-description: "The SteelSeries Arctis Nova 7P Wireless Gen 2 delivers 54-hour battery life, simultaneous 2.4GHz and Bluetooth connectivity, and 200+ game-specific audio presets via the Arctis App for PlayStation, PC, and multi-platform gaming."
+product_description: "The SteelSeries Arctis Nova 7P Wireless Gen 2 delivers 54-hour battery life, simultaneous 2.4GHz and Bluetooth connectivity, and 200+ game-specific audio presets via the Arctis App for PlayStation, PC, and multi-platform gaming."
 slug: "steelseries-arctis-nova-7p-gen2"
 featured: false
 best_for:

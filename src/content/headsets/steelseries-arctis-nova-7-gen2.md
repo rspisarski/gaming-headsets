@@ -130,8 +130,10 @@ amazon_product_id: "B0FRNR8Y11"
 
 # ============================================================================
 # SEO & METADATA
+seo_title: "SteelSeries Arctis Nova 7 Wireless Gen 2 - Specs & Comparison"
+seo_description: "The SteelSeries Arctis Nova 7 Wireless Gen 2 delivers exceptional value with 54-hour battery life, simultaneous 2.4GHz and Bluetooth, premium steel construction, and deep software integration via SteelSeries GG and Arctis App."
 # ============================================================================
-description: "The SteelSeries Arctis Nova 7 Wireless Gen 2 delivers exceptional value with 54-hour battery life, simultaneous 2.4GHz and Bluetooth, premium steel construction, and deep software integration via SteelSeries GG and Arctis App."
+product_description: "The SteelSeries Arctis Nova 7 Wireless Gen 2 delivers exceptional value with 54-hour battery life, simultaneous 2.4GHz and Bluetooth, premium steel construction, and deep software integration via SteelSeries GG and Arctis App."
 slug: "steelseries-arctis-nova-7-gen2"
 featured: false
 best_for:

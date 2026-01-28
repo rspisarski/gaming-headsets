@@ -119,8 +119,10 @@ manufacturer_url: "https://steelseries.com/gaming-headsets/arctis-nova-3"
 
 # ============================================================================
 # SEO & METADATA
+seo_title: "SteelSeries Arctis Nova 3P Wireless - Specs & Comparison"
+seo_description: "The SteelSeries Arctis Nova 3P Wireless delivers exceptional value with 40mm neodymium drivers, 200+ game-specific audio presets via the Arctis App, 40-hour battery life, and ultra-lightweight comfort at just 260g."
 # ============================================================================
-description: "The SteelSeries Arctis Nova 3P Wireless delivers exceptional value with 40mm neodymium drivers, 200+ game-specific audio presets via the Arctis App, 40-hour battery life, and ultra-lightweight comfort at just 260g."
+product_description: "The SteelSeries Arctis Nova 3P Wireless delivers exceptional value with 40mm neodymium drivers, 200+ game-specific audio presets via the Arctis App, 40-hour battery life, and ultra-lightweight comfort at just 260g."
 slug: "steelseries-arctis-nova-3p-wireless"
 featured: false
 best_for:

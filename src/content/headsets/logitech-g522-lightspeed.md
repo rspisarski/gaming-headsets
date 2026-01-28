@@ -118,8 +118,10 @@ amazon_product_id: "B0FFM5SP6M"
 
 # ============================================================================
 # SEO & METADATA
+seo_title: "Logitech G522 LIGHTSPEED - Specs & Comparison"
+seo_description: "The Logitech G522 LIGHTSPEED is a premium wireless gaming headset featuring PRO-G drivers, 48kHz/24-bit audio, BLUE VO!CE microphone technology, and up to 90 hours of battery life with customizable LIGHTSYNC RGB lighting."
 # ============================================================================
-description: "The Logitech G522 LIGHTSPEED is a premium wireless gaming headset featuring PRO-G drivers, 48kHz/24-bit audio, BLUE VO!CE microphone technology, and up to 90 hours of battery life with customizable LIGHTSYNC RGB lighting."
+product_description: "The Logitech G522 LIGHTSPEED is a premium wireless gaming headset featuring PRO-G drivers, 48kHz/24-bit audio, BLUE VO!CE microphone technology, and up to 90 hours of battery life with customizable LIGHTSYNC RGB lighting."
 slug: "logitech-g522-lightspeed"
 featured: true
 best_for:

@@ -74,7 +74,9 @@ included_accessories:
 cable_length: 5.9
 cable_features: []
 manufacturer_url: https://www.corsair.com/us/en/p/gaming-headsets/ca-9011388-ww/void-v2-max-wireless-gaming-headset-carbon-ca-9011388-ww
-description: The Corsair Void v2 MAX Wireless elevates the popular Void V2 with simultaneous dual wireless connections, Sonarworks SoundID personalization, and enhanced audio tuning for demanding gamers.
+product_description: The Corsair Void v2 MAX Wireless elevates the popular Void V2 with simultaneous dual wireless connections, Sonarworks SoundID personalization, and enhanced audio tuning for demanding gamers.
+seo_title: "Corsair Corsair Void v2 MAX Wireless - Specs & Comparison"
+seo_description: "The Corsair Void v2 MAX Wireless elevates the popular Void V2 with simultaneous dual wireless connections, Sonarworks SoundID personalization, and enhanced audio tuning for demanding gamers."
 slug: corsair-void-v2-max-wireless
 featured: false
 best_for:

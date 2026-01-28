@@ -80,7 +80,9 @@ cable_features:
 manufacturer_url: "https://north-america.beyerdynamic.com/p/mmx-330-pro"
 
 # SEO & METADATA
-description: "Studio-grade open-back gaming headset with STELLAR.45 drivers, handmade in Germany. Exceptional spatial audio and microphone quality for competitive and immersive gaming."
+seo_title: "Beyerdynamic Beyerdynamic MMX 330 Pro - Specs & Comparison"
+seo_description: "Studio-grade open-back gaming headset with STELLAR.45 drivers, handmade in Germany. Exceptional spatial audio and microphone quality for competitive and immersive gaming."
+product_description: "Studio-grade open-back gaming headset with STELLAR.45 drivers, handmade in Germany. Exceptional spatial audio and microphone quality for competitive and immersive gaming."
 slug: "beyerdynamic-mmx-330-pro"
 featured: true
 best_for:

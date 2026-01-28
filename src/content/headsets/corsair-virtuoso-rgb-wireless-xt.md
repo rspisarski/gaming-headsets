@@ -123,8 +123,10 @@ amazon_product_id: "B09BXZKNDB"
 
 # ============================================================================
 # SEO & METADATA
+seo_title: "Corsair Virtuoso RGB Wireless XT - Specs & Comparison"
+seo_description: "The CORSAIR VIRTUOSO RGB Wireless XT delivers a high-fidelity audio experience with simultaneous dual-wireless connectivity, Hi-Res audio certification, and all-day comfort in an aluminum frame."
 # ============================================================================
-description: "The CORSAIR VIRTUOSO RGB Wireless XT delivers a high-fidelity audio experience with simultaneous dual-wireless connectivity, Hi-Res audio certification, and all-day comfort in an aluminum frame."
+product_description: "The CORSAIR VIRTUOSO RGB Wireless XT delivers a high-fidelity audio experience with simultaneous dual-wireless connectivity, Hi-Res audio certification, and all-day comfort in an aluminum frame."
 slug: "corsair-virtuoso-rgb-wireless-xt"
 featured: false
 best_for:

@@ -120,8 +120,10 @@ manufacturer_url: "https://steelseries.com/gaming-headsets/arctis-nova-3"
 
 # ============================================================================
 # SEO & METADATA
+seo_title: "SteelSeries Arctis Nova 3X Wireless - Specs & Comparison"
+seo_description: "The SteelSeries Arctis Nova 3X Wireless offers universal gaming compatibility including native Xbox Wireless support, 40mm neodymium drivers, 200+ game-specific audio presets, and exceptional 40-hour battery life—all at an accessible price point."
 # ============================================================================
-description: "The SteelSeries Arctis Nova 3X Wireless offers universal gaming compatibility including native Xbox Wireless support, 40mm neodymium drivers, 200+ game-specific audio presets, and exceptional 40-hour battery life—all at an accessible price point."
+product_description: "The SteelSeries Arctis Nova 3X Wireless offers universal gaming compatibility including native Xbox Wireless support, 40mm neodymium drivers, 200+ game-specific audio presets, and exceptional 40-hour battery life—all at an accessible price point."
 slug: "steelseries-arctis-nova-3x-wireless"
 featured: false
 best_for:

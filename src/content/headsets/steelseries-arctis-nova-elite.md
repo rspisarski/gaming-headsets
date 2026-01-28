@@ -138,8 +138,10 @@ amazon_product_id: "B0FQXPXRJQ"
 
 # ============================================================================
 # SEO & METADATA
+seo_title: "SteelSeries Arctis Nova Elite - Specs & Comparison"
+seo_description: "The SteelSeries Arctis Nova Elite is the world's first Hi-Res Wireless Certified gaming headset with 96kHz/24-bit audio, carbon fiber drivers, industry-leading ANC, and OmniPlay technology for mixing up to 4 audio sources simultaneously."
 # ============================================================================
-description: "The SteelSeries Arctis Nova Elite is the world's first Hi-Res Wireless Certified gaming headset with 96kHz/24-bit audio, carbon fiber drivers, industry-leading ANC, and OmniPlay technology for mixing up to 4 audio sources simultaneously."
+product_description: "The SteelSeries Arctis Nova Elite is the world's first Hi-Res Wireless Certified gaming headset with 96kHz/24-bit audio, carbon fiber drivers, industry-leading ANC, and OmniPlay technology for mixing up to 4 audio sources simultaneously."
 slug: "steelseries-arctis-nova-elite"
 featured: true
 best_for:

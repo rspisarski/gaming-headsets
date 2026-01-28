@@ -102,8 +102,10 @@ amazon_product_id: "B0FFM18D66"
 
 # ============================================================================
 # SEO & METADATA
+seo_title: "Logitech G321 LIGHTSPEED - Specs & Comparison"
+seo_description: "The Logitech G321 LIGHTSPEED is an ultra-lightweight wireless gaming headset weighing just 210g, featuring 16kHz flip-to-mute mic, dual wireless connectivity, and 20+ hours of battery life at an accessible $59.99 price point."
 # ============================================================================
-description: "The Logitech G321 LIGHTSPEED is an ultra-lightweight wireless gaming headset weighing just 210g, featuring 16kHz flip-to-mute mic, dual wireless connectivity, and 20+ hours of battery life at an accessible $59.99 price point."
+product_description: "The Logitech G321 LIGHTSPEED is an ultra-lightweight wireless gaming headset weighing just 210g, featuring 16kHz flip-to-mute mic, dual wireless connectivity, and 20+ hours of battery life at an accessible $59.99 price point."
 slug: "logitech-g321-lightspeed"
 featured: false
 best_for:

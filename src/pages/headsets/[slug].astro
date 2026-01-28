@@ -60,8 +60,9 @@ const specs = [
 ---
 
 <Layout
-  title={`${headset.data.brand} ${headset.data.name} - Detailed Specs & Comparison`}
-  description={headset.data.description}
+  title={headset.data.seo_title ||
+    `${headset.data.brand} ${headset.data.name} - Detailed Specs & Comparison`}
+  description={headset.data.seo_description || headset.data.product_description}
   image={headset.data.image}
 >
   <main class="min-h-screen pt-24 pb-20 bg-background">
@@ -100,7 +101,7 @@ const specs = [
           </div>
 
           <p class="text-text/70 text-lg mb-10 leading-relaxed max-w-xl">
-            {headset.data.description}
+            {headset.data.product_description}
           </p>
 
           <div class="flex items-center gap-6 mb-12">

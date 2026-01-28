@@ -75,7 +75,9 @@ included_accessories:
 cable_length: 5.9
 cable_features: []
 manufacturer_url: https://www.corsair.com/us/en/p/gaming-headsets/ca-9011379-ww/void-wireless-v2-gaming-headset-carbon-ca-9011379-ww
-description: The Corsair Void Wireless V2 delivers immersive Dolby Atmos audio with dual wireless connectivity, 70-hour battery life, and crystal-clear communication for PC, PlayStation, and Switch gamers.
+product_description: The Corsair Void Wireless V2 delivers immersive Dolby Atmos audio with dual wireless connectivity, 70-hour battery life, and crystal-clear communication for PC, PlayStation, and Switch gamers.
+seo_title: "Corsair Corsair Void Wireless V2 - Specs & Comparison"
+seo_description: "The Corsair Void Wireless V2 delivers immersive Dolby Atmos audio with dual wireless connectivity, 70-hour battery life, and crystal-clear communication for PC, PlayStation, and Switch gamers."
 slug: corsair-void-wireless-v2
 featured: false
 best_for:

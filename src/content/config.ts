@@ -307,7 +307,9 @@ const headsetCollection = defineCollection({
     // ========================================================================
     // SEO & METADATA
     // ========================================================================
-    description: z.string(), // Meta description
+    product_description: z.string(), // Tech overview blurb
+    seo_title: z.string().optional(),
+    seo_description: z.string().optional(),
     slug: z.string().optional(), // Auto-generated from filename if not provided
 
     // For content organization
@@ -327,6 +329,8 @@ const blogCollection = defineCollection({
     author: z.string().optional(),
     published: z.date(),
     updated: z.date().optional(),
+    seo_title: z.string().optional(),
+    seo_description: z.string().optional(),
     featured: z.boolean().default(false),
     tags: z.array(z.string()).default([]),
   }),

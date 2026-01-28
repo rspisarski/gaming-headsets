@@ -30,13 +30,13 @@ const formatDate = () => {
 ---
 
 <Layout
-  title={`${post.data.title} - Goop Finder`}
-  description={post.data.excerpt}
+  title={post.data.seo_title || `${post.data.title} - Goop Finder`}
+  description={post.data.seo_description || post.data.excerpt}
   image={post.data.image}
 >
   <article class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
     <div class="mb-12">
-      <div class="aspect-[16/9] w-full mb-8 overflow-hidden">
+      <div class="aspect-[4/3] w-full mb-8 overflow-hidden">
         <img
           src={post.data.image}
           alt={post.data.title}

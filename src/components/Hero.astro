@@ -30,7 +30,7 @@ const formatDate = (post: CollectionEntry<"blog">) => {
             href={`/blog/${featuredPost.slug}`}
             class="block bg-card-bg hover:bg-card-bg/90 relative z-10 hover:z-0 transition-all duration-300 overflow-hidden hover:shadow-[0_0_80px_rgba(139,213,27,0.4)]"
           >
-            <div class="aspect-video relative">
+            <div class="aspect-[4/3] relative">
               <img
                 src={featuredPost.data.image}
                 alt={featuredPost.data.title}

@@ -127,8 +127,10 @@ amazon_product_id: "B0CCXWH6WG"
 
 # ============================================================================
 # SEO & METADATA
+seo_title: "SteelSeries Arctis Nova Pro Wireless - Specs & Comparison"
+seo_description: "The SteelSeries Arctis Nova Pro Wireless features Active Noise Cancellation, a unique dual-battery system, and simultaneous 2.4GHz and Bluetooth connectivity for the ultimate gaming experience."
 # ============================================================================
-description: "The SteelSeries Arctis Nova Pro Wireless features Active Noise Cancellation, a unique dual-battery system, and simultaneous 2.4GHz and Bluetooth connectivity for the ultimate gaming experience."
+product_description: "The SteelSeries Arctis Nova Pro Wireless features Active Noise Cancellation, a unique dual-battery system, and simultaneous 2.4GHz and Bluetooth connectivity for the ultimate gaming experience."
 slug: "steelseries-arctis-nova-pro-wireless"
 featured: true
 best_for:

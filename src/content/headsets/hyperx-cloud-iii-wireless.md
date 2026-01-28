@@ -115,8 +115,10 @@ amazon_product_id: "B0CBQYKFR2"
 
 # ============================================================================
 # SEO & METADATA
+seo_title: "HyperX Cloud III Wireless - Specs & Comparison"
+seo_description: "The HyperX Cloud III Wireless offers a staggering 120 hours of battery life and legendary comfort with reimagined 53mm angled drivers."
 # ============================================================================
-description: "The HyperX Cloud III Wireless offers a staggering 120 hours of battery life and legendary comfort with reimagined 53mm angled drivers."
+product_description: "The HyperX Cloud III Wireless offers a staggering 120 hours of battery life and legendary comfort with reimagined 53mm angled drivers."
 slug: "hyperx-cloud-iii-wireless"
 featured: false
 best_for:

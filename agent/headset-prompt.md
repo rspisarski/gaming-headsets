@@ -108,7 +108,9 @@ cable_features:
 manufacturer_url: "url"
 
 # SEO & METADATA
-description: "A 160-character marketing description."
+product_description: "A short tech overview blurb (1-2 sentences)."
+seo_title: "Product Name - Detailed Specs & Comparison"
+seo_description: "A 160-character marketing description for search engines."
 slug: "product-slug-here"
 featured: false
 best_for:

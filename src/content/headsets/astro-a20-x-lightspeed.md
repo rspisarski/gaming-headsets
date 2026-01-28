@@ -71,7 +71,9 @@ included_accessories:
 cable_features: []
 manufacturer_url: https://www.logitechg.com/en-us/shop/p/astro-a20-x.939-002242
 amazon_product_id: B0FFXZ9XQ4
-description: The ASTRO A20 X LIGHTSPEED delivers exceptional multi-platform gaming with PLAYSYNC dual-system connectivity, PRO-G drivers, 48kHz broadcast-quality mic, and 90-hour battery life with customizable RGB lighting across Xbox, PlayStation, PC, and Nintendo Switch.
+product_description: The ASTRO A20 X LIGHTSPEED delivers exceptional multi-platform gaming with PLAYSYNC dual-system connectivity, PRO-G drivers, 48kHz broadcast-quality mic, and 90-hour battery life with customizable RGB lighting across Xbox, PlayStation, PC, and Nintendo Switch.
+seo_title: "Logitech ASTRO A20 X - Specs & Comparison"
+seo_description: "The ASTRO A20 X LIGHTSPEED delivers exceptional multi-platform gaming with PLAYSYNC dual-system connectivity, PRO-G drivers, 48kHz broadcast-quality mic, and 90-hour battery life with customizable RGB lighting across Xbox, PlayStation, PC, and Nintendo Switch."
 slug: astro-a20-x-lightspeed
 featured: true
 best_for:

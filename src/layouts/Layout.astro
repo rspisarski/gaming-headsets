@@ -2,23 +2,38 @@
 import { ClientRouter } from "astro:transitions";
 import { Headphones, Menu, Search, BookHeart, X } from "@lucide/astro";
 import { getCollection } from "astro:content";
+import { SEO } from "astro-seo";
 import "../styles/global.css";
 import MobileMenu from "../components/MobileMenu.astro";
 import SearchModal from "../components/SearchModal.astro";
 import CookieConsent from "../components/CookieConsent.astro";
+
+interface Props {
+	title?: string;
+	description?: string;
+	image?: string;
+	canonicalURL?: string;
+}
+
+const {
+	title = "Gaming Headset Comparison - Find Your Perfect Headset",
+	description = "Compare gaming headsets by objective specs. Filter by wireless, battery life, compatibility, and more. Find the perfect gaming headset for your needs.",
+	image = "https://ik.imagekit.io/gh2026/brand/goopfinder-og.png", // Fallback OG image
+	canonicalURL = Astro.url.href,
+} = Astro.props;
 
 // Load data for search functionality
 const headsets = await getCollection("headsets");
 const blogPosts = await getCollection("blog");
 const logo = "https://ik.imagekit.io/gh2026/brand/goopfinder-logo-2.svg";
 
-// Prepare search data for headsets
+// ... Preparation logic for search data remains the same ...
 const headsetData = headsets.map((headset) => ({
 	id: headset.slug,
 	type: "headset",
 	name: headset.data.name,
 	brand: headset.data.brand,
-	description: headset.data.description,
+	product_description: headset.data.product_description,
 	platforms: headset.data.platforms,
 	special_features: headset.data.special_features,
 	connection_types: headset.data.connection_types,
@@ -27,7 +42,6 @@ const headsetData = headsets.map((headset) => ({
 	slug: headset.slug,
 }));
 
-// Prepare search data for blog posts
 const blogData = blogPosts.map((post) => ({
 	id: post.slug,
 	type: "blog",
@@ -40,7 +54,6 @@ const blogData = blogPosts.map((post) => ({
 	slug: post.slug,
 }));
 
-// Combine search data
 const searchData: any[] = [...headsetData, ...blogData];
 ---
 
@@ -51,11 +64,30 @@ const searchData: any[] = [...headsetData, ...blogData];
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/png" href="/favicon.png" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Gaming Headset Comparison - Find Your Perfect Headset</title>
-		<meta
-			name="description"
-			content="Compare gaming headsets by objective specs. Filter by wireless, battery life, compatibility, and more. Find the perfect gaming headset for your needs."
+
+		<SEO
+			title={title}
+			description={description}
+			canonical={canonicalURL}
+			openGraph={{
+				basic: {
+					title: title,
+					type: "website",
+					image: image,
+				},
+				optional: {
+					description: description,
+					siteName: "Goop Finder",
+				},
+			}}
+			twitter={{
+				card: "summary_large_image",
+				title: title,
+				description: description,
+				image: image,
+			}}
 		/>
+
 		<!-- Google tag (gtag.js) -->
 		<script
 			async

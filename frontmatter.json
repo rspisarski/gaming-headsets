@@ -472,14 +472,24 @@
           "required": true
         },
         {
-          "title": "Description",
-          "name": "description",
+          "title": "Product Description",
+          "name": "product_description",
           "type": "string",
           "required": true
         },
         {
           "title": "Slug",
           "name": "slug",
+          "type": "string"
+        },
+        {
+          "title": "SEO Title",
+          "name": "seo_title",
+          "type": "string"
+        },
+        {
+          "title": "SEO Description",
+          "name": "seo_description",
           "type": "string"
         },
         {
@@ -559,6 +569,16 @@
           "title": "Tags",
           "name": "tags",
           "type": "tags"
+        },
+        {
+          "title": "SEO Title",
+          "name": "seo_title",
+          "type": "string"
+        },
+        {
+          "title": "SEO Description",
+          "name": "seo_description",
+          "type": "string"
         }
       ]
     }

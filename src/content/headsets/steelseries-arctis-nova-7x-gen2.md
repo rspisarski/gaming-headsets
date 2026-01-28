@@ -86,7 +86,9 @@ cable_features:
     - Detachable Cable
 manufacturer_url: https://steelseries.com/gaming-headsets/arctis-nova-7-gen-2
 amazon_product_id: B0FRPH94LH
-description: The SteelSeries Arctis Nova 7X Wireless Gen 2 offers universal compatibility across all platforms including Xbox, with 54-hour battery life, simultaneous dual wireless, and 200+ game presets via the Arctis App.
+product_description: The SteelSeries Arctis Nova 7X Wireless Gen 2 offers universal compatibility across all platforms including Xbox, with 54-hour battery life, simultaneous dual wireless, and 200+ game presets via the Arctis App.
+seo_title: "SteelSeries Arctis Nova 7X Wireless Gen 2 - Specs & Comparison"
+seo_description: "The SteelSeries Arctis Nova 7X Wireless Gen 2 offers universal compatibility across all platforms including Xbox, with 54-hour battery life, simultaneous dual wireless, and 200+ game presets via the Arctis App."
 slug: steelseries-arctis-nova-7x-gen2
 featured: false
 best_for:
