@@ -7,7 +7,7 @@ brand: "SteelSeries"
 model: "Arctis Nova Pro Wireless"
 price: 349.99
 image: "https://ik.imagekit.io/gh2026/Headsets/649563_408963_02_front_comping.jpg"
-release_date: "2023-05-01"
+release_date: 2023-05-01
 discontinued: false
 
 # ============================================================================

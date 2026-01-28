@@ -8,9 +8,9 @@ model: "Virtuoso RGB Wireless XT"
 price: 269.99
 image: "https://ik.imagekit.io/gh2026/Headsets/VIRTUOSO_XT_01.webp"
 image_thumbnail_contain: true
-release_date: "2021-09-01"
+release_date: 2021-09-01
 discontinued: false
-published: 2021-09-01"
+
 
 # ============================================================================
 # CONNECTIVITY & WIRELESS

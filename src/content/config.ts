@@ -201,7 +201,8 @@ const headsetCollection = defineCollection({
     price: z.number(),
     image: z.string().url(),
     image_thumbnail_contain: z.boolean().default(true),
-    release_date: z.string().optional(), // ISO date string
+    release_date: z.coerce.date().optional(), // Date object
+    amazon_product_id: z.string().optional(),
     discontinued: z.boolean().default(false),
 
     // ========================================================================
@@ -298,7 +299,6 @@ const headsetCollection = defineCollection({
     amazon_us: z.string().url().optional(),
     amazon_ca: z.string().url().optional(),
     amazon_uk: z.string().url().optional(),
-    amazon_product_id: z.string().optional(),
     bestbuy: z.string().url().optional(),
     newegg: z.string().url().optional(),
     manufacturer_url: z.string().url(),

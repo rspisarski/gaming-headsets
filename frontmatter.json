@@ -1,0 +1,565 @@
+{
+  "$schema": "https://frontmatter.codes/frontmatter.schema.json",
+  "frontMatter.framework.id": "astro",
+  "frontMatter.preview.host": "http://localhost:4321",
+  "frontMatter.content.publicFolder": "public",
+  "frontMatter.content.pageFolders": [
+    {
+      "title": "Headsets",
+      "path": "[[workspace]]/src/content/headsets"
+    },
+    {
+      "title": "Blog",
+      "path": "[[workspace]]/src/content/blog"
+    }
+  ],
+  "frontMatter.taxonomy.contentTypes": [
+    {
+      "name": "headsets",
+      "previewPath": "/headsets/{{slug}}",
+      "pageBundle": false,
+      "clearEmpty": true,
+      "fields": [
+        {
+          "title": "Name",
+          "name": "name",
+          "type": "string",
+          "required": true
+        },
+        {
+          "title": "Brand",
+          "name": "brand",
+          "type": "string",
+          "required": true
+        },
+        {
+          "title": "Model",
+          "name": "model",
+          "type": "string"
+        },
+        {
+          "title": "Price",
+          "name": "price",
+          "type": "number",
+          "required": true
+        },
+        {
+          "title": "Image URL",
+          "name": "image",
+          "type": "string",
+          "required": true
+        },
+        {
+          "title": "Thumbnail Contain",
+          "name": "image_thumbnail_contain",
+          "type": "boolean",
+          "default": true
+        },
+        {
+          "title": "Release Date",
+          "name": "release_date",
+          "type": "datetime"
+        },
+        {
+          "title": "Amazon Product ID",
+          "name": "amazon_product_id",
+          "type": "string"
+        },
+        {
+          "title": "Discontinued",
+          "name": "discontinued",
+          "type": "boolean",
+          "default": false
+        },
+        {
+          "title": "Connection Types",
+          "name": "connection_types",
+          "type": "choice",
+          "multiple": true,
+          "choices": [
+            "3.5mm",
+            "USB-A",
+            "USB-C",
+            "2.4GHz Wireless",
+            "Bluetooth"
+          ]
+        },
+        {
+          "title": "Battery Life (hours)",
+          "name": "battery_life",
+          "type": "number"
+        },
+        {
+          "title": "Charging Type",
+          "name": "charging_type",
+          "type": "choice",
+          "choices": [
+            "USB-C",
+            "USB-A",
+            "Micro-USB",
+            "Wireless Charging"
+          ]
+        },
+        {
+          "title": "Wireless Range (feet)",
+          "name": "wireless_range",
+          "type": "number"
+        },
+        {
+          "title": "Wireless Latency (ms)",
+          "name": "wireless_latency",
+          "type": "number"
+        },
+        {
+          "title": "Platforms",
+          "name": "platforms",
+          "type": "choice",
+          "multiple": true,
+          "choices": [
+            "PC",
+            "PlayStation 5",
+            "PlayStation 4",
+            "Xbox Series X|S",
+            "Xbox One",
+            "Nintendo Switch",
+            "Mobile",
+            "Steam Deck",
+            "VR Headsets"
+          ]
+        },
+        {
+          "title": "Xbox Wireless Native",
+          "name": "xbox_wireless_native",
+          "type": "boolean",
+          "default": false
+        },
+        {
+          "title": "Driver Size (mm)",
+          "name": "driver_size",
+          "type": "number"
+        },
+        {
+          "title": "Driver Type",
+          "name": "driver_type",
+          "type": "choice",
+          "choices": [
+            "Dynamic",
+            "Planar Magnetic",
+            "Electrostatic",
+            "Hybrid",
+            "Graphene"
+          ]
+        },
+        {
+          "title": "Frequency Response",
+          "name": "frequency_response",
+          "type": "string"
+        },
+        {
+          "title": "Impedance (ohms)",
+          "name": "impedance",
+          "type": "number"
+        },
+        {
+          "title": "Sensitivity (dB)",
+          "name": "sensitivity",
+          "type": "number"
+        },
+        {
+          "title": "Surround Sound",
+          "name": "surround_sound",
+          "type": "choice",
+          "choices": [
+            "Stereo",
+            "Virtual 5.1",
+            "Virtual 7.1",
+            "True 7.1",
+            "Dolby Atmos",
+            "DTS:X",
+            "Windows Sonic",
+            "THX Spatial Audio",
+            "Tempest 3D Audio",
+            "Proprietary Spatial"
+          ]
+        },
+        {
+          "title": "Headphone Type",
+          "name": "headphone_type",
+          "type": "choice",
+          "choices": [
+            "Closed-back",
+            "Open-back",
+            "Semi-open"
+          ]
+        },
+        {
+          "title": "Microphone Type",
+          "name": "microphone_type",
+          "type": "choice",
+          "choices": [
+            "Boom Mic",
+            "Retractable Mic",
+            "Detachable Mic",
+            "Inline Mic",
+            "Dual Microphone Array",
+            "No Microphone"
+          ]
+        },
+        {
+          "title": "Mic Detachable",
+          "name": "mic_detachable",
+          "type": "boolean",
+          "default": false
+        },
+        {
+          "title": "Mic Frequency Response",
+          "name": "mic_frequency_response",
+          "type": "string"
+        },
+        {
+          "title": "Mic Features",
+          "name": "mic_features",
+          "type": "choice",
+          "multiple": true,
+          "choices": [
+            "Noise Cancellation",
+            "AI Noise Cancellation",
+            "Pop Filter",
+            "Sidetone",
+            "Mute Button",
+            "Auto-mute",
+            "LED Mute Indicator",
+            "Broadcast Quality",
+            "Beamforming"
+          ]
+        },
+        {
+          "title": "Mic Monitoring",
+          "name": "mic_monitoring",
+          "type": "boolean",
+          "default": false
+        },
+        {
+          "title": "Ear Cup Design",
+          "name": "ear_cup_design",
+          "type": "choice",
+          "choices": [
+            "Over-ear",
+            "On-ear"
+          ]
+        },
+        {
+          "title": "Cushion Materials",
+          "name": "cushion_materials",
+          "type": "choice",
+          "multiple": true,
+          "choices": [
+            "Memory Foam",
+            "Gel-infused",
+            "Velour",
+            "Leatherette",
+            "Genuine Leather",
+            "Microfiber",
+            "Breathable Fabric"
+          ]
+        },
+        {
+          "title": "Build Material",
+          "name": "build_material",
+          "type": "choice",
+          "choices": [
+            "Plastic",
+            "Steel",
+            "Aluminum",
+            "PVD-coated Steel",
+            "Carbon Fiber"
+          ]
+        },
+        {
+          "title": "Weight (grams)",
+          "name": "weight",
+          "type": "number"
+        },
+        {
+          "title": "Comfort Features",
+          "name": "comfort_features",
+          "type": "choice",
+          "multiple": true,
+          "choices": [
+            "Adjustable Headband",
+            "Ski-goggle Suspension",
+            "Replaceable Ear Pads",
+            "Glasses-friendly",
+            "Foldable",
+            "Rotating Ear Cups",
+            "Lightweight",
+            "Reinforced Chassis",
+            "Durable Frame"
+          ]
+        },
+        {
+          "title": "Onboard Controls",
+          "name": "onboard_controls",
+          "type": "choice",
+          "multiple": true,
+          "choices": [
+            "Volume Wheel",
+            "Mute Button",
+            "Power Button",
+            "Bluetooth Button",
+            "Game/Chat Mix",
+            "PLAYSYNC Button"
+          ]
+        },
+        {
+          "title": "Active Features",
+          "name": "active_features",
+          "type": "choice",
+          "multiple": true,
+          "choices": [
+            "Active Noise Cancellation",
+            "Transparency Mode",
+            "Ambient Sound Mode",
+            "Wear Detection",
+            "Auto Play/Pause"
+          ]
+        },
+        {
+          "title": "RGB Lighting",
+          "name": "rgb_lighting",
+          "type": "choice",
+          "choices": [
+            "Customizable RGB",
+            "Static RGB",
+            "Reactive Lighting",
+            "No Lighting"
+          ],
+          "default": "No Lighting"
+        },
+        {
+          "title": "Special Features",
+          "name": "special_features",
+          "type": "choice",
+          "multiple": true,
+          "choices": [
+            "Haptic Feedback",
+            "Head Tracking",
+            "Voice Assistant",
+            "Multi-point Connection",
+            "Low Latency Mode",
+            "Game/Chat Mix",
+            "Swappable Batteries",
+            "Quick Charge"
+          ]
+        },
+        {
+          "title": "Has Software",
+          "name": "has_software",
+          "type": "boolean",
+          "default": false
+        },
+        {
+          "title": "Software Name",
+          "name": "software_name",
+          "type": "string"
+        },
+        {
+          "title": "Software Features",
+          "name": "software_features",
+          "type": "choice",
+          "multiple": true,
+          "choices": [
+            "Custom EQ",
+            "EQ Presets",
+            "Mic Enhancement",
+            "Button Remapping",
+            "Firmware Updates",
+            "Cloud Sync"
+          ]
+        },
+        {
+          "title": "Certifications",
+          "name": "certifications",
+          "type": "choice",
+          "multiple": true,
+          "choices": [
+            "Hi-Res Audio",
+            "Discord Certified",
+            "TeamSpeak Certified",
+            "Microsoft Teams Certified",
+            "Works with PlayStation",
+            "Designed for Xbox",
+            "Made for iPhone",
+            "Nintendo Licensed"
+          ]
+        },
+        {
+          "title": "Warranty Years",
+          "name": "warranty_years",
+          "type": "number",
+          "default": 1
+        },
+        {
+          "title": "Water Resistant",
+          "name": "water_resistant",
+          "type": "boolean",
+          "default": false
+        },
+        {
+          "title": "IP Rating",
+          "name": "ip_rating",
+          "type": "string"
+        },
+        {
+          "title": "Included Accessories",
+          "name": "included_accessories",
+          "type": "choice",
+          "multiple": true,
+          "choices": [
+            "USB Dongle",
+            "USB Cable",
+            "Carrying Case",
+            "Extra Ear Pads"
+          ]
+        },
+        {
+          "title": "Cable Length (feet)",
+          "name": "cable_length",
+          "type": "number"
+        },
+        {
+          "title": "Cable Features",
+          "name": "cable_features",
+          "type": "choice",
+          "multiple": true,
+          "choices": [
+            "Detachable Cable",
+            "Braided Cable",
+            "Inline Controls",
+            "Y-splitter"
+          ]
+        },
+        {
+          "title": "Amazon US URL",
+          "name": "amazon_us",
+          "type": "string"
+        },
+        {
+          "title": "Amazon CA URL",
+          "name": "amazon_ca",
+          "type": "string"
+        },
+        {
+          "title": "Amazon UK URL",
+          "name": "amazon_uk",
+          "type": "string"
+        },
+        {
+          "title": "Best Buy URL",
+          "name": "bestbuy",
+          "type": "string"
+        },
+        {
+          "title": "Newegg URL",
+          "name": "newegg",
+          "type": "string"
+        },
+        {
+          "title": "Manufacturer URL",
+          "name": "manufacturer_url",
+          "type": "string",
+          "required": true
+        },
+        {
+          "title": "Description",
+          "name": "description",
+          "type": "string",
+          "required": true
+        },
+        {
+          "title": "Slug",
+          "name": "slug",
+          "type": "string"
+        },
+        {
+          "title": "Featured",
+          "name": "featured",
+          "type": "boolean",
+          "default": false
+        },
+        {
+          "title": "Best For",
+          "name": "best_for",
+          "type": "choice",
+          "multiple": true,
+          "choices": [
+            "Console Gaming",
+            "Multi-platform",
+            "Competitive Gaming",
+            "Competitive FPS",
+            "Streaming"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "blog",
+      "previewPath": "/blog/{{slug}}",
+      "pageBundle": false,
+      "clearEmpty": true,
+      "fields": [
+        {
+          "title": "Title",
+          "name": "title",
+          "type": "string",
+          "required": true
+        },
+        {
+          "title": "Excerpt",
+          "name": "excerpt",
+          "type": "string",
+          "required": true
+        },
+        {
+          "title": "Category",
+          "name": "category",
+          "type": "string",
+          "required": true
+        },
+        {
+          "title": "Image URL",
+          "name": "image",
+          "type": "string",
+          "required": true
+        },
+        {
+          "title": "Author",
+          "name": "author",
+          "type": "string"
+        },
+        {
+          "title": "Published Date",
+          "name": "published",
+          "type": "datetime",
+          "required": true
+        },
+        {
+          "title": "Updated Date",
+          "name": "updated",
+          "type": "datetime"
+        },
+        {
+          "title": "Featured",
+          "name": "featured",
+          "type": "boolean",
+          "default": false
+        },
+        {
+          "title": "Tags",
+          "name": "tags",
+          "type": "tags"
+        }
+      ]
+    }
+  ]
+}

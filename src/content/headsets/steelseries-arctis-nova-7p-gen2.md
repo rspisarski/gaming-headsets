@@ -9,7 +9,7 @@ price: 199.99
 image: "https://ik.imagekit.io/gh2026/Headsets/71FEDq1Nk6L.jpg"
 
 image_thumbnail_contain: true
-release_date: "2025-10-14"
+release_date: 2025-10-14
 discontinued: false
 
 # ============================================================================

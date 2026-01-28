@@ -1,97 +1,84 @@
 ---
-# ============================================================================
-# BASIC INFO
-# ============================================================================
-name: "ASTRO A20 X"
-brand: "Logitech"
-model: "ASTRO A20 X LIGHTSPEED"
+name: ASTRO A20 X
+brand: Logitech
+model: ASTRO A20 X LIGHTSPEED
 price: 179.99
-image: "https://m.media-amazon.com/images/I/81iDFLaXL2L._AC_SL1500_.jpg"
-release_date: "2025-09-17"
-discontinued: false
-
-# ============================================================================
-# CONNECTIVITY & WIRELESS
-# ============================================================================
-connection_types: ["2.4GHz Wireless", "Bluetooth"]
+image: https://m.media-amazon.com/images/I/81iDFLaXL2L._AC_SL1500_.jpg
+release_date: 2025-09-17
+connection_types:
+    - 2.4GHz Wireless
+    - Bluetooth
 battery_life: 90
-charging_type: "USB-C"
+charging_type: USB-C
 wireless_range: null
 wireless_latency: null
-
-# ============================================================================
-# PLATFORM COMPATIBILITY
-# ============================================================================
-platforms: ["PC", "PlayStation 5", "PlayStation 4", "Xbox Series X|S", "Xbox One", "Nintendo Switch", "Mobile"]
-xbox_wireless_native: false
-
-# ============================================================================
-# AUDIO SPECIFICATIONS
-# ============================================================================
+platforms:
+    - PC
+    - PlayStation 5
+    - PlayStation 4
+    - Xbox Series X|S
+    - Xbox One
+    - Nintendo Switch
+    - Mobile
 driver_size: 40
-driver_type: "Dynamic"
-frequency_response: "20Hz - 20kHz"
-surround_sound: "Stereo"
-headphone_type: "Closed-back"
-
-# ============================================================================
-# MICROPHONE
-# ============================================================================
-microphone_type: "Detachable Mic"
+driver_type: Dynamic
+frequency_response: 20Hz - 20kHz
+surround_sound: Stereo
+headphone_type: Closed-back
+microphone_type: Detachable Mic
 mic_detachable: true
-mic_features: ["Noise Cancellation", "AI Noise Cancellation", "LED Mute Indicator", "Mute Button"]
-
-# ============================================================================
-# COMFORT & BUILD
-# ============================================================================
-ear_cup_design: "Over-ear"
-cushion_materials: ["Memory Foam", "Breathable Fabric"]
-build_material: "Plastic"
+mic_features:
+    - Noise Cancellation
+    - AI Noise Cancellation
+    - LED Mute Indicator
+    - Mute Button
+ear_cup_design: Over-ear
+cushion_materials:
+    - Memory Foam
+    - Breathable Fabric
+build_material: Plastic
 weight: 290
-comfort_features: ["Ski-goggle Suspension", "Adjustable Headband", "Lightweight"]
-
-# ============================================================================
-# CONTROLS & FEATURES
-# ============================================================================
-onboard_controls: ["Volume Wheel", "Mute Button", "Power Button", "Bluetooth Button", "PLAYSYNC Button", "Game/Chat Mix"]
+comfort_features:
+    - Ski-goggle Suspension
+    - Adjustable Headband
+    - Lightweight
+onboard_controls:
+    - Volume Wheel
+    - Mute Button
+    - Power Button
+    - Bluetooth Button
+    - PLAYSYNC Button
+    - Game/Chat Mix
 active_features: []
-rgb_lighting: "Customizable RGB"
-special_features: ["Multi-point Connection", "Game/Chat Mix"]
-
-# ============================================================================
-# SOFTWARE & CUSTOMIZATION
-# ============================================================================
+rgb_lighting: Customizable RGB
+special_features:
+    - Multi-point Connection
+    - Game/Chat Mix
 has_software: true
-software_name: "Logitech G HUB"
-software_features: ["Custom EQ", "EQ Presets", "Mic Enhancement", "Firmware Updates"]
-
-# ============================================================================
-# CERTIFICATIONS & WARRANTY
-# ============================================================================
+software_name: Logitech G HUB
+software_features:
+    - Custom EQ
+    - EQ Presets
+    - Mic Enhancement
+    - Firmware Updates
 certifications: []
 warranty_years: 1
 water_resistant: false
 ip_rating: null
-
-# ============================================================================
-# PACKAGING & ACCESSORIES
-# ============================================================================
-included_accessories: ["USB Dongle", "USB Cable"]
+included_accessories:
+    - USB Dongle
+    - USB Cable
 cable_features: []
-
-# ============================================================================
-# AFFILIATE LINKS
-# ============================================================================
-manufacturer_url: "https://www.logitechg.com/en-us/shop/p/astro-a20-x.939-002242"
-amazon_product_id: "B0FFXZ9XQ4"
-
-# ============================================================================
-# SEO & METADATA
-# ============================================================================
-description: "The ASTRO A20 X LIGHTSPEED delivers exceptional multi-platform gaming with PLAYSYNC dual-system connectivity, PRO-G drivers, 48kHz broadcast-quality mic, and 90-hour battery life with customizable RGB lighting across Xbox, PlayStation, PC, and Nintendo Switch."
-slug: "astro-a20-x-lightspeed"
+manufacturer_url: https://www.logitechg.com/en-us/shop/p/astro-a20-x.939-002242
+amazon_product_id: B0FFXZ9XQ4
+description: The ASTRO A20 X LIGHTSPEED delivers exceptional multi-platform gaming with PLAYSYNC dual-system connectivity, PRO-G drivers, 48kHz broadcast-quality mic, and 90-hour battery life with customizable RGB lighting across Xbox, PlayStation, PC, and Nintendo Switch.
+slug: astro-a20-x-lightspeed
 featured: true
-best_for: ["Console Gaming", "Multi-platform", "Competitive Gaming"]
+best_for:
+    - Console Gaming
+    - Multi-platform
+    - Competitive Gaming
+fmContentType: headsets
 ---
 
 ## Overview

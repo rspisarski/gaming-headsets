@@ -7,7 +7,7 @@ brand: "Logitech"
 model: "G522 LIGHTSPEED"
 price: 159.99
 image: "https://resource.logitechg.com/w_416,h_312,ar_4:3,c_pad,q_auto,f_auto,dpr_1.0/d_transparent.gif/content/dam/gaming/en/products/g522-lightspeed-pdp/gallery-images/g522-midnight-black-3qtr-front-left-gallery-1.png"
-release_date: "2025-05-21"
+release_date: 2025-05-21
 discontinued: false
 
 # ============================================================================

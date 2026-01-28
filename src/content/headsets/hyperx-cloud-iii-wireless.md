@@ -7,7 +7,7 @@ brand: "HyperX"
 model: "Cloud III Wireless"
 price: 169.99
 image: "https://m.media-amazon.com/images/I/71gnnh5fvhL._AC_SL1500_.jpg"
-release_date: "2023-08-01"
+release_date: 2023-08-01
 discontinued: false
 
 # ============================================================================

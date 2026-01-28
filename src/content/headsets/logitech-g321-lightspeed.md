@@ -7,7 +7,7 @@ brand: "Logitech"
 model: "G321 LIGHTSPEED"
 price: 59.99
 image: "https://resource.logitechg.com/w_416,h_312,ar_4:3,c_pad,q_auto,f_auto,dpr_1.0/d_transparent.gif/content/dam/gaming/en/products/g321-pdp/gallery/g321-lightspeed-3qtr-front-left-angle-black-gallery-1.png"
-release_date: "2025-10-29"
+release_date: 2025-10-29
 discontinued: false
 
 # ============================================================================

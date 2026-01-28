@@ -7,7 +7,7 @@ brand: "Audeze"
 model: "Maxwell"
 price: 299.00
 image: "https://ik.imagekit.io/gh2026/Headsets/51iE7XD13NL._AC_SL1080_.jpg"
-release_date: "2023-01-01"
+release_date: 2023-01-01
 discontinued: false
 
 # ============================================================================

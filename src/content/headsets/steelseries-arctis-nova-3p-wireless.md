@@ -7,7 +7,7 @@ brand: "SteelSeries"
 model: "Arctis Nova 3P Wireless"
 price: 109.99
 image: "https://ik.imagekit.io/gh2026/Headsets/71FEDq1Nk6L.jpg"
-release_date: "2025-06-03"
+release_date: 2025-06-03
 discontinued: false
 amazon_product_id: "B0F956KS26"
 

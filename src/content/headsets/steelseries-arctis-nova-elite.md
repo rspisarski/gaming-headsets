@@ -8,7 +8,7 @@ model: "Arctis Nova Elite"
 price: 599.99
 image: "https://ik.imagekit.io/gh2026/Headsets/615EIaK2SML._AC_SL1500_.jpg"
 image_thumbnail_contain: true
-release_date: "2025-09-30"
+release_date: 2025-09-30
 discontinued: false
 
 # ============================================================================

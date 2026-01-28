@@ -7,7 +7,7 @@ brand: "Razer"
 model: "BlackShark V2 Pro (2023)"
 price: 199.99
 image: "https://ik.imagekit.io/gh2026/Headsets/71oZWr6SjaL._AC_SL1500_.jpg"
-release_date: "2023-04-27"
+release_date: 2023-04-27
 discontinued: false
 
 # ============================================================================

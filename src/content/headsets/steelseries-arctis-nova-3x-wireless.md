@@ -7,7 +7,7 @@ brand: "SteelSeries"
 model: "Arctis Nova 3X Wireless"
 price: 109.99
 image: "https://ik.imagekit.io/gh2026/Headsets/arctis_nova_3x_wl_black_pdp_img_buy_01.png"
-release_date: "2025-06-03"
+release_date: 2025-06-03
 discontinued: false
 amazon_product_id: "B0F956KHT9"
 # ============================================================================
