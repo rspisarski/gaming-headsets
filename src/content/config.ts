@@ -166,7 +166,8 @@ export const CERTIFICATION = [
   'Works with PlayStation',
   'Designed for Xbox',
   'Made for iPhone',
-  'Nintendo Licensed'
+  'Nintendo Licensed',
+  'THX Spatial Audio'
 ] as const;
 
 
@@ -313,9 +314,9 @@ const headsetCollection = defineCollection({
     slug: z.string().optional(), // Auto-generated from filename if not provided
 
     // For content organization
-    featured: z.boolean().default(false),
     best_for: z.array(z.string()).optional(),
     // Examples: ['Competitive FPS', 'Streaming', 'Console Gaming']
+    fmContentType: z.string().optional(),
   }),
 });
 
