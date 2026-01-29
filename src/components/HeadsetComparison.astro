@@ -1,6 +1,6 @@
 ---
 import { getEntry } from "astro:content";
-import HeadsetCard from "./HeadsetCard.astro";
+import { HeadsetCard } from "./HeadsetCard";
 
 interface Props {
     leftId: string;
@@ -26,12 +26,14 @@ const rightHeadset = await getEntry("headsets", rightId as any);
             <HeadsetCard
                 headset={{ ...leftHeadset.data, slug: leftHeadset.slug }}
                 ctaType={ctaType}
+                client:visible
             />
 
             {/* Right Headset */}
             <HeadsetCard
                 headset={{ ...rightHeadset.data, slug: rightHeadset.slug }}
                 ctaType={ctaType}
+                client:visible
             />
         </div>
     )

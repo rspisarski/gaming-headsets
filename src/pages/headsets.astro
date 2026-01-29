@@ -1,7 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import HeadsetFilters from "../components/HeadsetFilters.astro";
 import { getCollection } from "astro:content";
+import { HeadsetFilters } from "../components/HeadsetFilters";
 
 const headsets = await getCollection("headsets");
 const headsetData = headsets.map((headset) => ({
@@ -23,7 +23,7 @@ const headsetData = headsets.map((headset) => ({
                     match.
                 </p>
             </div>
-            <HeadsetFilters headsets={headsetData} />
+            <HeadsetFilters headsets={headsetData as any} client:load />
         </main>
     </div>
 </Layout>

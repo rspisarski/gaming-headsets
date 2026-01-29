@@ -1,6 +1,6 @@
 ---
 import { getEntry } from "astro:content";
-import HeadsetCard from "./HeadsetCard.astro";
+import { HeadsetCard } from "./HeadsetCard";
 
 interface Props {
     items: {
@@ -45,6 +45,7 @@ const headsets = rawHeadsets.filter((h) => h.entry);
                                         slug: entry.slug,
                                     }}
                                     ctaType={ctaType}
+                                    client:visible
                                 />
                             </div>
                         </div>

@@ -1,7 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import { getCollection } from "astro:content";
-import HeadsetCard from "../components/HeadsetCard.astro";
+import { HeadsetCard } from "../components/HeadsetCard";
 
 const allHeadsets = await getCollection("headsets");
 ---
@@ -36,6 +36,7 @@ const allHeadsets = await getCollection("headsets");
                                     ...headset.data,
                                     slug: headset.slug,
                                 }}
+                                client:load
                             />
                         </div>
                     ))
@@ -112,20 +113,16 @@ const allHeadsets = await getCollection("headsets");
             }
         }
 
-        // Handle favorite buttons inside the cards (standard favorite-button class)
-        function setupFavoriteButtons() {
-            document.querySelectorAll(".favorite-button").forEach((btn) => {
-                btn.addEventListener("click", () => {
-                    // Give the storage a tiny bit of time to update from the global handler
-                    // or just re-run the favorites filter.
-                    setTimeout(renderFavorites, 50);
-                });
-            });
-        }
-
         document.addEventListener("astro:page-load", () => {
             renderFavorites();
-            setupFavoriteButtons();
+
+            // Listen for changes from Preact components
+            window.addEventListener("favorites-updated", renderFavorites);
+
+            // Listen for changes from other tabs
+            window.addEventListener("storage", (e) => {
+                if (e.key === "headsetFavorites") renderFavorites();
+            });
         });
     </script>
 </Layout>

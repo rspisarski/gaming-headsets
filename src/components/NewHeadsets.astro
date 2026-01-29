@@ -1,6 +1,6 @@
 ---
 import { getCollection } from "astro:content";
-import HeadsetCard from "./HeadsetCard.astro";
+import { HeadsetCard } from "./HeadsetCard";
 
 const headsets = await getCollection("headsets");
 const sortedHeadsets = headsets
@@ -74,7 +74,7 @@ const headsetData = sortedHeadsets.map((headset) => ({
                 {
                     headsetData.map((headset) => (
                         <div class="swiper-slide h-auto">
-                            <HeadsetCard headset={headset} />
+                            <HeadsetCard headset={headset} client:load />
                         </div>
                     ))
                 }

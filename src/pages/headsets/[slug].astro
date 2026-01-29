@@ -3,7 +3,7 @@ import Layout from "../../layouts/Layout.astro";
 import { getCollection } from "astro:content";
 import { getPriceCategory } from "../../content/config";
 import Prose from "../../components/Prose.astro";
-import HeadsetCard from "../../components/HeadsetCard.astro";
+import { HeadsetCard } from "../../components/HeadsetCard";
 import settings from "../../data/settings.json";
 
 export async function getStaticPaths() {
@@ -378,7 +378,10 @@ const specs = [
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
               {relatedHeadsets.map((h) => (
-                <HeadsetCard headset={{ ...h.data, slug: h.slug }} />
+                <HeadsetCard
+                  headset={{ ...h.data, slug: h.slug }}
+                  client:visible
+                />
               ))}
             </div>
           </section>
