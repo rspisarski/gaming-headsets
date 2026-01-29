@@ -1,0 +1,55 @@
+---
+import { getEntry } from "astro:content";
+import HeadsetCard from "./HeadsetCard.astro";
+
+interface Props {
+    items: {
+        slug: string;
+        headline?: string;
+    }[];
+    ctaType?: "details" | "amazon";
+}
+
+const { items, ctaType = "details" } = Astro.props;
+
+const rawHeadsets = await Promise.all(
+    items.map(async (item) => {
+        const entry = await getEntry("headsets", item.slug as any);
+        return {
+            ...item,
+            entry,
+        };
+    }),
+);
+
+// Only keep items that actually exist in the collection
+const headsets = rawHeadsets.filter((h) => h.entry);
+---
+
+{
+    headsets.length > 0 && (
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8 my-12 not-prose">
+            {headsets.map(
+                ({ entry, headline }) =>
+                    entry && (
+                        <div class="flex flex-col h-full">
+                            {headline && (
+                                <div class="text-primary font-black uppercase tracking-[0.15em] text-[10px] mb-3 ml-1 bg-primary/10 w-fit px-2 py-1 rounded">
+                                    {headline}
+                                </div>
+                            )}
+                            <div class="flex-1">
+                                <HeadsetCard
+                                    headset={{
+                                        ...entry.data,
+                                        slug: entry.slug,
+                                    }}
+                                    ctaType={ctaType}
+                                />
+                            </div>
+                        </div>
+                    ),
+            )}
+        </div>
+    )
+}

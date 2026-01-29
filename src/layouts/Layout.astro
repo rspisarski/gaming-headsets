@@ -25,7 +25,7 @@ const {
 // Load data for search functionality
 const headsets = await getCollection("headsets");
 const blogPosts = await getCollection("blog");
-const logo = "https://ik.imagekit.io/gh2026/brand/goopfinder-logo-2.svg";
+const logo = "https://ik.imagekit.io/gh2026/brand/goopfinder-logo-4.svg";
 
 // ... Preparation logic for search data remains the same ...
 const headsetData = headsets.map((headset) => ({
@@ -115,7 +115,7 @@ const searchData: any[] = [...headsetData, ...blogData];
 							href="/"
 							class="text-xl font-bold text-primary hover:text-primary/80 transition-colors"
 						>
-							<img src={logo} alt="Goop Finder" class="h-12" />
+							<img src={logo} alt="Goop Finder" class="h-8" />
 						</a>
 					</div>
 					<div class="hidden lg:flex items-center space-x-6">

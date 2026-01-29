@@ -7,7 +7,8 @@
 @layer base {
     :root {
         --color-primary: #8BD51B;
-        --color-secondary: #2E5EAA;
+        --color-secondary: #9C44FB;
+        --color-tertiary: #2E5EAA;
         --color-background: #000000;
         --color-card-bg: #08090A;
         --color-text: #FFFFFF;

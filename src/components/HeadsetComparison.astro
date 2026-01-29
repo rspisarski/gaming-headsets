@@ -1,15 +1,17 @@
 ---
 import { getEntry } from "astro:content";
+import HeadsetCard from "./HeadsetCard.astro";
 
 interface Props {
     leftId: string;
     rightId: string;
+    ctaType?: "details" | "amazon";
 }
 
-const { leftId, rightId } = Astro.props;
+const { leftId, rightId, ctaType = "details" } = Astro.props;
 
-const leftHeadset = await getEntry("headsets", leftId);
-const rightHeadset = await getEntry("headsets", rightId);
+const leftHeadset = await getEntry("headsets", leftId as any);
+const rightHeadset = await getEntry("headsets", rightId as any);
 ---
 
 {
@@ -21,64 +23,16 @@ const rightHeadset = await getEntry("headsets", rightId);
     ) : (
         <div class="my-12 grid grid-cols-1 md:grid-cols-2 gap-8 not-prose">
             {/* Left Headset */}
-            <div class="group bg-card-bg relative rounded-3xl overflow-hidden transition-all duration-500 hover:shadow-[0_0_80px_rgba(139,213,27,0.15)] border border-white/5">
-                <div class="relative aspect-[4/3] overflow-hidden bg-white p-4">
-                    <img
-                        src={leftHeadset.data.image}
-                        alt={leftHeadset.data.name}
-                        class="w-full h-full object-contain transition-transform duration-700 group-hover:scale-110"
-                    />
-                    <div class="absolute bottom-4 left-6">
-                        <span class="text-primary font-bold text-lg leading-none">
-                            ${leftHeadset.data.price}
-                        </span>
-                    </div>
-                </div>
-                <div class="p-6">
-                    <p class="text-primary font-bold uppercase tracking-widest text-[10px] mb-2">
-                        {leftHeadset.data.brand}
-                    </p>
-                    <h3 class="text-xl font-bold text-text leading-tight mb-4">
-                        {leftHeadset.data.name}
-                    </h3>
-                    <a
-                        href={`/headsets/${leftHeadset.slug}`}
-                        class="block w-full text-center py-3 bg-primary text-white font-black text-sm rounded-xl hover:bg-primary/80 transition-all"
-                    >
-                        View Details
-                    </a>
-                </div>
-            </div>
+            <HeadsetCard
+                headset={{ ...leftHeadset.data, slug: leftHeadset.slug }}
+                ctaType={ctaType}
+            />
 
             {/* Right Headset */}
-            <div class="group bg-card-bg relative rounded-3xl overflow-hidden transition-all duration-500 hover:shadow-[0_0_80px_rgba(139,213,27,0.15)] border border-white/5">
-                <div class="relative aspect-[4/3] overflow-hidden bg-white p-4">
-                    <img
-                        src={rightHeadset.data.image}
-                        alt={rightHeadset.data.name}
-                        class="w-full h-full object-contain transition-transform duration-700 group-hover:scale-110"
-                    />
-                    <div class="absolute bottom-4 left-6">
-                        <span class="text-primary font-bold text-lg leading-none">
-                            ${rightHeadset.data.price}
-                        </span>
-                    </div>
-                </div>
-                <div class="p-6">
-                    <p class="text-primary font-bold uppercase tracking-widest text-[10px] mb-2">
-                        {rightHeadset.data.brand}
-                    </p>
-                    <h3 class="text-xl font-bold text-text leading-tight mb-4">
-                        {rightHeadset.data.name}
-                    </h3>
-                    <a
-                        href={`/headsets/${rightHeadset.slug}`}
-                        class="block w-full text-center py-3 bg-primary text-white font-black text-sm rounded-xl hover:bg-primary/80 transition-all"
-                    >
-                        View Details
-                    </a>
-                </div>
-            </div>
+            <HeadsetCard
+                headset={{ ...rightHeadset.data, slug: rightHeadset.slug }}
+                ctaType={ctaType}
+            />
         </div>
     )
 }

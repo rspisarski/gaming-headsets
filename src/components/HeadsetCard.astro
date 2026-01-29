@@ -1,4 +1,7 @@
 ---
+import settings from "../data/settings.json";
+import { Icon } from "astro-icon/components";
+
 interface Props {
   headset: {
     slug: string;
@@ -6,14 +9,21 @@ interface Props {
     brand: string;
     price: number;
     image: string;
-    wireless?: boolean;
-    battery?: number | null;
-    weight?: number;
+    amazon_product_id?: string;
+    amazon_us?: string;
+    image_thumbnail_contain?: boolean;
     // ... possibly other fields, usually typescript allows extra fields if not strict
-  } & Record<string, any>; // Allow other loose props since we spread ...headset.data
+  } & Record<string, any>;
+  ctaType?: "details" | "amazon";
 }
 
-const { headset } = Astro.props;
+const { headset, ctaType = "details" } = Astro.props;
+
+const amazonUrl = headset.amazon_product_id
+  ? `https://www.amazon.com/dp/${headset.amazon_product_id}?tag=${settings.amazon_tracking_id}`
+  : headset.amazon_us
+    ? `${headset.amazon_us}${headset.amazon_us.includes("?") ? "&" : "?"}tag=${settings.amazon_tracking_id}`
+    : null;
 ---
 
 <div
@@ -55,31 +65,47 @@ const { headset } = Astro.props;
     <div
       class="mt-auto pt-4 border-t border-gray-700/50 flex items-center justify-between gap-3"
     >
-      <a
-        href={`/headsets/${headset.slug}`}
-        class="flex-1 text-center px-4 py-2 bg-primary hover:bg-primary/80 text-white text-sm font-semibold rounded-lg transition-colors"
-      >
-        View Details
-      </a>
-      <button
-        class="favorite-button p-2 text-text/60 hover:text-red-400 hover:bg-gray-800 rounded-lg transition-all"
-        data-headset-id={headset.slug}
-        aria-label="Add to favorites"
-      >
-        <svg
-          class="w-6 h-6"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
-          ></path>
-        </svg>
-      </button>
+      {
+        ctaType === "details" ? (
+          <>
+            <a
+              href={`/headsets/${headset.slug}`}
+              class="flex-1 text-center px-4 py-2 bg-primary hover:bg-primary/80 text-white text-sm font-semibold rounded-lg transition-colors"
+            >
+              View Details
+            </a>
+            <button
+              class="favorite-button p-2 text-text/60 hover:text-red-400 hover:bg-gray-800 rounded-lg transition-all"
+              data-headset-id={headset.slug}
+              aria-label="Add to favorites"
+            >
+              <svg
+                class="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2.5"
+                  d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+                />
+              </svg>
+            </button>
+          </>
+        ) : (
+          <a
+            href={amazonUrl}
+            target="_blank"
+            rel="noopener noreferrer nofollow"
+            class="flex-1 inline-flex items-center justify-center gap-2 text-center px-4 py-3 bg-[#FF9900] hover:bg-[#FF9900]/90 text-black text-xs font-black uppercase tracking-widest rounded-lg transition-colors"
+          >
+            <Icon name="fa6-brands:amazon" class="w-5 h-5 flex-shrink-0" />
+            Check Price on Amazon
+          </a>
+        )
+      }
     </div>
   </div>
 </div>
