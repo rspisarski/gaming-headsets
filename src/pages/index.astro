@@ -1,7 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import Hero from "../components/Hero.astro";
-import HeadsetFilters from "../components/HeadsetFilters.astro";
+import FeaturedBlogPosts from "../components/FeaturedBlogPosts.astro";
+import NewHeadsets from "../components/NewHeadsets.astro";
 import { getCollection } from "astro:content";
 
 const headsets = await getCollection("headsets");
@@ -16,11 +16,27 @@ const headsetData = headsets.map((headset) => ({
   description="The ultimate database for gaming headsets. Compare technical specs, battery life, and compatibility for the latest headsets from SteelSeries, Logitech, Razer, and more."
 >
   <div>
-    <Hero />
+    <FeaturedBlogPosts />
 
-    <div class="min-h-screen bg-black">
-      <main class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <HeadsetFilters headsets={headsetData} />
+    <NewHeadsets />
+
+    <div class="bg-black">
+      <main class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl font-bold text-text mb-4">
+            Find Your Perfect Match
+          </h2>
+          <p class="text-text/70 text-lg mb-8">
+            Looking for specific features? Use our advanced filter system to
+            narrow down the choices.
+          </p>
+          <a
+            href="/headsets"
+            class="inline-flex items-center px-8 py-4 bg-primary text-black font-bold rounded-lg hover:bg-primary/90 transition-all duration-300 transform hover:scale-105 shadow-[0_0_20px_rgba(139,213,27,0.3)]"
+          >
+            Browse All Headsets
+          </a>
+        </div>
       </main>
     </div>
   </div>

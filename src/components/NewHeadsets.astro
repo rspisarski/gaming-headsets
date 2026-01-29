@@ -1,0 +1,155 @@
+---
+import { getCollection } from "astro:content";
+import HeadsetCard from "./HeadsetCard.astro";
+
+const headsets = await getCollection("headsets");
+const sortedHeadsets = headsets
+    .sort((a, b) => {
+        const dateA = new Date(a.data.release_date || 0);
+        const dateB = new Date(b.data.release_date || 0);
+        return dateB.getTime() - dateA.getTime();
+    })
+    .slice(0, 10);
+
+const headsetData = sortedHeadsets.map((headset) => ({
+    ...headset.data,
+    slug: headset.slug,
+}));
+---
+
+<section class="py-12 bg-black overflow-hidden">
+    <div class="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-end justify-between mb-8">
+            <div>
+                <h2 class="text-3xl font-bold text-text mb-2">New Arrivals</h2>
+                <p class="text-text/60">
+                    Check out the latest gaming headsets added to our database.
+                </p>
+            </div>
+            <div class="flex items-center gap-4">
+                <div
+                    class="swiper-pagination-custom text-text/60 font-mono text-sm"
+                >
+                </div>
+                <div class="flex gap-2">
+                    <button
+                        class="swiper-button-prev-custom p-2 rounded-full border border-primary/20 bg-card-bg text-primary hover:bg-primary hover:text-black transition-all duration-300"
+                    >
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="20"
+                            height="20"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            ><path d="m15 18-6-6 6-6"></path></svg
+                        >
+                    </button>
+                    <button
+                        class="swiper-button-next-custom p-2 rounded-full border border-primary/20 bg-card-bg text-primary hover:bg-primary hover:text-black transition-all duration-300"
+                    >
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="20"
+                            height="20"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            ><path d="m9 18 6-6-6-6"></path></svg
+                        >
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Swiper -->
+        <div class="swiper new-headsets-swiper overflow-visible">
+            <div class="swiper-wrapper">
+                {
+                    headsetData.map((headset) => (
+                        <div class="swiper-slide h-auto">
+                            <HeadsetCard headset={headset} />
+                        </div>
+                    ))
+                }
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    :root {
+        --swiper-theme-color: #8bd51b;
+    }
+
+    .swiper-slide {
+        height: auto !important;
+    }
+
+    .swiper-button-disabled {
+        opacity: 0.3;
+        pointer-events: none;
+    }
+</style>
+
+<script>
+    import Swiper from "swiper";
+    import { Navigation, Pagination, Autoplay } from "swiper/modules";
+    import "swiper/css";
+    import "swiper/css/navigation";
+    import "swiper/css/pagination";
+
+    function initSwiper() {
+        new Swiper(".new-headsets-swiper", {
+            modules: [Navigation, Pagination, Autoplay],
+            slidesPerView: 1,
+            spaceBetween: 20,
+            loop: false,
+            autoplay: {
+                delay: 5000,
+                disableOnInteraction: true,
+            },
+            pagination: {
+                el: ".swiper-pagination-custom",
+                type: "fraction",
+                renderFraction: function (currentClass, totalClass) {
+                    return (
+                        '<span class="' +
+                        currentClass +
+                        '"></span>' +
+                        " / " +
+                        '<span class="' +
+                        totalClass +
+                        '"></span>'
+                    );
+                },
+            },
+            navigation: {
+                nextEl: ".swiper-button-next-custom",
+                prevEl: ".swiper-button-prev-custom",
+            },
+            breakpoints: {
+                640: {
+                    slidesPerView: 2,
+                    spaceBetween: 24,
+                },
+                1024: {
+                    slidesPerView: 3,
+                    spaceBetween: 32,
+                },
+            },
+        });
+    }
+
+    // Initialize on page load
+    initSwiper();
+
+    // Re-initialize on view transitions
+    document.addEventListener("astro:after-swap", initSwiper);
+</script>
