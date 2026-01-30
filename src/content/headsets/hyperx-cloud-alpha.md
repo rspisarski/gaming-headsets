@@ -4,7 +4,7 @@ name: "HyperX Cloud Alpha"
 brand: "HyperX"
 model: "Cloud Alpha"
 price: 79.99
-image: "https://ik.imagekit.io/gh2026/Headsets/6499569_sd.webp"
+image: "https://ik.imagekit.io/gh2026/Headsets/71++S+DNJ+L._SL1500_.jpg"
 image_thumbnail_contain: true
 release_date: 2017-09-01
 discontinued: false

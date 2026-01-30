@@ -4,7 +4,7 @@ name: "SteelSeries Arctis Nova 5"
 brand: "SteelSeries"
 model: "Nova 5"
 price: 129.99
-image: "https://ik.imagekit.io/gh2026/Headsets/71++S+DNJ+L._SL1500_.jpg"
+image: "https://ik.imagekit.io/gh2026/Headsets/arctis_nova_5_wl_pdp_img_buy_03.png__1920x1080_crop-fit_optimize_subsampling-2-3255.png_fm=webp&q=90&fit=scale&w=1200"
 image_thumbnail_contain: true
 release_date: 2024-05-14
 discontinued: false
