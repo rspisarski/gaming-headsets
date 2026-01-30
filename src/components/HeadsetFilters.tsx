@@ -300,7 +300,7 @@ export function HeadsetFilters({ headsets }: Props) {
     return (
         <div className="flex flex-col lg:flex-row gap-6">
             <aside
-                className={`fixed inset-0 z-[100] lg:z-0 bg-black/95 backdrop-blur-sm transition-transform duration-300 ${isMobileFiltersOpen ? 'translate-x-0' : 'translate-x-full'} lg:translate-x-0 lg:static lg:bg-transparent lg:w-64 lg:block lg:flex-shrink-0`}
+                className={`fixed inset-0 z-[100] lg:z-0 bg-black/95 backdrop-blur-sm transition-transform duration-300 ${isMobileFiltersOpen ? 'translate-x-0' : 'translate-x-full'} lg:translate-x-0 lg:relative lg:bg-transparent lg:w-64 lg:block lg:flex-shrink-0`}
             >
                 <div className="h-full overflow-y-auto lg:h-auto lg:overflow-visible bg-card-bg p-5 lg:rounded-xl">
                     <div className="flex justify-between items-center mb-4">
@@ -512,7 +512,7 @@ export function HeadsetFilters({ headsets }: Props) {
                 </div>
             </aside>
 
-            <div className="flex-1">
+            <div className="flex-1 relative z-0">
                 <div className="sticky top-16 z-30 bg-background/95 backdrop-blur-md -mx-4 px-4 py-3 mb-6 border-b border-white/10 lg:static lg:bg-transparent lg:border-none lg:p-0 lg:m-0 lg:mb-6 transition-all">
                     <div className="flex items-center justify-between gap-4">
                         <div>

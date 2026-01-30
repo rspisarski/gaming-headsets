@@ -57,7 +57,7 @@ export function HeadsetCard({ headset, ctaType = "details" }: Props) {
 
 
     return (
-        <div className="group bg-card-bg relative z-0 hover:z-10 rounded-xl shadow-sm hover:shadow-[0_0_80px_rgba(139,213,27,0.4)] transition-all duration-300 overflow-hidden flex flex-col h-full">
+        <div className="group bg-card-bg relative z-10 hover:-z-0 rounded-xl shadow-sm hover:shadow-[0_0_80px_rgba(139,213,27,0.4)] transition-all duration-300 overflow-hidden flex flex-col h-full">
             {/* Image - Aspect Ratio 4:3 */}
             <div className={`relative w-full aspect-[4/3] bg-white overflow-hidden group-hover:scale-[1.02] transition-transform duration-500 ${headset.image_thumbnail_contain ? "p-4" : "p-0"}`}>
                 <img
